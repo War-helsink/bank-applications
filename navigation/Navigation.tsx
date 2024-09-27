@@ -11,8 +11,9 @@ export const Navigation: React.FC = () => {
 		if (user === null && router) {
 			return router.replace("/auth");
 		}
-
-		return router.replace("/");
+		if (segments[0] === "auth") {
+			return router.replace("/");
+		}
 	}, [user, router, segments]);
 
 	return (
