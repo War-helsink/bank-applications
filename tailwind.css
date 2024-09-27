@@ -1,0 +1,113 @@
+.static {
+  position: static
+}
+
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem
+}
+
+.mt-3 {
+  margin-top: 0.75rem
+}
+
+.flex {
+  display: flex
+}
+
+.contents {
+  display: contents
+}
+
+.h-full {
+  height: 100%
+}
+
+.w-9\/12 {
+  width: 75%
+}
+
+.w-full {
+  width: 100%
+}
+
+.items-center {
+  align-items: center
+}
+
+.justify-center {
+  justify-content: center
+}
+
+.rounded-xl {
+  border-radius: 0.75rem
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.bg-yellow-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 224 71 / var(--tw-bg-opacity))
+}
+
+.p-3 {
+  padding: 0.75rem
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem
+}
+
+.pt-16 {
+  padding-top: 4rem
+}
+
+.text-center {
+  text-align: center
+}
+
+.text-right {
+  text-align: right
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem
+}
+
+.font-bold {
+  font-weight: 700
+}
+
+.text-amber-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 191 36 / var(--tw-text-opacity))
+}
+
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity))
+}

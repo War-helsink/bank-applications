@@ -9,14 +9,17 @@ export const Navigation: React.FC = () => {
 
 	useEffect(() => {
 		if (user === null && router) {
-			router.replace("/auth");
+			return router.replace("/auth");
 		}
+
+		return router.replace("/");
 	}, [user, router, segments]);
 
 	return (
 		<Stack>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 			<Stack.Screen name="auth" options={{ headerShown: false }} />
+
 			<Stack.Screen name="+not-found" />
 		</Stack>
 	);

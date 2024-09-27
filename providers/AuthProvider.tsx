@@ -1,8 +1,9 @@
 import { Alert } from "react-native";
 import { createContext, useState, useMemo, useEffect } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { register, login, logout, firestore, auth } from "@/utils/firebase";
+import { FirebaseError } from "firebase/app";
 
 export interface IAuthContext {
 	user: User | null;
@@ -26,12 +27,18 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 		try {
 			const { user } = await register(email, password);
 
-			await addDoc(collection(firestore, "users"), {
-				_id: user.uid,
-				displayName: "No name",
+			await setDoc(doc(firestore, "users", user.uid), {
+				id: user.uid,
+				displayName: "New user",
 			});
-		} catch (err: any) {
-			Alert.alert("Error reg", err);
+		} catch (err) {
+			if (err instanceof FirebaseError) {
+				Alert.alert(err.message);
+			} else if (err instanceof Error) {
+				Alert.alert(err.message);
+			} else {
+				Alert.alert("Registration Error");
+			}
 		} finally {
 			setIsLoading(false);
 		}
@@ -41,8 +48,14 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 		setIsLoading(true);
 		try {
 			await login(email, password);
-		} catch (err: any) {
-			Alert.alert("Error login", err);
+		} catch (err) {
+			if (err instanceof FirebaseError) {
+				Alert.alert(err.message);
+			} else if (err instanceof Error) {
+				Alert.alert(err.message);
+			} else {
+				Alert.alert("Login Error");
+			}
 		} finally {
 			setIsLoading(false);
 		}
@@ -52,8 +65,14 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 		setIsLoading(true);
 		try {
 			await logout();
-		} catch (err: any) {
-			Alert.alert("Error logout", err);
+		} catch (err) {
+			if (err instanceof FirebaseError) {
+				Alert.alert("Logout Error", err.message);
+			} else if (err instanceof Error) {
+				Alert.alert("Logout Error", err.message);
+			} else {
+				Alert.alert("Logout Error");
+			}
 		} finally {
 			setIsLoading(false);
 		}
