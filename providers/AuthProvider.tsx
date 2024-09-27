@@ -1,16 +1,22 @@
-import { createContext, useState, useMemo } from "react";
-import type { User } from "firebase/auth";
 import { Alert } from "react-native";
-import { register, firestore } from "@/utils/firebase";
+import { createContext, useState, useMemo, useEffect } from "react";
+import { onAuthStateChanged, type User } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
+import { register, login, logout, firestore, auth } from "@/utils/firebase";
 
 export interface IAuthContext {
 	user: User | null;
+	isLoading: boolean;
+	register: (email: string, password: string) => Promise<void>;
+	login: (email: string, password: string) => Promise<void>;
+	logout: () => Promise<void>;
 }
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-export const AuthProvider = () => {
+export const AuthProvider: React.FC<React.PropsWithChildren> = ({
+	children,
+}) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [isLoadingInitial, setIsLoadingInitial] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +37,49 @@ export const AuthProvider = () => {
 		}
 	};
 
-	const value = useMemo(() => ({}), []);
+	const loginHandler = async (email: string, password: string) => {
+		setIsLoading(true);
+		try {
+			await login(email, password);
+		} catch (err: any) {
+			Alert.alert("Error login", err);
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
-	return value;
+	const logoutHandler = async () => {
+		setIsLoading(true);
+		try {
+			await logout();
+		} catch (err: any) {
+			Alert.alert("Error logout", err);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			setUser(user);
+			setIsLoadingInitial(false);
+		});
+	});
+
+	const value = useMemo(
+		() => ({
+			user,
+			isLoading,
+			register: registerHandler,
+			login: loginHandler,
+			logout: logoutHandler,
+		}),
+		[user, isLoading],
+	);
+
+	return (
+		<AuthContext.Provider value={value}>
+			{!isLoadingInitial && children}
+		</AuthContext.Provider>
+	);
 };
