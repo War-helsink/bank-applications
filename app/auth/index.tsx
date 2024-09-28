@@ -6,8 +6,8 @@ import {
 	Loader,
 	Field,
 	Button,
-	ThemedView,
-	ThemedText,
+	View,
+	Text,
 } from "@/components/shared/ui";
 
 interface IData {
@@ -31,12 +31,12 @@ export const Auth: React.FC = () => {
 	};
 
 	return (
-		<ThemedView style={tw("w-9/12")}>
-			<ThemedText
-				style={tw("text-center text-gray-800 text-2xl font-bold mb-2")}
+		<View style={tw("w-9/12")}>
+			<Text
+				style={tw("text-center text-2xl font-bold mb-2")}
 			>
 				{isReg ? "Sing Up" : "Sing In"}
-			</ThemedText>
+			</Text>
 
 			{isLoading ? (
 				<Loader />
@@ -59,12 +59,12 @@ export const Auth: React.FC = () => {
 					<Button onPress={submit}>{isReg ? "Sing up" : "Log in"}</Button>
 
 					<Pressable onPress={() => setIsReg((pre) => !pre)}>
-						<ThemedText style={tw("text-right text-gray-800 text-sm")}>
+						<Text style={tw("text-right text-sm")}>
 							{isReg ? "Login" : "Register"}
-						</ThemedText>
+						</Text>
 					</Pressable>
 				</>
 			)}
-		</ThemedView>
+		</View>
 	);
 };

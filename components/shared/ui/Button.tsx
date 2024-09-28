@@ -1,28 +1,32 @@
 import { TouchableHighlight } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { ThemedText } from "./ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { Text } from "./Text";
 
-export interface ButtonProps {
+import type { TypeColors } from "@/type/colors";
+
+export interface ButtonProps extends React.PropsWithChildren {
 	onPress?: () => void;
-	bgColor?: string;
-	underlayColor?: string;
+	color?: TypeColors;
 }
 
-export const Button: React.FC<ButtonProps & React.PropsWithChildren> = ({
+export const Button: React.FC<ButtonProps> = ({
 	children,
 	onPress,
-	bgColor = "bg-yellow-300",
-	underlayColor = "#FBBF24",
+	color = "primary",
 }) => {
+	const backgroundColor = useThemeColor(color);
+	const underlayColor = useThemeColor(color);
+	const text = useThemeColor(`${color}Contrast`);
 	const tw = useTailwind();
 
 	return (
 		<TouchableHighlight
 			onPress={onPress}
-			style={tw(`${bgColor} rounded-xl w-full my-4 py-3`)}
+			style={[{ backgroundColor }, tw("rounded-xl w-full my-4 py-3")]}
 			underlayColor={underlayColor}
 		>
-			<ThemedText style={tw("text-center")}>{children}</ThemedText>
+			<Text style={[{ color: text }, tw("text-center")]}>{children}</Text>
 		</TouchableHighlight>
 	);
 };

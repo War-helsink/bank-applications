@@ -1,6 +1,6 @@
 import { useTailwind } from "tailwind-rn";
 import { useAuth } from "@/hooks/useAuth";
-import { ThemedText, ThemedView, Button } from "@/components/shared/ui";
+import { Text, View, Button } from "@/components/shared/ui";
 import { Header } from "@/components/widgets/header";
 
 export default function ServicesScreen() {
@@ -8,12 +8,12 @@ export default function ServicesScreen() {
 	const { logout } = useAuth();
 
 	return (
-		<ThemedView style={tw("h-full w-full pt-16")}>
+		<View style={tw("h-full w-full pt-16")}>
 			<Header />
-			<ThemedView style={tw("mx-5 w-full h-full justify-center items-center")}>
-				<ThemedText>Services</ThemedText>
+			<View style={tw("px-5 w-full h-full justify-center items-center")}>
+				<Text>Services</Text>
 				<Button onPress={logout}>Logout</Button>
-			</ThemedView>
-		</ThemedView>
+			</View>
+		</View>
 	);
 }

@@ -1,6 +1,6 @@
 import type { ViewProps } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { ThemedView } from "./ThemedView";
+import { View } from "./View";
 
 export type ContainerProps = ViewProps;
 
@@ -11,8 +11,8 @@ export const Container: React.FC<ContainerProps> = ({
 }) => {
 	const tw = useTailwind();
 	return (
-		<ThemedView style={[tw("px-4"), style]} {...otherProps}>
+		<View style={[tw("px-4"), style]} {...otherProps}>
 			{children}
-		</ThemedView>
+		</View>
 	);
 };

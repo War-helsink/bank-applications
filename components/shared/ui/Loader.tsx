@@ -1,5 +1,8 @@
 import { ActivityIndicator } from "react-native";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export const Loader: React.FC = () => {
-	return <ActivityIndicator size="large" color="#06B6D4" />;
+	const color = useThemeColor("primary");
+
+	return <ActivityIndicator size="large" color={color} />;
 };

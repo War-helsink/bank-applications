@@ -1,5 +1,6 @@
 import { TextInput } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export interface FieldProps {
 	onChange?: (value: string) => void;
@@ -14,6 +15,8 @@ export const Field: React.FC<FieldProps> = ({
 	placeholder,
 	isSecure,
 }) => {
+	const color = useThemeColor("text");
+	const borderColor = useThemeColor("borderInput");
 	const tw = useTailwind();
 
 	return (
@@ -23,7 +26,12 @@ export const Field: React.FC<FieldProps> = ({
 			value={value}
 			secureTextEntry={isSecure}
 			autoCapitalize="none"
-            style={tw("rounded-xl bg-gray-100 mt-3 p-3")}
+			placeholderTextColor={borderColor}
+			style={[
+				{ color },
+				{ borderColor },
+				tw("rounded-xl mt-3 p-3 border border-solid"),
+			]}
 		/>
 	);
 };
