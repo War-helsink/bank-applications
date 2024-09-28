@@ -1,18 +1,19 @@
-import { View, Text } from "react-native";
 import { useTailwind } from "tailwind-rn";
 import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui";
+import { ThemedText, ThemedView, Button } from "@/components/shared/ui";
+import { Header } from "@/components/widgets/header";
 
 export default function ServicesScreen() {
 	const tw = useTailwind();
 	const { logout } = useAuth();
 
 	return (
-		<View style={tw("h-full w-full pt-16")}>
-			<View style={tw("mx-5 w-full h-full justify-center items-center")}>
-				<Text>Services</Text>
+		<ThemedView style={tw("h-full w-full pt-16")}>
+			<Header />
+			<ThemedView style={tw("mx-5 w-full h-full justify-center items-center")}>
+				<ThemedText>Services</ThemedText>
 				<Button onPress={logout}>Logout</Button>
-			</View>
-		</View>
+			</ThemedView>
+		</ThemedView>
 	);
 }

@@ -1,2 +1,2 @@
-export { Navigation } from "./Navigation";
-export { TabBarIcon } from "./TabBarIcon";
+export { Navigation } from "./ui/Navigation";
+export { TabBarIcon } from "./ui/TabBarIcon";

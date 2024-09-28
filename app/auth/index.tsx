@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { Text, View, Pressable } from "react-native";
+import { Pressable } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { Loader, Field, Button } from "@/components/ui";
+import {
+	Loader,
+	Field,
+	Button,
+	ThemedView,
+	ThemedText,
+} from "@/components/shared/ui";
 
 interface IData {
 	email: string;
@@ -25,10 +31,12 @@ export const Auth: React.FC = () => {
 	};
 
 	return (
-		<View style={tw("w-9/12")}>
-			<Text style={tw("text-center text-gray-800 text-2xl font-bold mb-2")}>
+		<ThemedView style={tw("w-9/12")}>
+			<ThemedText
+				style={tw("text-center text-gray-800 text-2xl font-bold mb-2")}
+			>
 				{isReg ? "Sing Up" : "Sing In"}
-			</Text>
+			</ThemedText>
 
 			{isLoading ? (
 				<Loader />
@@ -51,12 +59,12 @@ export const Auth: React.FC = () => {
 					<Button onPress={submit}>{isReg ? "Sing up" : "Log in"}</Button>
 
 					<Pressable onPress={() => setIsReg((pre) => !pre)}>
-						<Text style={tw("text-right text-gray-800 text-sm")}>
+						<ThemedText style={tw("text-right text-gray-800 text-sm")}>
 							{isReg ? "Login" : "Register"}
-						</Text>
+						</ThemedText>
 					</Pressable>
 				</>
 			)}
-		</View>
+		</ThemedView>
 	);
 };
