@@ -1,8 +1,8 @@
 import { Tabs } from "expo-router";
 import React from "react";
 
-import { TabBarIcon } from "@/navigation";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { TabBarIcon } from "@/core/navigation";
+import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export default function TabLayout() {
 	const tabBarActiveTintColor = useThemeColor("primary");

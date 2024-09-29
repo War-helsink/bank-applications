@@ -1,11 +1,12 @@
 import { Alert } from "react-native";
 import { createContext, useState, useMemo, useEffect } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
-import { register, login, logout, firestore, auth } from "@/utils/firebase";
+import { register, login, logout, auth } from "@/core/utils/firebase";
 import { FirebaseError } from "firebase/app";
+import { UserProfile } from "@/core/entities/user";
 
 export interface IAuthContext {
+	profile: UserProfile | null;
 	user: User | null;
 	isLoading: boolean;
 	register: (email: string, password: string) => Promise<void>;
@@ -19,6 +20,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 	children,
 }) => {
 	const [user, setUser] = useState<User | null>(null);
+	const [profile, setProfile] = useState<UserProfile | null>(null);
 	const [isLoadingInitial, setIsLoadingInitial] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -27,10 +29,12 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 		try {
 			const { user } = await register(email, password);
 
-			await setDoc(doc(firestore, "users", user.uid), {
+			const userProfile = new UserProfile({
 				id: user.uid,
-				displayName: "New user",
+				email: user.email as string,
 			});
+
+			await userProfile.create();
 		} catch (err) {
 			if (err instanceof FirebaseError) {
 				Alert.alert(err.message);
@@ -79,7 +83,27 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 	};
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
+		if (user === null) {
+			if (profile !== null) {
+				console.log("unsubscribeDocumentChanged")
+				profile.unsubscribeDocumentChanged();
+				setProfile(null);
+			}
+
+			return;
+		}
+
+		if (profile === null) {
+			const userProfile = new UserProfile({ id: user.uid });
+			userProfile.subscribeDocumentChanged((userProfile) => {
+				console.log("setProfile")
+				setProfile(userProfile);
+			});
+		}
+	}, [user, profile]);
+
+	useEffect(() => {
+		onAuthStateChanged(auth, async (user) => {
 			setUser(user);
 			setIsLoadingInitial(false);
 		});
@@ -87,13 +111,14 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 
 	const value = useMemo(
 		() => ({
+			profile,
 			user,
 			isLoading,
 			register: registerHandler,
 			login: loginHandler,
 			logout: logoutHandler,
 		}),
-		[user, isLoading],
+		[profile, user, isLoading],
 	);
 
 	return (

@@ -1,21 +1,15 @@
 import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/core/hooks/useAuth";
 import { Pressable } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import {
-	Loader,
-	Field,
-	Button,
-	View,
-	Text,
-} from "@/components/shared/ui";
+import { Loader, Field, Button, View, Text } from "@/components/shared/ui";
 
 interface IData {
 	email: string;
 	password: string;
 }
 
-export const Auth: React.FC = () => {
+export const AuthPage: React.FC = () => {
 	const tw = useTailwind();
 	const { isLoading, login, register } = useAuth();
 	const [isReg, setIsReg] = useState(false);
@@ -32,9 +26,7 @@ export const Auth: React.FC = () => {
 
 	return (
 		<View style={tw("w-9/12")}>
-			<Text
-				style={tw("text-center text-2xl font-bold mb-2")}
-			>
+			<Text style={tw("text-center text-2xl font-bold mb-2")}>
 				{isReg ? "Sing Up" : "Sing In"}
 			</Text>
 

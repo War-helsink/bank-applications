@@ -3,7 +3,7 @@ import {
 	type TextProps as TextPropsRN,
 	StyleSheet,
 } from "react-native";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export type TextProps = TextPropsRN & {
 	lightColor?: string;

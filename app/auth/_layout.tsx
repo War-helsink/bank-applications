@@ -1,4 +1,4 @@
-import { Auth } from "./";
+import { AuthPage } from "./";
 import { View } from "@/components/shared/ui";
 import { useTailwind } from "tailwind-rn";
 
@@ -8,7 +8,7 @@ const AuthLayout: React.FC = () => {
 	return (
 		<View style={tw("h-full w-full pt-16")}>
 			<View style={tw("mx-5 w-full h-full justify-center items-center")}>
-				<Auth />
+				<AuthPage />
 			</View>
 		</View>
 	);

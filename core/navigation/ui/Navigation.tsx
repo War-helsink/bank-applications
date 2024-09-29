@@ -1,6 +1,6 @@
 import { Stack, useSegments, useRouter } from "expo-router";
 import { useEffect } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/core/hooks/useAuth";
 
 export const Navigation: React.FC = () => {
 	const segments = useSegments();

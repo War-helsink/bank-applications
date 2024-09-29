@@ -3,16 +3,16 @@ import {
 	DefaultTheme,
 	ThemeProvider,
 } from "@react-navigation/native";
-import { AuthProvider } from "@/providers/AuthProvider";
+import { AuthProvider } from "@/core/providers/AuthProvider";
 import { useFonts } from "expo-font";
 import { TailwindProvider } from "tailwind-rn";
 
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-import { Navigation } from "@/navigation";
+import { Navigation } from "@/core/navigation";
 
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { useColorScheme } from "@/core/hooks/useColorScheme";
 import utilities from '@/tailwind.json';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.

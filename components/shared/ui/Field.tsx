@@ -1,6 +1,6 @@
 import { TextInput } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export interface FieldProps {
 	onChange?: (value: string) => void;

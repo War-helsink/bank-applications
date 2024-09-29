@@ -1,9 +1,9 @@
 import { TouchableHighlight } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { Text } from "./Text";
 
-import type { TypeColors } from "@/type/colors";
+import type { TypeColors } from "@/core/types/colors";
 
 export interface ButtonProps extends React.PropsWithChildren {
 	onPress?: () => void;

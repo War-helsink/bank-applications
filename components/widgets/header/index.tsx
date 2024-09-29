@@ -1,18 +1,19 @@
-import { Container, Text, View } from "@/components/shared/ui";
+import { Container, View, Avatar } from "@/components/shared/ui";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useTailwind } from "tailwind-rn";
-
+import { useAuth } from "@/core/hooks/useAuth";
 
 export const Header: React.FC = () => {
 	const color = useThemeColor("text");
+	const { profile } = useAuth();
 	const tw = useTailwind();
 
 	return (
 		<Container style={tw("flex flex-row items-center justify-between")}>
 			<View>
-				<Text>Header</Text>
+				<Avatar name={profile?.lastName} />
 			</View>
 			<View style={tw("flex flex-row")}>
 				<MaterialCommunityIcons

@@ -4,6 +4,8 @@ export const Colors = {
 		background: "#ffffff",
 		borderInput: "#b8b8b8",
 
+		white: "#fff",
+
 		primary: "#0054e9",
 		primaryContrast: "#fff",
 		primaryShade: "#004acd",
@@ -53,6 +55,8 @@ export const Colors = {
 		text: "#ffffff",
 		background: "#121212",
 		borderInput: "#595959",
+
+		white: "#fff",
 
 		primary: "#4d8dff",
 		primaryContrast: "#000",
