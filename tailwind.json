@@ -27,14 +27,14 @@
 			"marginBottom": 8
 		}
 	},
-	"mt-3": {
-		"style": {
-			"marginTop": 12
-		}
-	},
 	"ml-2": {
 		"style": {
 			"marginLeft": 8
+		}
+	},
+	"mt-3": {
+		"style": {
+			"marginTop": 12
 		}
 	},
 	"flex": {

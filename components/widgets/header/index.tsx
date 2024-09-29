@@ -7,7 +7,7 @@ import {
 	Entypo,
 } from "@expo/vector-icons";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
-import {useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import { useAuth } from "@/core/hooks/useAuth";
 import { useTailwind } from "tailwind-rn";
@@ -31,18 +31,28 @@ export const Header: React.FC = () => {
 				</TouchableOpacity>
 			</View>
 			<View style={tw("flex flex-row")}>
-				<MaterialCommunityIcons
-					name="bell"
-					size={24}
-					color="black"
-					style={[{ color }, tw("mx-1")]}
-				/>
-				<FontAwesome5
-					name="chart-bar"
-					size={24}
-					color="black"
-					style={[{ color }, tw("mx-1")]}
-				/>
+				<TouchableOpacity
+					style={tw("mx-1")}
+					onPress={() => router.push("/messages")}
+				>
+					<MaterialCommunityIcons
+						name="bell"
+						size={24}
+						color="black"
+						style={{ color }}
+					/>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={tw("mx-1")}
+					onPress={() => router.push("/statistics")}
+				>
+					<FontAwesome5
+						name="chart-bar"
+						size={24}
+						color="black"
+						style={{ color }}
+					/>
+				</TouchableOpacity>
 			</View>
 		</Container>
 	);
