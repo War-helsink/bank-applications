@@ -19,6 +19,7 @@ export const Navigation: React.FC = () => {
 	return (
 		<Stack>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+			<Stack.Screen name="messages" options={{ headerShown: true }} />
 			<Stack.Screen name="profile" options={{ headerShown: true }} />
 			<Stack.Screen name="auth" options={{ headerShown: false }} />
 
