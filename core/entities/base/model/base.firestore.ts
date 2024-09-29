@@ -45,6 +45,7 @@ export class BaseFirestore {
 			.then((docSnap) => {
 				if (docSnap.exists()) {
 					const data = docSnap.data();
+					data.id = this.id;
 
 					this.updateFromData(data);
 
@@ -110,9 +111,7 @@ export class BaseFirestore {
 						callback(new cls(documentNew));
 					}
 				},
-				(error) => {
-					console.log(error);
-				},
+				() => null,
 			);
 		}
 	}

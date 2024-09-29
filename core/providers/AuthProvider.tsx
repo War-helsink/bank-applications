@@ -85,7 +85,6 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 	useEffect(() => {
 		if (user === null) {
 			if (profile !== null) {
-				console.log("unsubscribeDocumentChanged")
 				profile.unsubscribeDocumentChanged();
 				setProfile(null);
 			}
@@ -96,7 +95,6 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 		if (profile === null) {
 			const userProfile = new UserProfile({ id: user.uid });
 			userProfile.subscribeDocumentChanged((userProfile) => {
-				console.log("setProfile")
 				setProfile(userProfile);
 			});
 		}
