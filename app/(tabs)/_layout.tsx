@@ -40,6 +40,23 @@ export default function TabLayout() {
 					),
 				}}
 			/>
+			<Tabs.Screen
+				name="more"
+				options={{
+					title: "More",
+					tabBarIcon: ({ color, focused }) => (
+						<TabBarIcon
+							name={
+								focused
+									? "ellipsis-horizontal-sharp"
+									: "ellipsis-horizontal-outline"
+							}
+							focused={focused}
+							color={color}
+						/>
+					),
+				}}
+			/>
 		</Tabs>
 	);
 }
