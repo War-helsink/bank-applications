@@ -12,13 +12,14 @@ export const Navigation: React.FC = () => {
 			return router.replace("/auth");
 		}
 		if (segments[0] === "auth") {
-			return router.replace("/");
+			return router.replace("/(tabs)");
 		}
 	}, [user, router, segments]);
 
 	return (
 		<Stack>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+			<Stack.Screen name="profile" options={{ headerShown: true }} />
 			<Stack.Screen name="auth" options={{ headerShown: false }} />
 
 			<Stack.Screen name="+not-found" />

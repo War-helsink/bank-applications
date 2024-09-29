@@ -1,19 +1,34 @@
-import { Container, View, Avatar } from "@/components/shared/ui";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import { TouchableOpacity } from "react-native";
+import { Container, View, Text, Avatar } from "@/components/shared/ui";
+
+import {
+	FontAwesome5,
+	MaterialCommunityIcons,
+	Entypo,
+} from "@expo/vector-icons";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
-import { useTailwind } from "tailwind-rn";
+import {useRouter } from "expo-router";
+
 import { useAuth } from "@/core/hooks/useAuth";
+import { useTailwind } from "tailwind-rn";
 
 export const Header: React.FC = () => {
 	const color = useThemeColor("text");
 	const { profile } = useAuth();
 	const tw = useTailwind();
+	const router = useRouter();
 
 	return (
 		<Container style={tw("flex flex-row items-center justify-between")}>
-			<View>
+			<View style={tw("flex flex-row items-center")}>
 				<Avatar name={profile?.lastName} />
+				<TouchableOpacity
+					style={tw("flex-row items-end ml-2")}
+					onPress={() => router.push("/profile")}
+				>
+					<Text style={tw("font-bold")}>{profile?.lastName}</Text>
+					<Entypo name="chevron-small-right" size={24} style={{ color }} />
+				</TouchableOpacity>
 			</View>
 			<View style={tw("flex flex-row")}>
 				<MaterialCommunityIcons

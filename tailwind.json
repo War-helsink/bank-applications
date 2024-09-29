@@ -32,6 +32,11 @@
 			"marginTop": 12
 		}
 	},
+	"ml-2": {
+		"style": {
+			"marginLeft": 8
+		}
+	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -85,6 +90,11 @@
 	"flex-row": {
 		"style": {
 			"flexDirection": "row"
+		}
+	},
+	"items-end": {
+		"style": {
+			"alignItems": "flex-end"
 		}
 	},
 	"items-center": {

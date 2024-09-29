@@ -25,6 +25,10 @@
   margin-top: 0.75rem
 }
 
+.ml-2 {
+  margin-left: 0.5rem
+}
+
 .flex {
   display: flex
 }
@@ -67,6 +71,10 @@
 
 .flex-row {
   flex-direction: row
+}
+
+.items-end {
+  align-items: flex-end
 }
 
 .items-center {
