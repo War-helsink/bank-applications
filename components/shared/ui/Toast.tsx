@@ -1,7 +1,10 @@
-import Toast, { BaseToast, type ToastConfig } from "react-native-toast-message";
+import ToastMessage, {
+	BaseToast,
+	type ToastConfig,
+} from "react-native-toast-message";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-export const ToastEl: React.FC = () => {
+export const Toast: React.FC = () => {
 	const colorSuccess = useThemeColor("success");
 	const colorError = useThemeColor("danger");
 	const colorInfo = useThemeColor("medium");
@@ -34,5 +37,5 @@ export const ToastEl: React.FC = () => {
 		),
 	};
 
-	return <Toast config={toastConfig} />;
+	return <ToastMessage config={toastConfig} />;
 };

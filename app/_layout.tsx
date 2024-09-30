@@ -3,16 +3,16 @@ import {
 	DefaultTheme,
 	ThemeProvider,
 } from "@react-navigation/native";
-import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 
-import { ToastEl } from "@/components/shared/ui";
+import { Toast } from "@/components/shared/ui";
 import { AuthProvider } from "@/core/providers/AuthProvider";
-import { NavigationProvider } from "@/core/providers/NavigationProvider";
 import { TailwindProvider } from "tailwind-rn";
+import { RouteController } from "@/components/features/navigation";
 
 import { useEffect } from "react";
+import { useFonts } from "expo-font";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useColorScheme } from "@/core/hooks/useColorScheme";
 import utilities from "@/tailwind.json";
@@ -44,7 +44,7 @@ export default function RootLayout() {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<TailwindProvider utilities={utilities}>
 				<AuthProvider>
-					<NavigationProvider>
+					<RouteController>
 						<Stack>
 							<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 							<Stack.Screen
@@ -78,10 +78,10 @@ export default function RootLayout() {
 
 							<Stack.Screen name="+not-found" />
 						</Stack>
-					</NavigationProvider>
+					</RouteController>
 				</AuthProvider>
 			</TailwindProvider>
-			<ToastEl />
+			<Toast />
 		</ThemeProvider>
 	);
 }
