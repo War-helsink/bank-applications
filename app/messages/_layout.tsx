@@ -1,4 +1,4 @@
-import { View } from "@/components/shared/ui";
+import { Container, View } from "@/components/shared/ui";
 import { useTailwind } from "tailwind-rn";
 
 const MessagesLayout: React.FC = () => {
@@ -6,9 +6,9 @@ const MessagesLayout: React.FC = () => {
 
 	return (
 		<View style={tw("h-full w-full pt-16")}>
-			<View style={tw("mx-5 w-full h-full justify-center items-center")}>
+			<Container style={tw("w-full h-full justify-center items-center")}>
 				
-			</View>
+			</Container>
 		</View>
 	);
 };

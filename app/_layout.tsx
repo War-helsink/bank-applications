@@ -4,6 +4,7 @@ import {
 	ThemeProvider,
 } from "@react-navigation/native";
 import { AuthProvider } from "@/core/providers/AuthProvider";
+import { ToastEl } from "@/components/shared/ui";
 import { useFonts } from "expo-font";
 import { TailwindProvider } from "tailwind-rn";
 
@@ -13,7 +14,7 @@ import { useEffect } from "react";
 import { Navigation } from "@/core/navigation";
 
 import { useColorScheme } from "@/core/hooks/useColorScheme";
-import utilities from '@/tailwind.json';
+import utilities from "@/tailwind.json";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -41,6 +42,7 @@ export default function RootLayout() {
 					<Navigation />
 				</AuthProvider>
 			</TailwindProvider>
+			<ToastEl />
 		</ThemeProvider>
 	);
 }

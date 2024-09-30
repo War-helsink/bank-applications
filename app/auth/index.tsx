@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
 import { Pressable } from "react-native";
@@ -9,7 +10,7 @@ interface IData {
 	password: string;
 }
 
-export const AuthPage: React.FC = () => {
+export const AuthScreen: React.FC = () => {
 	const tw = useTailwind();
 	const { isLoading, login, register } = useAuth();
 	const [isReg, setIsReg] = useState(false);

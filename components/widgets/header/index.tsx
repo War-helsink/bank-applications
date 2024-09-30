@@ -15,8 +15,8 @@ import { useTailwind } from "tailwind-rn";
 export const Header: React.FC = () => {
 	const color = useThemeColor("text");
 	const { profile } = useAuth();
-	const tw = useTailwind();
 	const router = useRouter();
+	const tw = useTailwind();
 
 	return (
 		<Container style={tw("flex flex-row items-center justify-between")}>
@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
 			</View>
 			<View style={tw("flex flex-row")}>
 				<TouchableOpacity
-					style={tw("mx-1")}
+					style={tw("mx-3")}
 					onPress={() => router.push("/messages")}
 				>
 					<MaterialCommunityIcons
@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
 					/>
 				</TouchableOpacity>
 				<TouchableOpacity
-					style={tw("mx-1")}
+					style={tw("mx-3")}
 					onPress={() => router.push("/statistics")}
 				>
 					<FontAwesome5

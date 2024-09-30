@@ -1,4 +1,4 @@
-import { Alert } from "react-native";
+import Toast from "react-native-toast-message";
 import { createContext, useState, useMemo, useEffect } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { register, login, logout, auth } from "@/core/utils/firebase";
@@ -37,11 +37,20 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			await userProfile.create();
 		} catch (err) {
 			if (err instanceof FirebaseError) {
-				Alert.alert(err.message);
+				Toast.show({
+					type: "error",
+					text1: err.message,
+				});
 			} else if (err instanceof Error) {
-				Alert.alert(err.message);
+				Toast.show({
+					type: "error",
+					text1: err.message,
+				});
 			} else {
-				Alert.alert("Registration Error");
+				Toast.show({
+					type: "error",
+					text1: "Registration Error",
+				});
 			}
 		} finally {
 			setIsLoading(false);
@@ -54,11 +63,20 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			await login(email, password);
 		} catch (err) {
 			if (err instanceof FirebaseError) {
-				Alert.alert(err.message);
+				Toast.show({
+					type: "error",
+					text1: err.message,
+				});
 			} else if (err instanceof Error) {
-				Alert.alert(err.message);
+				Toast.show({
+					type: "error",
+					text1: err.message,
+				});
 			} else {
-				Alert.alert("Login Error");
+				Toast.show({
+					type: "error",
+					text1: "Login Error",
+				});
 			}
 		} finally {
 			setIsLoading(false);
@@ -71,11 +89,20 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			await logout();
 		} catch (err) {
 			if (err instanceof FirebaseError) {
-				Alert.alert("Logout Error", err.message);
+				Toast.show({
+					type: "error",
+					text1: err.message,
+				});
 			} else if (err instanceof Error) {
-				Alert.alert("Logout Error", err.message);
+				Toast.show({
+					type: "error",
+					text1: err.message,
+				});
 			} else {
-				Alert.alert("Logout Error");
+				Toast.show({
+					type: "error",
+					text1: "Logout Error",
+				});
 			}
 		} finally {
 			setIsLoading(false);

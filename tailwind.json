@@ -4,16 +4,10 @@
 			"position": "static"
 		}
 	},
-	"mx-1": {
+	"mx-3": {
 		"style": {
-			"marginLeft": 4,
-			"marginRight": 4
-		}
-	},
-	"mx-5": {
-		"style": {
-			"marginLeft": 20,
-			"marginRight": 20
+			"marginLeft": 12,
+			"marginRight": 12
 		}
 	},
 	"my-4": {
@@ -153,12 +147,6 @@
 		"style": {
 			"paddingLeft": 16,
 			"paddingRight": 16
-		}
-	},
-	"px-5": {
-		"style": {
-			"paddingLeft": 20,
-			"paddingRight": 20
 		}
 	},
 	"py-3": {
