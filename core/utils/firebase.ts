@@ -1,11 +1,3 @@
-import {
-	API_KEY,
-	AUTH_DOMAIN,
-	PROJECT_ID,
-	STORAGE_BUCKET,
-	MESSAGING_SENDER_ID,
-	APP_ID,
-} from "@env";
 import { initializeApp } from "firebase/app";
 import {
 	initializeAuth,
@@ -21,12 +13,12 @@ import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: API_KEY,
-	authDomain: AUTH_DOMAIN,
-	projectId: PROJECT_ID,
-	storageBucket: STORAGE_BUCKET,
-	messagingSenderId: MESSAGING_SENDER_ID,
-	appId: APP_ID,
+	apiKey: process.env.EXPO_PUBLIC_API_KEY,
+	authDomain: process.env.EXPO_PUBLIC_AUTH_DOMAIN,
+	projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+	storageBucket: process.env.EXPO_PUBLIC_STORAGE_BUCKET,
+	messagingSenderId: process.env.EXPO_PUBLIC_MESSAGING_SENDER_ID,
+	appId: process.env.EXPO_PUBLIC_APP_ID,
 };
 
 // Initialize Firebase

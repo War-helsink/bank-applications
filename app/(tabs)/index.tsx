@@ -2,7 +2,7 @@ import { useTailwind } from "tailwind-rn";
 import { View, Container} from "@/components/shared/ui";
 import { Header } from "@/components/widgets/header";
 
-export default function HomeScreen() {
+const HomeScreen: React.FC = ()=> {
 	const tw = useTailwind();
 
 	return (
@@ -14,3 +14,5 @@ export default function HomeScreen() {
 		</View>
 	);
 }
+
+export default HomeScreen;
