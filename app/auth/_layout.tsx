@@ -1,5 +1,5 @@
 import { AuthScreen } from "./";
-import { Container, View } from "@/components/shared/ui";
+import { Container, View } from "@/components/shared";
 import { useTailwind } from "tailwind-rn";
 
 const AuthLayout: React.FC = () => {

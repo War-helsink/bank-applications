@@ -31,6 +31,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 
 			const userProfile = new UserProfile({
 				id: user.uid,
+				lastName: "No name",
 				email: user.email as string,
 			});
 
@@ -138,16 +139,15 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 		() => ({
 			profile,
 			user,
-			isLoading,
 			register: registerHandler,
 			login: loginHandler,
 			logout: logoutHandler,
 		}),
-		[profile, user, isLoading],
+		[profile, user],
 	);
 
 	return (
-		<AuthContext.Provider value={value}>
+		<AuthContext.Provider value={{ ...value, isLoading }}>
 			{!isLoadingInitial && children}
 		</AuthContext.Provider>
 	);

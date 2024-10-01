@@ -50,6 +50,9 @@ export const Colors = {
 		darkContrast: "#fff",
 		darkShade: "#1e2023",
 		darkTint: "#383a3e",
+
+		toolbarBorder: "#c1c4cd",
+		toolbarBackground: "#fafafb",
 	},
 	dark: {
 		text: "#ffffff",
@@ -102,5 +105,8 @@ export const Colors = {
 		darkContrast: "#000",
 		darkShade: "#d7d8da",
 		darkTint: "#f5f6f9",
+
+		toolbarBorder: "#222222",
+		toolbarBackground: "#1f1f1f",
 	},
 };

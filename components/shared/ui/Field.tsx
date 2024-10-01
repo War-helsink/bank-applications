@@ -1,9 +1,11 @@
 import { TextInput } from "react-native";
+import type { TextStyle, StyleProp } from "react-native";
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export interface FieldProps {
 	onChange?: (value: string) => void;
+	style?: StyleProp<TextStyle>;
 	value?: string;
 	placeholder?: string;
 	isSecure?: boolean;
@@ -11,6 +13,7 @@ export interface FieldProps {
 
 export const Field: React.FC<FieldProps> = ({
 	value,
+	style,
 	onChange,
 	placeholder,
 	isSecure,
@@ -28,9 +31,9 @@ export const Field: React.FC<FieldProps> = ({
 			autoCapitalize="none"
 			placeholderTextColor={borderColor}
 			style={[
-				{ color },
-				{ borderColor },
-				tw("rounded-xl mt-3 p-3 border border-solid"),
+				{ color, borderColor },
+				tw("rounded-xl p-3 border border-solid"),
+				style,
 			]}
 		/>
 	);

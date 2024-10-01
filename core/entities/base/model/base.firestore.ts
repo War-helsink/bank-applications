@@ -27,7 +27,7 @@ export class BaseFirestore {
 
 	protected collRef: CollectionReference<DocumentData, DocumentData>;
 	protected unsubscribe: Unsubscribe | null;
-	id: string;
+	protected id: string;
 
 	constructor(data: BaseFirestoreData) {
 		this.collRef = collection(
@@ -174,6 +174,8 @@ export class BaseFirestore {
 	}
 
 	toData(): object {
-		return _.cloneDeep(this.clone());
+		const { collRef, unsubscribe, ...data } = this.clone();
+
+		return _.cloneDeep(data);
 	}
 }

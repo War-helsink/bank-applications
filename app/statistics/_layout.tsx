@@ -1,4 +1,4 @@
-import { View, Container} from "@/components/shared/ui";
+import { View, Container} from "@/components/shared";
 import { useTailwind } from "tailwind-rn";
 
 const StatisticsLayout: React.FC = () => {

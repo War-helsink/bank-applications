@@ -1,9 +1,9 @@
-import type React from "react";
+import { Pressable } from "react-native";
+import { Loader, Field, Button, View, Text } from "@/components/shared";
+
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
-import { Pressable } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { Loader, Field, Button, View, Text } from "@/components/shared/ui";
 
 interface IData {
 	email: string;
@@ -37,11 +37,13 @@ export const AuthScreen: React.FC = () => {
 				<>
 					<Field
 						value={data.email}
+						style={tw("mt-3")}
 						placeholder="Enter email"
 						onChange={(value) => setData((dat) => ({ ...dat, email: value }))}
 					/>
 					<Field
 						value={data.password}
+						style={tw("mt-3")}
 						placeholder="Enter password"
 						isSecure
 						onChange={(value) =>
@@ -49,7 +51,9 @@ export const AuthScreen: React.FC = () => {
 						}
 					/>
 
-					<Button onPress={submit}>{isReg ? "Sing up" : "Log in"}</Button>
+					<Button style={tw("my-4")} onPress={submit}>
+						{isReg ? "Sing up" : "Log in"}
+					</Button>
 
 					<Pressable onPress={() => setIsReg((pre) => !pre)}>
 						<Text style={tw("text-right text-sm")}>

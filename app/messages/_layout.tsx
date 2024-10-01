@@ -1,4 +1,4 @@
-import { Container, View } from "@/components/shared/ui";
+import { Container, View } from "@/components/shared";
 import { useTailwind } from "tailwind-rn";
 
 const MessagesLayout: React.FC = () => {

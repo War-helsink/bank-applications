@@ -1,5 +1,5 @@
 import { useTailwind } from "tailwind-rn";
-import { View, Container} from "@/components/shared/ui";
+import { View, Container} from "@/components/shared";
 import { Header } from "@/components/widgets/header";
 
 const HomeScreen: React.FC = ()=> {

@@ -1,11 +1,7 @@
 import { TouchableOpacity } from "react-native";
-import { Container, View, Text, Avatar } from "@/components/shared/ui";
+import { Container, View, Text, Avatar } from "@/components/shared";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import {
-	FontAwesome5,
-	MaterialCommunityIcons,
-	Entypo,
-} from "@expo/vector-icons";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useRouter } from "expo-router";
 
@@ -20,38 +16,30 @@ export const Header: React.FC = () => {
 
 	return (
 		<Container style={tw("flex flex-row items-center justify-between")}>
-			<View style={tw("flex flex-row items-center")}>
+			<TouchableOpacity
+				onPress={() => router.push("/profile")}
+				style={tw("flex-row  items-center")}
+			>
 				<Avatar name={profile?.lastName} />
-				<TouchableOpacity
-					style={tw("flex-row items-end ml-2")}
-					onPress={() => router.push("/profile")}
-				>
+
+				<View style={tw("flex-row items-center ml-2")}>
 					<Text style={tw("font-bold")}>{profile?.lastName}</Text>
-					<Entypo name="chevron-small-right" size={24} style={{ color }} />
-				</TouchableOpacity>
-			</View>
+					<Ionicons name="chevron-forward" size={20} color={color} />
+				</View>
+			</TouchableOpacity>
+
 			<View style={tw("flex flex-row")}>
 				<TouchableOpacity
-					style={tw("mx-3")}
+					style={tw("mx-3 flex items-center")}
 					onPress={() => router.push("/messages")}
 				>
-					<MaterialCommunityIcons
-						name="bell"
-						size={24}
-						color="black"
-						style={{ color }}
-					/>
+					<Ionicons name="notifications" size={20} color={color} />
 				</TouchableOpacity>
 				<TouchableOpacity
-					style={tw("mx-3")}
+					style={tw("mx-3 flex items-center")}
 					onPress={() => router.push("/statistics")}
 				>
-					<FontAwesome5
-						name="chart-bar"
-						size={24}
-						color="black"
-						style={{ color }}
-					/>
+					<Ionicons name="bar-chart" size={20} color={color} />
 				</TouchableOpacity>
 			</View>
 		</Container>

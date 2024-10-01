@@ -6,7 +6,7 @@ import {
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 
-import { Toast } from "@/components/shared/ui";
+import { Toast } from "@/components/shared";
 import { AuthProvider } from "@/core/providers/AuthProvider";
 import { TailwindProvider } from "tailwind-rn";
 import { RouteController } from "@/components/features/navigation";

@@ -39,4 +39,8 @@ export class UserProfile extends BaseFirestore {
 
 		data.createdAt = data.createdAt.toDate();
 	}
+
+	setData(data: Omit<UserProfileData, "id">) {
+		Object.assign(this, data);
+	}
 }

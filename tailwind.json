@@ -10,10 +10,22 @@
 			"marginRight": 12
 		}
 	},
+	"my-2": {
+		"style": {
+			"marginTop": 8,
+			"marginBottom": 8
+		}
+	},
 	"my-4": {
 		"style": {
 			"marginTop": 16,
 			"marginBottom": 16
+		}
+	},
+	"mx-4": {
+		"style": {
+			"marginLeft": 16,
+			"marginRight": 16
 		}
 	},
 	"mb-2": {
@@ -21,9 +33,19 @@
 			"marginBottom": 8
 		}
 	},
+	"ml-1": {
+		"style": {
+			"marginLeft": 4
+		}
+	},
 	"ml-2": {
 		"style": {
 			"marginLeft": 8
+		}
+	},
+	"mr-4": {
+		"style": {
+			"marginRight": 16
 		}
 	},
 	"mt-3": {
@@ -86,14 +108,19 @@
 			"flexDirection": "row"
 		}
 	},
-	"items-end": {
+	"flex-col": {
 		"style": {
-			"alignItems": "flex-end"
+			"flexDirection": "column"
 		}
 	},
 	"items-center": {
 		"style": {
 			"alignItems": "center"
+		}
+	},
+	"justify-end": {
+		"style": {
+			"justifyContent": "flex-end"
 		}
 	},
 	"justify-center": {
@@ -112,6 +139,14 @@
 			"borderTopRightRadius": 9999,
 			"borderBottomRightRadius": 9999,
 			"borderBottomLeftRadius": 9999
+		}
+	},
+	"rounded-md": {
+		"style": {
+			"borderTopLeftRadius": 6,
+			"borderTopRightRadius": 6,
+			"borderBottomRightRadius": 6,
+			"borderBottomLeftRadius": 6
 		}
 	},
 	"rounded-xl": {
@@ -147,6 +182,12 @@
 		"style": {
 			"paddingLeft": 16,
 			"paddingRight": 16
+		}
+	},
+	"py-1": {
+		"style": {
+			"paddingTop": 4,
+			"paddingBottom": 4
 		}
 	},
 	"py-3": {
