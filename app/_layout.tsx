@@ -8,6 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { Toast } from "@/components/shared";
 import { AuthProvider } from "@/core/providers/AuthProvider";
+import { LoaderProvider } from "@/core/providers/LoaderProvider";
 import { TailwindProvider } from "tailwind-rn";
 import { RouteController } from "@/components/features/navigation";
 
@@ -43,43 +44,45 @@ export default function RootLayout() {
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<TailwindProvider utilities={utilities}>
-				<AuthProvider>
-					<RouteController>
-						<Stack>
-							<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-							<Stack.Screen
-								name="statistics"
-								options={{
-									title: "Statistics",
-									headerShown: true,
-									headerBackTitleVisible: false,
-									headerTintColor: color,
-								}}
-							/>
-							<Stack.Screen
-								name="messages"
-								options={{
-									title: "Messages",
-									headerShown: true,
-									headerBackTitleVisible: false,
-									headerTintColor: color,
-								}}
-							/>
-							<Stack.Screen
-								name="profile"
-								options={{
-									title: "Profile",
-									headerShown: true,
-									headerBackTitleVisible: false,
-									headerTintColor: color,
-								}}
-							/>
-							<Stack.Screen name="auth" options={{ headerShown: false }} />
+				<LoaderProvider>
+					<AuthProvider>
+						<RouteController>
+							<Stack>
+								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+								<Stack.Screen
+									name="statistics"
+									options={{
+										title: "Statistics",
+										headerShown: true,
+										headerBackTitleVisible: false,
+										headerTintColor: color,
+									}}
+								/>
+								<Stack.Screen
+									name="messages"
+									options={{
+										title: "Messages",
+										headerShown: true,
+										headerBackTitleVisible: false,
+										headerTintColor: color,
+									}}
+								/>
+								<Stack.Screen
+									name="profile"
+									options={{
+										title: "Profile",
+										headerShown: true,
+										headerBackTitleVisible: false,
+										headerTintColor: color,
+									}}
+								/>
+								<Stack.Screen name="auth" options={{ headerShown: false }} />
 
-							<Stack.Screen name="+not-found" />
-						</Stack>
-					</RouteController>
-				</AuthProvider>
+								<Stack.Screen name="+not-found" />
+							</Stack>
+						</RouteController>
+					</AuthProvider>
+				</LoaderProvider>
 			</TailwindProvider>
 			<Toast />
 		</ThemeProvider>

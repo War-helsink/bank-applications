@@ -4,6 +4,11 @@
 			"position": "static"
 		}
 	},
+	"absolute": {
+		"style": {
+			"position": "absolute"
+		}
+	},
 	"mx-3": {
 		"style": {
 			"marginLeft": 12,
@@ -22,12 +27,6 @@
 			"marginBottom": 16
 		}
 	},
-	"mx-4": {
-		"style": {
-			"marginLeft": 16,
-			"marginRight": 16
-		}
-	},
 	"mb-2": {
 		"style": {
 			"marginBottom": 8
@@ -43,14 +42,14 @@
 			"marginLeft": 8
 		}
 	},
-	"mr-4": {
-		"style": {
-			"marginRight": 16
-		}
-	},
 	"mt-3": {
 		"style": {
 			"marginTop": 12
+		}
+	},
+	"inline": {
+		"style": {
+			"display": "inline"
 		}
 	},
 	"flex": {
@@ -116,11 +115,6 @@
 	"items-center": {
 		"style": {
 			"alignItems": "center"
-		}
-	},
-	"justify-end": {
-		"style": {
-			"justifyContent": "flex-end"
 		}
 	},
 	"justify-center": {

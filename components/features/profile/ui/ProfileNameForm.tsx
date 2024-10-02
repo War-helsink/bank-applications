@@ -4,6 +4,7 @@ import { hasObjectChanged } from "@/core/helpers";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
+import { useLoader } from "@/core/hooks/useLoader";
 import { useTailwind } from "tailwind-rn";
 
 interface IProfileData {
@@ -20,7 +21,7 @@ export const ProfileNameForm: React.FC = () => {
 		return;
 	}
 
-	const [isUpdate, setIsUpdate] = useState(false);
+	const { showLoader, hideLoader } = useLoader();
 	const [data, setData] = useState<IProfileData>({
 		firstName: profile.firstName,
 		secondName: profile.secondName,
@@ -31,11 +32,11 @@ export const ProfileNameForm: React.FC = () => {
 		const { firstName, secondName, lastName } = profile;
 
 		if (hasObjectChanged({ firstName, secondName, lastName }, data)) {
-			setIsUpdate(true);
+			showLoader();
 			profile.setData(data);
 
 			return await profile.update().then(() => {
-				setIsUpdate(false);
+				hideLoader();
 				Toast.show({
 					type: "success",
 					text1: "Changes saved successfully",
@@ -70,7 +71,7 @@ export const ProfileNameForm: React.FC = () => {
 				placeholder="Last name"
 			/>
 
-			<Button style={tw("my-4")} disabled={isUpdate} onPress={updateProfile}>
+			<Button style={tw("my-4")} onPress={updateProfile}>
 				Update Profile
 			</Button>
 		</>
