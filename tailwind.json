@@ -4,11 +4,6 @@
 			"position": "static"
 		}
 	},
-	"absolute": {
-		"style": {
-			"position": "absolute"
-		}
-	},
 	"mx-3": {
 		"style": {
 			"marginLeft": 12,
@@ -45,11 +40,6 @@
 	"mt-3": {
 		"style": {
 			"marginTop": 12
-		}
-	},
-	"inline": {
-		"style": {
-			"display": "inline"
 		}
 	},
 	"flex": {

@@ -19,7 +19,7 @@ import type {
 import _ from "lodash";
 
 export interface BaseFirestoreData {
-	id: string;
+	id?: string;
 }
 
 export class BaseFirestore {
@@ -30,12 +30,12 @@ export class BaseFirestore {
 	protected id: string;
 
 	constructor(data: BaseFirestoreData) {
+		this.id = data.id? data.id : this.getID();
 		this.collRef = collection(
 			firestore,
 			(this.constructor as typeof BaseFirestore).collPath,
 		).withConverter(this.converter());
 		this.unsubscribe = null;
-		this.id = data.id;
 	}
 
 	async get(): Promise<this> {
@@ -121,6 +121,10 @@ export class BaseFirestore {
 			this.unsubscribe();
 			this.unsubscribe = null;
 		}
+	}
+
+	protected getID() {
+		return doc(this.collRef).id;
 	}
 
 	protected converter(): FirestoreDataConverter<DocumentData, DocumentData> {
