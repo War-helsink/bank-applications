@@ -1,5 +1,5 @@
-import { Pressable } from "react-native";
-import { Loader, Field, Button, View, Text } from "@/components/shared";
+import { Pressable, View } from "react-native";
+import { Loader, Field, Button, Text } from "@/components/shared";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";

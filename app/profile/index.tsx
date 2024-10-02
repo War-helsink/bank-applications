@@ -1,6 +1,9 @@
-import { Pressable } from "react-native";
-import { View, Text, Toolbar } from "@/components/shared";
-import { ProfileContactForm, ProfileNameForm } from "@/components/features/profile";
+import { Pressable, View, ScrollView} from "react-native";
+import { Text, Toolbar } from "@/components/shared";
+import {
+	ProfileContactForm,
+	ProfileNameForm,
+} from "@/components/features/profile";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useAuth } from "@/core/hooks/useAuth";
@@ -14,7 +17,7 @@ export const ProfileScreen: React.FC = () => {
 	const tw = useTailwind();
 
 	return (
-		<View style={tw("flex flex-col")}>
+		<ScrollView style={tw("flex flex-col")}>
 			<Toolbar style={tw("my-2")}>
 				<ProfileNameForm />
 			</Toolbar>
@@ -29,10 +32,7 @@ export const ProfileScreen: React.FC = () => {
 					onPress={logout}
 				>
 					<View
-						style={[
-							tw("flex-row items-center"),
-							{ backgroundColor: "inherit" },
-						]}
+						style={tw("flex-row items-center")}
 					>
 						<Ionicons name="exit" size={24} color={color} />
 						<Text style={[{ color }, tw("ml-1")]}>Sign out of the account</Text>
@@ -41,6 +41,6 @@ export const ProfileScreen: React.FC = () => {
 					<Ionicons name="chevron-forward" size={24} color={colorIcon} />
 				</Pressable>
 			</Toolbar>
-		</View>
+		</ScrollView>
 	);
 };

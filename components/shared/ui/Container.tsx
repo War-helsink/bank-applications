@@ -1,6 +1,6 @@
+import { View } from "react-native";
 import type { ViewProps } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { View } from "./View";
 
 export type ContainerProps = ViewProps;
 

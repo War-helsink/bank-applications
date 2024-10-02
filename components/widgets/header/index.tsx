@@ -1,5 +1,5 @@
-import { TouchableOpacity } from "react-native";
-import { Container, View, Text, Avatar } from "@/components/shared";
+import { View, TouchableOpacity } from "react-native";
+import { Container, Text, Avatar } from "@/components/shared";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";

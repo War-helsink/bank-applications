@@ -1,5 +1,5 @@
+import { View } from "react-native";
 import type { ViewStyle, StyleProp } from "react-native";
-import { View } from "./View";
 
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";

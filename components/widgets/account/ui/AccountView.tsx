@@ -1,5 +1,5 @@
-import { TouchableOpacity } from "react-native";
-import { Text, View } from "@/components/shared";
+import { TouchableOpacity, View } from "react-native";
+import { Text } from "@/components/shared";
 import { AccountSlides } from "@/components/features/account";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
