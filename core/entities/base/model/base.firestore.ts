@@ -139,7 +139,7 @@ export class BaseFirestore {
 	// ==================== Instance Properties ====================
 	protected collRef: CollectionReference<DocumentData, DocumentData>;
 	protected unsubscribe: Unsubscribe | null;
-	protected id: string;
+	readonly id: string;
 
 	// ==================== Instance Methods ====================
 	constructor(data: BaseFirestoreData) {

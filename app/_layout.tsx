@@ -60,6 +60,15 @@ export default function RootLayout() {
 								/>
 								<Stack.Screen name="auth" options={{ headerShown: false }} />
 								<Stack.Screen
+									name="create-account"
+									options={{
+										title: "Create Account",
+										headerShown: true,
+										headerBackTitleVisible: false,
+										headerTintColor: color,
+									}}
+								/>
+								<Stack.Screen
 									name="messages"
 									options={{
 										title: "Messages",
