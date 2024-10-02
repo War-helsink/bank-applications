@@ -34,7 +34,7 @@ export class UserProfile extends BaseFirestore {
 		this.createdAt = data.createdAt ? new Date(data.createdAt) : new Date();
 	}
 
-	protected convertTimestampsFromFirestore(data: DocumentData) {
+	protected static convertTimestampsFromFirestore(data: DocumentData) {
 		super.convertTimestampsFromFirestore(data);
 
 		data.createdAt = data.createdAt.toDate();

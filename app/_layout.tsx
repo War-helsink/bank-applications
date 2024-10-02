@@ -50,14 +50,15 @@ export default function RootLayout() {
 							<Stack>
 								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 								<Stack.Screen
-									name="statistics"
+									name="account"
 									options={{
-										title: "Statistics",
+										title: "Account",
 										headerShown: true,
 										headerBackTitleVisible: false,
 										headerTintColor: color,
 									}}
 								/>
+								<Stack.Screen name="auth" options={{ headerShown: false }} />
 								<Stack.Screen
 									name="messages"
 									options={{
@@ -76,7 +77,16 @@ export default function RootLayout() {
 										headerTintColor: color,
 									}}
 								/>
-								<Stack.Screen name="auth" options={{ headerShown: false }} />
+
+								<Stack.Screen
+									name="statistics"
+									options={{
+										title: "Statistics",
+										headerShown: true,
+										headerBackTitleVisible: false,
+										headerTintColor: color,
+									}}
+								/>
 
 								<Stack.Screen name="+not-found" />
 							</Stack>

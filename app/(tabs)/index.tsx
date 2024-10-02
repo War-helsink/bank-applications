@@ -9,7 +9,7 @@ const HomeScreen: React.FC = () => {
 	return (
 		<View style={tw("h-full w-full pt-16")}>
 			<Header />
-			<Container style={tw("w-full h-full justify-center items-center")}>
+			<Container style={tw("w-full h-full")}>
 				<Account />
 			</Container>
 		</View>

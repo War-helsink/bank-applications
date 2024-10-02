@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 	const tw = useTailwind();
 
 	return (
-		<Container style={tw("flex flex-row items-center justify-between")}>
+		<Container style={tw("flex flex-row items-center justify-between py-2")}>
 			<TouchableOpacity
 				onPress={() => router.push("/profile")}
 				style={tw("flex-row  items-center")}
