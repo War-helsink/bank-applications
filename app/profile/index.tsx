@@ -1,6 +1,6 @@
 import { Pressable } from "react-native";
 import { View, Text, Toolbar } from "@/components/shared";
-import { ProfileNameForm } from "@/components/features/profile";
+import { ProfileContactForm, ProfileNameForm } from "@/components/features/profile";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useAuth } from "@/core/hooks/useAuth";
@@ -17,6 +17,10 @@ export const ProfileScreen: React.FC = () => {
 		<View style={tw("flex flex-col")}>
 			<Toolbar style={tw("my-2")}>
 				<ProfileNameForm />
+			</Toolbar>
+
+			<Toolbar style={tw("my-2")}>
+				<ProfileContactForm />
 			</Toolbar>
 
 			<Toolbar style={tw("my-2")}>

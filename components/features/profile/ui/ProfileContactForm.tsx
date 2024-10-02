@@ -7,13 +7,12 @@ import { useAuth } from "@/core/hooks/useAuth";
 import { useLoader } from "@/core/hooks/useLoader";
 import { useTailwind } from "tailwind-rn";
 
-export interface IProfileNameData {
-	firstName: string;
-	secondName: string;
-	lastName: string;
+interface IProfileContactData {
+	phone: string;
+	email: string;
 }
 
-export const ProfileNameForm: React.FC = () => {
+export const ProfileContactForm: React.FC = () => {
 	const tw = useTailwind();
 	const { profile } = useAuth();
 
@@ -22,16 +21,15 @@ export const ProfileNameForm: React.FC = () => {
 	}
 
 	const { showLoader, hideLoader } = useLoader();
-	const [data, setData] = useState<IProfileNameData>({
-		firstName: profile.firstName,
-		secondName: profile.secondName,
-		lastName: profile.lastName,
+	const [data, setData] = useState<IProfileContactData>({
+		phone: profile.phone,
+		email: profile.email,
 	});
 
 	const updateProfile = async () => {
-		const { firstName, secondName, lastName } = profile;
+		const { phone, email } = profile;
 
-		if (hasObjectChanged({ firstName, secondName, lastName }, data)) {
+		if (hasObjectChanged({ phone, email }, data)) {
 			showLoader();
 			profile.setData(data);
 
@@ -54,21 +52,15 @@ export const ProfileNameForm: React.FC = () => {
 		<>
 			<Field
 				style={tw("mt-3")}
-				value={data.firstName}
-				onChange={(firstName) => setData({ ...data, firstName })}
-				placeholder="First name"
+				value={data.email}
+				onChange={(email) => setData({ ...data, email })}
+				placeholder="Email"
 			/>
 			<Field
 				style={tw("mt-3")}
-				value={data.secondName}
-				onChange={(secondName) => setData({ ...data, secondName })}
-				placeholder="Second name"
-			/>
-			<Field
-				style={tw("mt-3")}
-				value={data.lastName}
-				onChange={(lastName) => setData({ ...data, lastName })}
-				placeholder="Last name"
+				value={data.phone}
+				onChange={(phone) => setData({ ...data, phone })}
+				placeholder="Phone"
 			/>
 
 			<Button style={tw("my-4")} onPress={updateProfile}>
