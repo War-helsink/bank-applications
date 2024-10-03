@@ -7,12 +7,12 @@ import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useThemeGradient } from "@/core/hooks/useThemeGradient";
 
-export interface AccountSlideCreateProps {
+export interface CreateCardItemProps {
 	width: number;
 	height: number;
 }
 
-export const AccountSlideCreate: React.FC<AccountSlideCreateProps> = ({
+export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 	width,
 	height,
 }) => {
@@ -33,7 +33,7 @@ export const AccountSlideCreate: React.FC<AccountSlideCreateProps> = ({
 			>
 				<TouchableOpacity
 					style={tw("mx-3 flex items-center")}
-					onPress={() => router.push("/create-account")}
+					onPress={() => router.push("/add-card")}
 				>
 					<Ionicons name="add-circle" size={32} color={color} />
 				</TouchableOpacity>

@@ -3,7 +3,7 @@ import { CardTypeItem } from "./CardTypeItem";
 
 import { useTailwind } from "tailwind-rn";
 
-import { CartType } from "@/core/config/account";
+import { CartType } from "@/core/config/card";
 
 export interface CardTypeListProps {
 	onSetCardType?: (cardType: CartType) => void;

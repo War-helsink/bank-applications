@@ -1,7 +1,7 @@
 import { Container, ThemedView } from "@/components/shared";
 import { useTailwind } from "tailwind-rn";
 
-const AccountsLayout: React.FC = () => {
+const CardsLayout: React.FC = () => {
 	const tw = useTailwind();
 
 	return (
@@ -13,4 +13,4 @@ const AccountsLayout: React.FC = () => {
 	);
 };
 
-export default AccountsLayout;
+export default CardsLayout;

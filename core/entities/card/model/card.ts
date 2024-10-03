@@ -2,7 +2,7 @@ import { BaseFirestore, type BaseFirestoreData } from "@/core/entities/base";
 import type { DocumentData } from "firebase/firestore";
 import { getRandomInt, validateLuhn } from "@/core/helpers";
 
-import { Currency, CartType } from "@/core/config/account";
+import { Currency, CartType } from "@/core/config/card";
 
 export interface AccountData extends BaseFirestoreData {
 	uid: string;
@@ -13,9 +13,9 @@ export interface AccountData extends BaseFirestoreData {
 	createdAt?: Date;
 }
 
-export class Account extends BaseFirestore {
+export class Card extends BaseFirestore {
 	// ==================== Class Properties ====================
-	static readonly collPath: string = "accounts";
+	static readonly collPath: string = "cards";
 
 	// ==================== Class Methods ====================
 	protected static convertTimestampsFromFirestore(data: DocumentData) {

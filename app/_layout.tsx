@@ -50,9 +50,9 @@ export default function RootLayout() {
 							<Stack>
 								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 								<Stack.Screen
-									name="accounts"
+									name="cards"
 									options={{
-										title: "Accounts",
+										title: "Cards",
 										headerShown: true,
 										headerBackTitleVisible: false,
 										headerTintColor: color,
@@ -60,7 +60,7 @@ export default function RootLayout() {
 								/>
 								<Stack.Screen name="auth" options={{ headerShown: false }} />
 								<Stack.Screen
-									name="add-account"
+									name="add-card"
 									options={{
 										title: "Add a bank card",
 										headerShown: true,

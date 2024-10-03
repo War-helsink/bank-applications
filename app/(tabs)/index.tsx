@@ -1,7 +1,7 @@
 import { useTailwind } from "tailwind-rn";
 import { ThemedView, Container } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
-import { AccountView } from "@/components/widgets/account";
+import { CardsView } from "@/components/widgets/card";
 
 const HomeScreen: React.FC = () => {
 	const tw = useTailwind();
@@ -10,7 +10,7 @@ const HomeScreen: React.FC = () => {
 		<ThemedView style={tw("h-full w-full pt-16")}>
 			<Header />
 			<Container style={tw("w-full h-full")}>
-				<AccountView />
+				<CardsView />
 			</Container>
 		</ThemedView>
 	);

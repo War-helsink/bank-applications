@@ -10,7 +10,7 @@ import {
 	CartTypeDisplayNames,
 	CartTypeDescriptions,
 	CartTypeGradients,
-} from "@/core/config/account";
+} from "@/core/config/card";
 
 export interface CardTypeItemProps {
 	onClick?: (cardType: CartType) => void;
