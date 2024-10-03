@@ -23,7 +23,7 @@ export const AccountView: React.FC = () => {
 			<View style={tw("w-full py-2 justify-center")}>
 				<TouchableOpacity
 					style={tw("flex-row items-center")}
-					onPress={() => router.push("/account")}
+					onPress={() => router.push("/accounts")}
 				>
 					<Text style={{ color }}>All cards</Text>
 					<Ionicons name="chevron-forward" size={20} color={color} />

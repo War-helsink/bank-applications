@@ -1,4 +1,4 @@
-import { View } from "@/components/shared";
+import { ThemedView } from "@/components/shared";
 import type { Account } from "@/core/entities/account";
 
 export interface AccountSlideProps {
@@ -8,5 +8,5 @@ export interface AccountSlideProps {
 }
 
 export const AccountSlide: React.FC<AccountSlideProps> = ({ account }) => {
-	return <View></View>;
+	return <ThemedView></ThemedView>;
 };

@@ -2,14 +2,14 @@ import { BaseFirestore, type BaseFirestoreData } from "@/core/entities/base";
 import type { DocumentData } from "firebase/firestore";
 import { getRandomInt, validateLuhn } from "@/core/helpers";
 
-import type { TypeCurrency, TypeName } from "@/core/types";
+import { Currency, CartType } from "@/core/config/account";
 
 export interface AccountData extends BaseFirestoreData {
 	uid: string;
 	balance?: number;
 	cardNumber?: string;
-	currency?: TypeCurrency;
-	name?: TypeName;
+	cartType?: CartType;
+	currency?: Currency;
 	createdAt?: Date;
 }
 
@@ -52,8 +52,8 @@ export class Account extends BaseFirestore {
 	uid: string;
 	balance: number;
 	cardNumber: string;
-	currency: TypeCurrency;
-	name: TypeName;
+	cartType: CartType;
+	currency: Currency;
 	createdAt: Date;
 
 	// ==================== Instance Methods ====================
@@ -63,8 +63,8 @@ export class Account extends BaseFirestore {
 		this.uid = data.uid;
 		this.balance = data.balance ? data.balance : 0;
 		this.cardNumber = data.cardNumber ? data.cardNumber : this.id;
-		this.currency = data.currency ? data.currency : "UAH";
-		this.name = data.name ? data.name : "Payment card";
+		this.currency = data.currency ? data.currency : Currency.UAH;
+		this.cartType = data.cartType ? data.cartType : CartType.Payment;
 		this.createdAt = data.createdAt ? new Date(data.createdAt) : new Date();
 	}
 

@@ -215,9 +215,25 @@
 			"paddingBottom": 12
 		}
 	},
+	"py-6": {
+		"style": {
+			"paddingTop": 24,
+			"paddingBottom": 24
+		}
+	},
 	"pt-16": {
 		"style": {
 			"paddingTop": 64
+		}
+	},
+	"pt-2": {
+		"style": {
+			"paddingTop": 8
+		}
+	},
+	"pt-4": {
+		"style": {
+			"paddingTop": 16
 		}
 	},
 	"text-center": {

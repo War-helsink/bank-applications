@@ -1,7 +1,9 @@
+import { Text } from "./Text";
+import { View } from "react-native";
+
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useTailwind } from "tailwind-rn";
-import { Text } from "./Text";
-import { View } from "./View";
+
 
 export interface AvatarProps {
 	name?: string;
