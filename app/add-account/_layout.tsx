@@ -1,10 +1,8 @@
-import { View } from "react-native";
 import { Container, ThemedView, Toolbar, Text } from "@/components/shared";
+import { CardTypeList } from "@/components/widgets/account";
 import { useTailwind } from "tailwind-rn";
 
-import { CartType } from "@/core/config/account";
-
-const CreateAccountLayout: React.FC = () => {
+const AddAccountLayout: React.FC = () => {
 	const tw = useTailwind();
 
 	return (
@@ -14,12 +12,10 @@ const CreateAccountLayout: React.FC = () => {
 					<Text>Information for the user</Text>
 				</Toolbar>
 
-				<View>
-					
-				</View>
+				<CardTypeList style={tw("pt-4")} />
 			</Container>
 		</ThemedView>
 	);
 };
 
-export default CreateAccountLayout;
+export default AddAccountLayout;

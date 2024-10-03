@@ -1,9 +1,11 @@
 import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useRouter } from "expo-router";
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
+import { useThemeGradient } from "@/core/hooks/useThemeGradient";
 
 export interface AccountSlideCreateProps {
 	width: number;
@@ -14,16 +16,17 @@ export const AccountSlideCreate: React.FC<AccountSlideCreateProps> = ({
 	width,
 	height,
 }) => {
-	const backgroundColor = useThemeColor("primary");
+	const backgroundGradient = useThemeGradient("addCard");
 	const color = useThemeColor("white");
 	const router = useRouter();
 	const tw = useTailwind();
 
 	return (
 		<View style={tw("w-full h-full justify-center items-center")}>
-			<View
+			<LinearGradient
+				colors={backgroundGradient}
 				style={[
-					{ width: width, height: height, backgroundColor },
+					{ width: width, height: height },
 					tw("rounded-xl p-5 justify-center items-center"),
 					styles.shadow,
 				]}
@@ -34,7 +37,7 @@ export const AccountSlideCreate: React.FC<AccountSlideCreateProps> = ({
 				>
 					<Ionicons name="add-circle" size={32} color={color} />
 				</TouchableOpacity>
-			</View>
+			</LinearGradient>
 		</View>
 	);
 };

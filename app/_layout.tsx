@@ -60,9 +60,9 @@ export default function RootLayout() {
 								/>
 								<Stack.Screen name="auth" options={{ headerShown: false }} />
 								<Stack.Screen
-									name="create-account"
+									name="add-account"
 									options={{
-										title: "Create cart",
+										title: "Add a bank card",
 										headerShown: true,
 										headerBackTitleVisible: false,
 										headerTintColor: color,

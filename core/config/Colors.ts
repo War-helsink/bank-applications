@@ -110,3 +110,12 @@ export const Colors = {
 		toolbarBackground: "#1f1f1f",
 	},
 };
+
+export const Gradients = {
+	light: {
+		addCard: ["#A0D6E0", "#B0E0E6"],
+	},
+	dark: {
+		addCard: ["#3B4C8C", "#475B9C"],
+	},
+};
