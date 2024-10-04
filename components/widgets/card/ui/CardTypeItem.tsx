@@ -6,15 +6,15 @@ import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 import {
-	type CartType,
-	CartTypeDisplayNames,
-	CartTypeDescriptions,
-	CartTypeGradients,
+	type CardType,
+	CardTypeDisplayNames,
+	CardTypeDescriptions,
+	CardTypeGradients,
 } from "@/core/config/card";
 
 export interface CardTypeItemProps {
-	onClick?: (cardType: CartType) => void;
-	cardType: CartType;
+	onClick?: (cardType: CardType) => void;
+	cardType: CardType;
 }
 
 export const CardTypeItem: React.FC<CardTypeItemProps> = ({
@@ -31,7 +31,7 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 			onPress={() => onClick?.(cardType)}
 		>
 			<LinearGradient
-				colors={CartTypeGradients[cardType].colors}
+				colors={CardTypeGradients[cardType].colors}
 				style={tw("w-24 h-16 rounded-xl p-2 flex justify-between")}
 			>
 				<View style={tw("flex-row")}>
@@ -45,8 +45,8 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 			<View
 				style={[tw("mx-4 pb-2 flex-1 border-b border-solid"), { borderColor }]}
 			>
-				<Text>{CartTypeDisplayNames[cardType]}</Text>
-				<Text style={tw("text-xs")}>{CartTypeDescriptions[cardType]}</Text>
+				<Text>{CardTypeDisplayNames[cardType]}</Text>
+				<Text style={tw("text-xs")}>{CardTypeDescriptions[cardType]}</Text>
 			</View>
 		</TouchableOpacity>
 	);

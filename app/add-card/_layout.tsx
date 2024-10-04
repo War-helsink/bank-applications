@@ -4,14 +4,13 @@ import { CardTypeList } from "@/components/widgets/card";
 import { useTailwind } from "tailwind-rn";
 import { useNavigation } from "@react-navigation/native";
 
-import type { CartType } from "@/core/config/card";
-
+import type { CardType } from "@/core/config/card";
 
 const AddCardLayout: React.FC = () => {
 	const tw = useTailwind();
 	const navigation = useNavigation();
 
-	const onAddNewCart = (cardType: CartType) => {
+	const onAddNewCart = (cardType: CardType) => {
 		navigation.navigate<any>("card-creating", { cardType });
 	};
 

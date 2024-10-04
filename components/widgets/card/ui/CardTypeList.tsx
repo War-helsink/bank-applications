@@ -3,10 +3,10 @@ import { CardTypeItem } from "./CardTypeItem";
 
 import { useTailwind } from "tailwind-rn";
 
-import { CartType } from "@/core/config/card";
+import { CardType } from "@/core/config/card";
 
 export interface CardTypeListProps {
-	onSetCardType?: (cardType: CartType) => void;
+	onSetCardType?: (cardType: CardType) => void;
 	style?: StyleProp<ViewStyle>;
 }
 
@@ -16,7 +16,7 @@ export const CardTypeList: React.FC<CardTypeListProps> = ({
 }) => {
 	const tw = useTailwind();
 
-	const cards = Object.entries(CartType);
+	const cards = Object.entries(CardType);
 
 	return (
 		<ScrollView style={[tw("w-full flex"), style]}>

@@ -1,9 +1,17 @@
-import { Container, ThemedView, Toolbar, Text } from "@/components/shared";
+import { ScrollView } from "react-native";
+import { Container, ThemedView } from "@/components/shared";
+import { PaymentSystem } from "@/components/features/payment";
+import { CardCurrency } from "@/components/features/card-currency";
 
+import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useRoute } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn";
 
+import { PaymentNetwork } from "@/core/config/card";
+import { Currency } from "@/core/config/card";
+
+import type { CardType } from "@/core/config/card";
 import { Card } from "@/core/entities/card";
 
 const CardCreationScreen: React.FC = () => {
@@ -11,18 +19,33 @@ const CardCreationScreen: React.FC = () => {
 	const { user } = useAuth();
 
 	const route = useRoute();
-	const { cardType } = route.params as { cardType: string };
+	const { cardType } = route.params as { cardType: CardType };
 
 	if (user === null) {
 		return null;
 	}
 
-	console.log("cardType", cardType);
+	const [activePaymentSystem, setActivePaymentSystem] = useState(
+		PaymentNetwork.Mastercard,
+	);
+
+	const [activeCurrencySystem, setActiveCurrencySystem] = useState(
+		Currency.UAH,
+	);
 
 	return (
-		<ThemedView style={tw("h-full w-full pt-4")}>
+		<ThemedView style={tw("h-full w-full")}>
 			<Container>
-				<Text>Создание карты типа: {cardType}</Text>
+				<ScrollView style={tw("h-full w-full")}>
+					<PaymentSystem
+						activePaymentSystem={activePaymentSystem}
+						setActivePaymentSystem={setActivePaymentSystem}
+					/>
+					<CardCurrency
+						activeCurrencySystem={activeCurrencySystem}
+						setActiveCurrencySystem={setActiveCurrencySystem}
+					/>
+				</ScrollView>
 			</Container>
 		</ThemedView>
 	);

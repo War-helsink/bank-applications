@@ -10,7 +10,7 @@ import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export const CardsView: React.FC = () => {
 	const tw = useTailwind();
-	const color = useThemeColor("primary");
+	const color = useThemeColor("text");
 	const { profile } = useAuth();
 	const router = useRouter();
 
@@ -25,7 +25,7 @@ export const CardsView: React.FC = () => {
 					style={tw("flex-row items-center")}
 					onPress={() => router.push("/cards")}
 				>
-					<Text style={{ color }}>All cards</Text>
+					<Text>All cards</Text>
 					<Ionicons name="chevron-forward" size={20} color={color} />
 				</TouchableOpacity>
 			</View>
