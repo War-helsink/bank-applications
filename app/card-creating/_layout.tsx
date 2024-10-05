@@ -1,3 +1,4 @@
+import Toast from "react-native-toast-message";
 import { ScrollView, View } from "react-native";
 import {
 	Container,
@@ -58,8 +59,17 @@ const CardCreationScreen: React.FC = () => {
 
 			hideLoader();
 
+			Toast.show({
+				type: "success",
+				text1: "The map has been successfully created.",
+			});
+
 			router.replace("/");
 		} catch (_) {
+			Toast.show({
+				type: "error",
+				text1: "Error creating map",
+			});
 			hideLoader();
 		}
 	};
