@@ -9,8 +9,8 @@ import { useRoute } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-import { PaymentNetwork } from "@/core/config/card";
-import { Currency } from "@/core/config/card";
+import { PaymentNetwork } from "@/core/config/payment";
+import { Currency } from "@/core/config/currency";
 
 import type { CardType } from "@/core/config/card";
 import { Card } from "@/core/entities/card";

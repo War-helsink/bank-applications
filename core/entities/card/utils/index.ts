@@ -1,5 +1,5 @@
 import { getRandomInt, validateLuhn } from "@/core/helpers";
-import { PaymentNetwork } from "@/core/config/card";
+import { PaymentNetwork } from "@/core/config/payment";
 
 export function generateCardNumber(paymentNetwork: PaymentNetwork): string {
 	let cardNumber = "";

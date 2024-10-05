@@ -4,7 +4,7 @@ import { Text } from "@/components/shared";
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-import { PaymentNetwork, PaymentNetworkImg } from "@/core/config/card";
+import { PaymentNetwork, PaymentNetworkImg } from "@/core/config/payment";
 
 export interface PaymentSystemProps {
 	activePaymentSystem: PaymentNetwork;

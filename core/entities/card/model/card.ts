@@ -1,7 +1,9 @@
 import { BaseFirestore, type BaseFirestoreData } from "@/core/entities/base";
 import type { DocumentData } from "firebase/firestore";
 
-import { Currency, CardType, PaymentNetwork } from "@/core/config/card";
+import { CardType } from "@/core/config/card";
+import { Currency } from "@/core/config/currency";
+import { PaymentNetwork } from "@/core/config/payment";
 import {
 	generateExpirationDate,
 	generateCVC,

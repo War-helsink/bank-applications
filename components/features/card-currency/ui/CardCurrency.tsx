@@ -4,7 +4,7 @@ import { Text } from "@/components/shared";
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-import { Currency } from "@/core/config/card";
+import { Currency } from "@/core/config/currency";
 
 export interface CardCurrencyProps {
 	activeCurrencySystem: Currency;
