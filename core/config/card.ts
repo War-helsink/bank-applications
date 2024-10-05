@@ -1,3 +1,5 @@
+export const CARD_DEMO_NUMBER = "*** ***** ***** 1234";
+
 export enum CardType {
 	Payment = "payment",
 	Children = "children",
@@ -19,9 +21,37 @@ export const CardTypeDescriptions: Record<CardType, string> = {
 	[CardType.Black]: "A premium black card with a sophisticated, high-end feel.",
 };
 
-export const CardTypeGradients: Record<CardType, { colors: string[] }> = {
-	[CardType.Payment]: { colors: ["#4A00E0", "#8E2DE2"] },
-	[CardType.Children]: { colors: ["#00F260", "#0575E6"] },
-	[CardType.White]: { colors: ["#FFFFFF", "#EDEDED"] },
-	[CardType.Black]: { colors: ["#000000", "#434343"] },
+export const CardTypeGradients: Record<
+	CardType,
+	{
+		color: string;
+		colors: string[];
+		start: [number, number];
+		end: [number, number];
+	}
+> = {
+	[CardType.Payment]: {
+		color: "#fff",
+		colors: ["#4A00E0", "#8E2DE2"],
+		start: [0, 0],
+		end: [1, 1],
+	},
+	[CardType.Children]: {
+		color: "#fff",
+		colors: ["#76FF7A", "#0575E6"],
+		start: [0, 0],
+		end: [1, 1],
+	},
+	[CardType.White]: {
+		color: "#000",
+		colors: ["#F7F7F7", "#BDBDBD"],
+		start: [0, 0],
+		end: [1, 1],
+	},
+	[CardType.Black]: {
+		color: "#fff",
+		colors: ["#000000", "#434343"],
+		start: [0, 0],
+		end: [1, 1],
+	},
 };

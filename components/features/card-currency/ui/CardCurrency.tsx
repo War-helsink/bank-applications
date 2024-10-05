@@ -7,13 +7,13 @@ import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { Currency } from "@/core/config/currency";
 
 export interface CardCurrencyProps {
-	activeCurrencySystem: Currency;
-	setActiveCurrencySystem: React.Dispatch<React.SetStateAction<Currency>>;
+	activeCurrency: Currency;
+	setActiveCurrency: React.Dispatch<React.SetStateAction<Currency>>;
 }
 
 export const CardCurrency: React.FC<CardCurrencyProps> = ({
-	activeCurrencySystem,
-	setActiveCurrencySystem,
+	activeCurrency,
+	setActiveCurrency,
 }) => {
 	const tw = useTailwind();
 	const activeBackgroundColor = useThemeColor("primary");
@@ -33,7 +33,7 @@ export const CardCurrency: React.FC<CardCurrencyProps> = ({
 						style={[
 							{
 								backgroundColor:
-									activeCurrencySystem === value
+									activeCurrency === value
 										? activeBackgroundColor
 										: backgroundColor,
 
@@ -43,7 +43,7 @@ export const CardCurrency: React.FC<CardCurrencyProps> = ({
 								"w-24 h-12 mr-4 border border-solid rounded-full justify-center items-center",
 							),
 						]}
-						onPress={() => setActiveCurrencySystem(value)}
+						onPress={() => setActiveCurrency(value)}
 					>
 						<Text style={[tw("text-xs"), { color }]}>{key}</Text>
 					</TouchableOpacity>

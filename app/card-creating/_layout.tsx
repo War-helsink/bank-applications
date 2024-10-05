@@ -1,7 +1,13 @@
 import { ScrollView, View } from "react-native";
-import { Container, ThemedView, Text, ButtonOpacity} from "@/components/shared";
+import {
+	Container,
+	ThemedView,
+	Text,
+	ButtonOpacity,
+} from "@/components/shared";
 import { PaymentSystem } from "@/components/features/payment";
 import { CardCurrency } from "@/components/features/card-currency";
+import { CardDemo } from "@/components/features/card";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
@@ -32,9 +38,7 @@ const CardCreationScreen: React.FC = () => {
 		PaymentNetwork.Mastercard,
 	);
 
-	const [activeCurrencySystem, setActiveCurrencySystem] = useState(
-		Currency.UAH,
-	);
+	const [activeCurrency, setActiveCurrency] = useState(Currency.UAH);
 
 	return (
 		<ThemedView style={tw("h-full w-full flex-1 flex-col")}>
@@ -45,8 +49,13 @@ const CardCreationScreen: React.FC = () => {
 						setActivePaymentSystem={setActivePaymentSystem}
 					/>
 					<CardCurrency
-						activeCurrencySystem={activeCurrencySystem}
-						setActiveCurrencySystem={setActiveCurrencySystem}
+						activeCurrency={activeCurrency}
+						setActiveCurrency={setActiveCurrency}
+					/>
+					<CardDemo
+						cardType={cardType}
+						currency={activeCurrency}
+						paymentSystem={activePaymentSystem}
 					/>
 				</ScrollView>
 			</Container>

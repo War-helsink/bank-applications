@@ -1,18 +1,19 @@
 import { getRandomInt, validateLuhn } from "@/core/helpers";
 import { PaymentNetwork } from "@/core/config/payment";
 
+export function getPrefixPaymentNetwork(
+	paymentNetwork: PaymentNetwork,
+): string {
+	if (paymentNetwork === PaymentNetwork.Visa) {
+		return "4";
+	}
+	return "5";
+}
+
 export function generateCardNumber(paymentNetwork: PaymentNetwork): string {
 	let cardNumber = "";
 	const length = 16;
-	let prefix = "";
-
-	if (paymentNetwork === PaymentNetwork.Visa) {
-		prefix = "4";
-	} else if (paymentNetwork === PaymentNetwork.Mastercard) {
-		prefix = "5";
-	} else {
-		throw new Error("Unsupported card type. Use 'Visa' or 'MasterCard'.");
-	}
+	const prefix = getPrefixPaymentNetwork(paymentNetwork);
 
 	do {
 		cardNumber = prefix;

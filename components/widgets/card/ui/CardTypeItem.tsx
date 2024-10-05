@@ -32,6 +32,8 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 		>
 			<LinearGradient
 				colors={CardTypeGradients[cardType].colors}
+				start={CardTypeGradients[cardType].start}
+				end={CardTypeGradients[cardType].end}
 				style={tw("w-24 h-16 rounded-xl p-2 flex justify-between")}
 			>
 				<View style={tw("flex-row")}>
