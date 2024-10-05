@@ -19,6 +19,7 @@ export const CardCurrency: React.FC<CardCurrencyProps> = ({
 	const activeBackgroundColor = useThemeColor("primary");
 	const backgroundColor = useThemeColor("toolbarBackground");
 	const borderColor = useThemeColor("toolbarBorder");
+	const color = useThemeColor("white");
 
 	const currencies = Object.entries(Currency);
 
@@ -44,7 +45,7 @@ export const CardCurrency: React.FC<CardCurrencyProps> = ({
 						]}
 						onPress={() => setActiveCurrencySystem(value)}
 					>
-						<Text style={tw("text-xs")}>{key}</Text>
+						<Text style={[tw("text-xs"), { color }]}>{key}</Text>
 					</TouchableOpacity>
 				))}
 			</View>
