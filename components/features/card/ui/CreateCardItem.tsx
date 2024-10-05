@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -6,6 +6,8 @@ import { useRouter } from "expo-router";
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useThemeGradient } from "@/core/hooks/useThemeGradient";
+
+import { GLOBAL_STYLES } from "@/core/style";
 
 export interface CreateCardItemProps {
 	width: number;
@@ -28,7 +30,7 @@ export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 				style={[
 					{ width: width, height: height },
 					tw("rounded-xl p-5 justify-center items-center"),
-					styles.shadow,
+					GLOBAL_STYLES.shadow,
 				]}
 			>
 				<TouchableOpacity
@@ -41,13 +43,3 @@ export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	shadow: {
-		shadowColor: "#000",
-		shadowOffset: { width: 0, height: 4 },
-		shadowOpacity: 0.3,
-		shadowRadius: 5,
-		elevation: 5,
-	},
-});

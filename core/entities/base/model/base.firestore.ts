@@ -116,7 +116,7 @@ export class BaseFirestore {
 		const q = query(
 			collection(firestore, this.collPath),
 			where(fieldPath, opStr, value),
-		);
+		).withConverter(this.converter());
 
 		return getDocs(q)
 			.then((querySnapshot) => {
@@ -139,7 +139,7 @@ export class BaseFirestore {
 	// ==================== Instance Properties ====================
 	protected collRef: CollectionReference<DocumentData, DocumentData>;
 	protected unsubscribe: Unsubscribe | null;
-	readonly id: string;
+	protected id: string;
 
 	// ==================== Instance Methods ====================
 	constructor(data: BaseFirestoreData) {

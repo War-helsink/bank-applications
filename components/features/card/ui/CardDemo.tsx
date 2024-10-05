@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "@/components/shared";
 
@@ -16,6 +16,8 @@ import {
 	getPrefixPaymentNetwork,
 	generateExpirationDate,
 } from "@/core/entities/card";
+
+import { GLOBAL_STYLES } from "@/core/style";
 
 export interface CardDemoProps {
 	cardType: CardType;
@@ -37,7 +39,7 @@ export const CardDemo: React.FC<CardDemoProps> = ({
 				colors={CardTypeGradients[cardType].colors}
 				start={CardTypeGradients[cardType].start}
 				end={CardTypeGradients[cardType].end}
-				style={[tw("w-72 h-40 px-4 py-2 rounded-xl"), styles.shadow]}
+				style={[tw("w-72 h-40 px-4 py-2 rounded-xl"), GLOBAL_STYLES.shadow]}
 			>
 				<View style={tw("h-full w-full justify-between")}>
 					<View style={tw("w-full flex")}>
@@ -70,13 +72,3 @@ export const CardDemo: React.FC<CardDemoProps> = ({
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	shadow: {
-		shadowColor: "#000",
-		shadowOffset: { width: 0, height: 4 },
-		shadowOpacity: 0.3,
-		shadowRadius: 5,
-		elevation: 5,
-	},
-});

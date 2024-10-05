@@ -48,6 +48,11 @@ export class Card extends BaseFirestore {
 	constructor(data: CardData) {
 		super(data);
 
+		this.paymentNetwork = data.paymentNetwork
+			? data.paymentNetwork
+			: PaymentNetwork.Mastercard;
+		this.id = this.getID();
+
 		this.uid = data.uid;
 		this.balance = data.balance ? data.balance : 0;
 		this.cardNumber = data.cardNumber ? data.cardNumber : this.id;
@@ -58,9 +63,6 @@ export class Card extends BaseFirestore {
 			? data.expirationDate
 			: generateExpirationDate();
 		this.cvc = data.cvc ? data.cvc : generateCVC();
-		this.paymentNetwork = data.paymentNetwork
-			? data.paymentNetwork
-			: PaymentNetwork.Mastercard;
 	}
 
 	protected getID() {

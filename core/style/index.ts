@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const BOX_SHADOW = StyleSheet.create({
+export const GLOBAL_STYLES = StyleSheet.create({
 	shadow: {
 		shadowColor: "#000",
 		shadowOffset: {

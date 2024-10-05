@@ -6,12 +6,12 @@ import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 import { Currency } from "@/core/config/currency";
 
-export interface CardCurrencyProps {
+export interface CurrencyProps {
 	activeCurrency: Currency;
 	setActiveCurrency: React.Dispatch<React.SetStateAction<Currency>>;
 }
 
-export const CardCurrency: React.FC<CardCurrencyProps> = ({
+export const CardCurrency: React.FC<CurrencyProps> = ({
 	activeCurrency,
 	setActiveCurrency,
 }) => {
