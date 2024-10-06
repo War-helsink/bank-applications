@@ -60,6 +60,11 @@
 			"marginRight": 16
 		}
 	},
+	"mt-2.5": {
+		"style": {
+			"marginTop": 10
+		}
+	},
 	"mt-3": {
 		"style": {
 			"marginTop": 12
@@ -68,11 +73,6 @@
 	"mt-4": {
 		"style": {
 			"marginTop": 16
-		}
-	},
-	"mt-2.5": {
-		"style": {
-			"marginTop": 10
 		}
 	},
 	"flex": {

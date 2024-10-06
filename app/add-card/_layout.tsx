@@ -10,7 +10,7 @@ const AddCardLayout: React.FC = () => {
 	const tw = useTailwind();
 	const navigation = useNavigation();
 
-	const onAddNewCart = (cardType: CardType) => {
+	const onAddNewCard = (cardType: CardType) => {
 		navigation.navigate<any>("card-creating", { cardType });
 	};
 
@@ -25,7 +25,7 @@ const AddCardLayout: React.FC = () => {
 					</Text>
 				</Toolbar>
 
-				<CardTypeList onSetCardType={onAddNewCart} style={tw("pt-4")} />
+				<CardTypeList onSetCardType={onAddNewCard} style={tw("pt-4")} />
 			</Container>
 		</ThemedView>
 	);

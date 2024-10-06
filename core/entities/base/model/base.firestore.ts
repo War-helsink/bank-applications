@@ -7,7 +7,6 @@ import {
 	where,
 	getDoc,
 	setDoc,
-	getDocs,
 	updateDoc,
 	deleteDoc,
 } from "firebase/firestore";
@@ -89,55 +88,6 @@ export class BaseFirestore {
 			});
 	}
 
-	static async getAll() {
-		return getDocs(
-			collection(firestore, this.collPath).withConverter(this.converter()),
-		)
-			.then((querySnapshot) => {
-				const documents: DocumentData[] = [];
-
-				querySnapshot.forEach((doc) => {
-					const document = doc.data();
-					document.id = doc.id;
-
-					documents.push(document);
-				});
-
-				return documents;
-			})
-			.catch(() => {
-				throw new Error("Error while receiving data.");
-			});
-	}
-
-	static async getAllQuery(
-		fieldPath: string | FieldPath,
-		opStr: WhereFilterOp,
-		value: unknown,
-	) {
-		const q = query(
-			collection(firestore, this.collPath),
-			where(fieldPath, opStr, value),
-		).withConverter(this.converter());
-
-		return getDocs(q)
-			.then((querySnapshot) => {
-				const documents: DocumentData[] = [];
-
-				querySnapshot.forEach((doc) => {
-					const document = doc.data();
-					document.id = doc.id;
-
-					documents.push(document);
-				});
-
-				return documents;
-			})
-			.catch(() => {
-				throw new Error("Error while receiving data.");
-			});
-	}
-
 	static getCollectionRef() {
 		return collection(firestore, this.collPath).withConverter(this.converter());
 	}
@@ -209,11 +159,12 @@ export class BaseFirestore {
 
 	subscribeDocumentChanged(callback: (data: this) => void): void {
 		const docRef = doc(this.collRef, this.id);
-
+		
 		if (this.unsubscribe === null) {
 			this.unsubscribe = onSnapshot(
 				docRef,
 				(docSnap) => {
+					console.log("docSnap: ", docSnap);
 					if (docSnap.exists()) {
 						const cls = this.getClass();
 						const documentNew = docSnap.data();

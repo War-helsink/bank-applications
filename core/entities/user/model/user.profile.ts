@@ -6,7 +6,6 @@ export interface UserProfileData extends BaseFirestoreData {
 	secondName?: string;
 	lastName?: string;
 	email?: string;
-	password?: string;
 	phone?: string;
 	createdAt?: Date;
 }
@@ -18,7 +17,6 @@ export class UserProfile extends BaseFirestore {
 	secondName: string;
 	lastName: string;
 	email: string;
-	password: string;
 	phone: string;
 	createdAt: Date;
 
@@ -29,7 +27,6 @@ export class UserProfile extends BaseFirestore {
 		this.secondName = data.secondName ? data.secondName : "";
 		this.lastName = data.lastName ? data.lastName : "";
 		this.email = data.email ? data.email : "";
-		this.password = data.password ? data.password : "";
 		this.phone = data.phone ? data.phone : "";
 		this.createdAt = data.createdAt ? new Date(data.createdAt) : new Date();
 	}
