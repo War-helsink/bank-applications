@@ -1,9 +1,12 @@
 import Toast from "react-native-toast-message";
-import { createContext, useState, useMemo, useEffect } from "react";
+import * as Haptics from "expo-haptics";
+
+import { FirebaseError } from "firebase/app";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { register, login, logout, auth } from "@/core/utils/firebase";
-import { FirebaseError } from "firebase/app";
 import { UserProfile } from "@/core/entities/user";
+
+import { createContext, useState, useMemo, useEffect } from "react";
 
 export interface IAuthContext {
 	profile: UserProfile | null;
@@ -38,16 +41,19 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			await userProfile.create();
 		} catch (err) {
 			if (err instanceof FirebaseError) {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: err.message,
 				});
 			} else if (err instanceof Error) {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: err.message,
 				});
 			} else {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: "Registration Error",
@@ -64,16 +70,19 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			await login(email, password);
 		} catch (err) {
 			if (err instanceof FirebaseError) {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: err.message,
 				});
 			} else if (err instanceof Error) {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: err.message,
 				});
 			} else {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: "Login Error",
@@ -90,16 +99,19 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			await logout();
 		} catch (err) {
 			if (err instanceof FirebaseError) {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: err.message,
 				});
 			} else if (err instanceof Error) {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: err.message,
 				});
 			} else {
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 				Toast.show({
 					type: "error",
 					text1: "Logout Error",

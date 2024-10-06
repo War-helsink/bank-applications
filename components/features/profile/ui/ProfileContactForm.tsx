@@ -1,13 +1,15 @@
 import Toast from "react-native-toast-message";
 import { Field, Button } from "@/components/shared";
-import { hasObjectChanged } from "@/core/helpers";
+import * as Haptics from "expo-haptics";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useLoader } from "@/core/hooks/useLoader";
 import { useTailwind } from "tailwind-rn";
 
-interface IProfileContactData {
+import { hasObjectChanged } from "@/core/helpers";
+
+export interface IProfileContactData {
 	phone: string;
 	email: string;
 }
@@ -35,6 +37,8 @@ export const ProfileContactForm: React.FC = () => {
 
 			return await profile.update().then(() => {
 				hideLoader();
+
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 				Toast.show({
 					type: "success",
 					text1: "Changes saved successfully",
@@ -42,6 +46,7 @@ export const ProfileContactForm: React.FC = () => {
 			});
 		}
 
+		Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 		Toast.show({
 			type: "error",
 			text1: "To save the data, make changes",
