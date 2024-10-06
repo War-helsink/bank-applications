@@ -1,6 +1,7 @@
-import { View, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import * as Haptics from "expo-haptics";
 
 import { useRouter } from "expo-router";
 import { useTailwind } from "tailwind-rn";
@@ -24,22 +25,23 @@ export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 	const tw = useTailwind();
 
 	return (
-		<View style={tw("w-full h-full justify-center items-center")}>
-			<LinearGradient
-				colors={backgroundGradient}
-				style={[
-					{ width: width, height: height },
-					tw("rounded-xl p-5 justify-center items-center"),
-					GLOBAL_STYLES.shadow,
-				]}
+		<LinearGradient
+			colors={backgroundGradient}
+			style={[
+				{ width: width, height: height },
+				tw("rounded-xl p-5 justify-center items-center"),
+				GLOBAL_STYLES.shadow,
+			]}
+		>
+			<TouchableOpacity
+				style={tw("mx-3 flex items-center")}
+				onPress={() => {
+					Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+					router.push("/add-card");
+				}}
 			>
-				<TouchableOpacity
-					style={tw("mx-3 flex items-center")}
-					onPress={() => router.push("/add-card")}
-				>
-					<Ionicons name="add-circle" size={32} color={color} />
-				</TouchableOpacity>
-			</LinearGradient>
-		</View>
+				<Ionicons name="add-circle" size={32} color={color} />
+			</TouchableOpacity>
+		</LinearGradient>
 	);
 };

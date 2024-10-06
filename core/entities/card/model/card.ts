@@ -65,6 +65,20 @@ export class Card extends BaseFirestore {
 		this.cvc = data.cvc ? data.cvc : generateCVC();
 	}
 
+	get formatCardNumber() {
+		return this.cardNumber.replace(/(\d{4})(?=\d)/g, "$1 ");
+	}
+
+	get maskCardNumberEnd() {
+		const parts = this.formatCardNumber.split(" ");
+		return `**** ${parts[3]}`;
+	}
+
+	get maskCardNumberMiddle() {
+		const parts = this.formatCardNumber.split(" ");
+		return `${parts[0]} **** **** ${parts[3]}`;
+	}
+
 	protected getID() {
 		return generateCardNumber(
 			this.paymentNetwork ? this.paymentNetwork : PaymentNetwork.Mastercard,

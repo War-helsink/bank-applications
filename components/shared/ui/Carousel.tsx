@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import CarouselRN from "react-native-reanimated-carousel";
 import type { CarouselRenderItem } from "react-native-reanimated-carousel";
+import * as Haptics from "expo-haptics";
 
 import { useState } from "react";
 import { useTailwind } from "tailwind-rn";
@@ -25,8 +26,12 @@ export const Carousel: React.FC<CarouselProps> = ({
 	const inactiveDot = useThemeColor("medium");
 	const activeDot = useThemeColor("primary");
 
-	const handleSnapToItem = (index: number) => {
-		setActiveIndex(index);
+	const handleProgressChange = (_: number, absoluteProgress: number) => {
+		const currentIndex = Math.round(absoluteProgress);
+		if (activeIndex !== currentIndex) {
+			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+			setActiveIndex(currentIndex);
+		}
 	};
 
 	return (
@@ -39,12 +44,12 @@ export const Carousel: React.FC<CarouselProps> = ({
 					style={{ justifyContent: "center", alignItems: "center" }}
 					data={data}
 					scrollAnimationDuration={500}
-					onSnapToItem={handleSnapToItem}
+					onProgressChange={handleProgressChange}
 					pagingEnabled
 					renderItem={renderItem}
 				/>
 			</View>
-			<View style={[tw("flex-row justify-center"), { marginTop: height + 10 }]}>
+			<View style={[tw("flex-row justify-center"), { marginTop: height + 10}]}>
 				{data.map((_, index) => (
 					<View
 						key={index}

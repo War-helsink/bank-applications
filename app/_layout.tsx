@@ -71,7 +71,7 @@ export default function RootLayout() {
 								<Stack.Screen
 									name="cards"
 									options={{
-										title: "Cards",
+										title: "All cards",
 										headerShown: true,
 										headerBackTitleVisible: false,
 										headerTintColor: color,

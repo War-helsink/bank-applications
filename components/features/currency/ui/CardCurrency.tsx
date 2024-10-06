@@ -1,5 +1,6 @@
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "@/components/shared";
+import * as Haptics from "expo-haptics";
 
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -43,7 +44,10 @@ export const CardCurrency: React.FC<CurrencyProps> = ({
 								"w-24 h-12 mr-4 border border-solid rounded-full justify-center items-center",
 							),
 						]}
-						onPress={() => setActiveCurrency(value)}
+						onPress={() => {
+							Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+							setActiveCurrency(value);
+						}}
 					>
 						<Text style={[tw("text-xs"), { color }]}>{key}</Text>
 					</TouchableOpacity>

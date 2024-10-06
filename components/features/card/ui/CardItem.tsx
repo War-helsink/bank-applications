@@ -1,6 +1,7 @@
-import { View } from "react-native";
+import { View, TouchableHighlight } from "react-native";
 import { Text } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
+import * as Haptics from "expo-haptics";
 
 import { useTailwind } from "tailwind-rn";
 
@@ -20,7 +21,11 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 	const SVG = PaymentNetworkImg[card.paymentNetwork];
 
 	return (
-		<View style={tw("w-full h-full justify-center items-center")}>
+		<TouchableHighlight
+			onPress={() => {
+				Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+			}}
+		>
 			<LinearGradient
 				colors={CardTypeGradients[card.cardType].colors}
 				start={CardTypeGradients[card.cardType].start}
@@ -42,7 +47,7 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 								{ color: CardTypeGradients[card.cardType].color },
 							]}
 						>
-							{`${card.cardNumber} ${card.expirationDate}`}
+							{`${card.formatCardNumber} ${card.expirationDate}`}
 						</Text>
 					</View>
 					<View style={tw("w-full flex-row justify-between items-center")}>
@@ -59,6 +64,6 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 					</View>
 				</View>
 			</LinearGradient>
-		</View>
+		</TouchableHighlight>
 	);
 };

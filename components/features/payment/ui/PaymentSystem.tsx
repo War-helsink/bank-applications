@@ -1,5 +1,6 @@
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "@/components/shared";
+import * as Haptics from "expo-haptics";
 
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -43,7 +44,10 @@ export const PaymentSystem: React.FC<PaymentSystemProps> = ({
 									"w-24 h-24 mr-4 border border-solid rounded-md justify-center items-center",
 								),
 							]}
-							onPress={() => setActivePaymentSystem(value)}
+							onPress={() => {
+								Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+								setActivePaymentSystem(value);
+							}}
 						>
 							<SVG width={48} height={48} />
 							<Text style={tw("text-xs")}>{key}</Text>

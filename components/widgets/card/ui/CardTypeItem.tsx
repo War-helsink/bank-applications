@@ -1,6 +1,7 @@
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
+import * as Haptics from "expo-haptics";
 
 import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -28,7 +29,10 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 	return (
 		<TouchableOpacity
 			style={tw("w-full flex-row p-2")}
-			onPress={() => onClick?.(cardType)}
+			onPress={() => {
+				Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+				onClick?.(cardType);
+			}}
 		>
 			<LinearGradient
 				colors={CardTypeGradients[cardType].colors}
