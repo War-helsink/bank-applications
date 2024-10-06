@@ -49,7 +49,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 					renderItem={renderItem}
 				/>
 			</View>
-			<View style={[tw("flex-row justify-center"), { marginTop: height + 10}]}>
+			<View style={tw("flex-row justify-center mt-2.5")}>
 				{data.map((_, index) => (
 					<View
 						key={index}

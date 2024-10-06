@@ -34,7 +34,12 @@ const CardsLayout: React.FC = () => {
 					<Toolbar style={tw("my-6")}>
 						<View style={tw("flex-row justify-between my-2")}>
 							<Text>Cards</Text>
-							<TouchableOpacity onPress={() => router.push("/add-card")}>
+							<TouchableOpacity
+								onPress={() => {
+									Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+									router.push("/add-card");
+								}}
+							>
 								<Text style={{ color }}>Add</Text>
 							</TouchableOpacity>
 						</View>

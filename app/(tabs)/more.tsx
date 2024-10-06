@@ -1,6 +1,7 @@
-import { useTailwind } from "tailwind-rn";
 import { ThemedView, Container} from "@/components/shared";
 import { Header } from "@/components/widgets/header";
+
+import { useTailwind } from "tailwind-rn";
 
 const MoreScreen: React.FC = () =>{
 	const tw = useTailwind();

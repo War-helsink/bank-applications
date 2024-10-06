@@ -1,7 +1,9 @@
-import { useTailwind } from "tailwind-rn";
+import { ScrollView } from "react-native";
 import { ThemedView, Container } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
 import { CardsView } from "@/components/widgets/card";
+
+import { useTailwind } from "tailwind-rn";
 
 const HomeScreen: React.FC = () => {
 	const tw = useTailwind();
@@ -9,9 +11,11 @@ const HomeScreen: React.FC = () => {
 	return (
 		<ThemedView style={tw("h-full w-full pt-16")}>
 			<Header />
-			<Container style={tw("w-full h-full")}>
-				<CardsView />
-			</Container>
+			<ScrollView>
+				<Container>
+					<CardsView />
+				</Container>
+			</ScrollView>
 		</ThemedView>
 	);
 };
