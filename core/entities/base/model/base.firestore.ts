@@ -112,10 +112,10 @@ export class BaseFirestore {
 	constructor(data: BaseFirestoreData) {
 		const cls = this.getClass();
 
-		this.id = data.id ? data.id : this.getID();
 		this.collRef = collection(firestore, cls.collPath).withConverter(
 			cls.converter(),
 		);
+		this.id = data.id ? data.id : this.getID();
 		this.unsubscribe = null;
 	}
 
@@ -164,7 +164,6 @@ export class BaseFirestore {
 			this.unsubscribe = onSnapshot(
 				docRef,
 				(docSnap) => {
-					console.log("docSnap: ", docSnap);
 					if (docSnap.exists()) {
 						const cls = this.getClass();
 						const documentNew = docSnap.data();
