@@ -52,7 +52,15 @@ export const CardDemo: React.FC<CardDemoProps> = ({
 								{ color: CardTypeGradients[cardType].color },
 							]}
 						>
-							{`${getPrefixPaymentNetwork(paymentSystem)}${CARD_DEMO_NUMBER} ${generateExpirationDate()}`}
+							{`${getPrefixPaymentNetwork(paymentSystem)}${CARD_DEMO_NUMBER}`}
+						</Text>
+						<Text
+							style={[
+								tw("text-sm"),
+								{ color: CardTypeGradients[cardType].color },
+							]}
+						>
+							{generateExpirationDate()}
 						</Text>
 					</View>
 					<View style={tw("w-full flex-row justify-between items-center")}>

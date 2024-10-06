@@ -47,7 +47,15 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 								{ color: CardTypeGradients[card.cardType].color },
 							]}
 						>
-							{`${card.formatCardNumber} ${card.expirationDate}`}
+							{card.formatCardNumber}
+						</Text>
+						<Text
+							style={[
+								tw("text-sm"),
+								{ color: CardTypeGradients[card.cardType].color },
+							]}
+						>
+							{card.expirationDate}
 						</Text>
 					</View>
 					<View style={tw("w-full flex-row justify-between items-center")}>
