@@ -25,7 +25,7 @@ const CardsLayout: React.FC = () => {
 	const color = useThemeColor("primary");
 	const router = useRouter();
 
-	const cards = useCards(user.uid);
+	const cards = useCards();
 
 	return (
 		<ThemedView style={tw("h-full w-full")}>

@@ -31,6 +31,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "20d6a692-7139-4252-8e9c-d1653004fccc"
+      }
+    },
+    "owner": "warhelsink",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/20d6a692-7139-4252-8e9c-d1653004fccc"
     }
   }
 }

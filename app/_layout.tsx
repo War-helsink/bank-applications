@@ -8,6 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { Toast } from "@/components/shared";
 import { AuthProvider } from "@/core/providers/AuthProvider";
+import { CardsProvider } from "@/core/providers/CardsProvider";
 import { LoaderProvider } from "@/core/providers/LoaderProvider";
 import { TailwindProvider } from "tailwind-rn";
 import { RouteController } from "@/components/features/navigation";
@@ -44,73 +45,78 @@ export default function RootLayout() {
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<TailwindProvider utilities={utilities}>
-				<LoaderProvider>
-					<AuthProvider>
+				<AuthProvider>
+					<CardsProvider>
 						<RouteController>
-							<Stack>
-								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-								<Stack.Screen
-									name="add-card"
-									options={{
-										title: "Add a bank card",
-										headerShown: true,
-										headerBackTitleVisible: false,
-										headerTintColor: color,
-									}}
-								/>
-								<Stack.Screen name="auth" options={{ headerShown: false }} />
-								<Stack.Screen
-									name="card-creating"
-									options={{
-										title: "Creating a bank card",
-										headerShown: true,
-										headerBackTitleVisible: false,
-										headerTintColor: color,
-									}}
-								/>
-								<Stack.Screen
-									name="cards"
-									options={{
-										title: "All cards",
-										headerShown: true,
-										headerBackTitleVisible: false,
-										headerTintColor: color,
-									}}
-								/>
-								<Stack.Screen
-									name="messages"
-									options={{
-										title: "Messages",
-										headerShown: true,
-										headerBackTitleVisible: false,
-										headerTintColor: color,
-									}}
-								/>
-								<Stack.Screen
-									name="profile"
-									options={{
-										title: "Profile",
-										headerShown: true,
-										headerBackTitleVisible: false,
-										headerTintColor: color,
-									}}
-								/>
+							<LoaderProvider>
+								<Stack>
+									<Stack.Screen
+										name="(tabs)"
+										options={{ headerShown: false }}
+									/>
+									<Stack.Screen
+										name="add-card"
+										options={{
+											title: "Add a bank card",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
+									<Stack.Screen name="auth" options={{ headerShown: false }} />
+									<Stack.Screen
+										name="card-creating"
+										options={{
+											title: "Creating a bank card",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
+									<Stack.Screen
+										name="cards"
+										options={{
+											title: "All cards",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
+									<Stack.Screen
+										name="messages"
+										options={{
+											title: "Messages",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
+									<Stack.Screen
+										name="profile"
+										options={{
+											title: "Profile",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
 
-								<Stack.Screen
-									name="statistics"
-									options={{
-										title: "Statistics",
-										headerShown: true,
-										headerBackTitleVisible: false,
-										headerTintColor: color,
-									}}
-								/>
+									<Stack.Screen
+										name="statistics"
+										options={{
+											title: "Statistics",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
 
-								<Stack.Screen name="+not-found" />
-							</Stack>
+									<Stack.Screen name="+not-found" />
+								</Stack>
+							</LoaderProvider>
 						</RouteController>
-					</AuthProvider>
-				</LoaderProvider>
+					</CardsProvider>
+				</AuthProvider>
 			</TailwindProvider>
 			<Toast />
 		</ThemeProvider>

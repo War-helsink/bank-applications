@@ -20,7 +20,7 @@ export const CardSlides: React.FC = () => {
 		return;
 	}
 
-	const cards = useCards(user.uid);
+	const cards = useCards();
 	const data = [...cards, { createCard: true }];
 
 	return (

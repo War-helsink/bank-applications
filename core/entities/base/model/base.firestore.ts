@@ -90,7 +90,9 @@ export class BaseFirestore {
 	}
 
 	static async getAll() {
-		return getDocs(collection(firestore, this.collPath))
+		return getDocs(
+			collection(firestore, this.collPath).withConverter(this.converter()),
+		)
 			.then((querySnapshot) => {
 				const documents: DocumentData[] = [];
 
@@ -134,6 +136,21 @@ export class BaseFirestore {
 			.catch(() => {
 				throw new Error("Error while receiving data.");
 			});
+	}
+
+	static getCollectionRef() {
+		return collection(firestore, this.collPath).withConverter(this.converter());
+	}
+
+	static getQueryCollectionRef(
+		fieldPath: string | FieldPath,
+		opStr: WhereFilterOp,
+		value: unknown,
+	) {
+		return query(
+			collection(firestore, this.collPath),
+			where(fieldPath, opStr, value),
+		).withConverter(this.converter());
 	}
 
 	// ==================== Instance Properties ====================
