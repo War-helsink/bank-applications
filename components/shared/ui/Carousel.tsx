@@ -23,6 +23,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 	const tw = useTailwind();
 	const [activeIndex, setActiveIndex] = useState(0);
 
+	const backgroundColor = useThemeColor("toolbarBackground");
 	const inactiveDot = useThemeColor("medium");
 	const activeDot = useThemeColor("primary");
 
@@ -35,7 +36,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	return (
-		<>
+		<View>
 			<View style={tw("mt-4 justify-center items-center")}>
 				<CarouselRN
 					loop={false}
@@ -49,19 +50,26 @@ export const Carousel: React.FC<CarouselProps> = ({
 					renderItem={renderItem}
 				/>
 			</View>
-			<View style={tw("flex-row justify-center mt-2.5")}>
-				{data.map((_, index) => (
-					<View
-						key={index}
-						style={[
-							tw("w-1.5 h-1.5 mx-1 rounded-full"),
-							activeIndex === index
-								? { backgroundColor: activeDot }
-								: { backgroundColor: inactiveDot },
-						]}
-					/>
-				))}
+			<View style={tw("justify-center items-center my-1")}>
+				<View
+					style={[
+						tw("flex-row rounded-xl py-1 px-3"),
+						{ backgroundColor },
+					]}
+				>
+					{data.map((_, index) => (
+						<View
+							key={index}
+							style={[
+								tw("w-1.5 h-1.5 mx-1 rounded-full"),
+								activeIndex === index
+									? { backgroundColor: activeDot }
+									: { backgroundColor: inactiveDot },
+							]}
+						/>
+					))}
+				</View>
 			</View>
-		</>
+		</View>
 	);
 };
