@@ -2,8 +2,6 @@ import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "@/components/shared";
 
-import { useTailwind } from "tailwind-rn";
-
 import {
 	type CardType,
 	CardTypeGradients,
@@ -30,45 +28,39 @@ export const CardDemo: React.FC<CardDemoProps> = ({
 	currency,
 	paymentSystem,
 }) => {
-	const tw = useTailwind();
 	const SVG = PaymentNetworkImg[paymentSystem];
 
 	return (
-		<View style={tw("justify-center items-center pt-8")}>
+		<View className="justify-center items-center pt-8">
 			<LinearGradient
 				colors={CardTypeGradients[cardType].colors}
 				start={CardTypeGradients[cardType].start}
 				end={CardTypeGradients[cardType].end}
-				style={[tw("w-72 h-40 px-4 py-2 rounded-xl"), GLOBAL_STYLES.shadow]}
+				className="w-72 h-40 px-4 py-2 rounded-xl"
+				style={GLOBAL_STYLES.shadow}
 			>
-				<View style={tw("h-full w-full justify-between")}>
-					<View style={tw("w-full flex")}>
+				<View className="h-full w-full justify-between">
+					<View className="w-full flex">
 						<Text style={{ color: CardTypeGradients[cardType].color }}>
 							{CardTypeDisplayNames[cardType]}
 						</Text>
 						<Text
-							style={[
-								tw("text-sm"),
-								{ color: CardTypeGradients[cardType].color },
-							]}
+							className="text-sm"
+							style={{ color: CardTypeGradients[cardType].color }}
 						>
 							{`${getPrefixPaymentNetwork(paymentSystem)}${CARD_DEMO_NUMBER}`}
 						</Text>
 						<Text
-							style={[
-								tw("text-sm"),
-								{ color: CardTypeGradients[cardType].color },
-							]}
+							className="text-sm"
+							style={{ color: CardTypeGradients[cardType].color }}
 						>
 							{generateExpirationDate()}
 						</Text>
 					</View>
-					<View style={tw("w-full flex-row justify-between items-center")}>
+					<View className="w-full flex-row justify-between items-center">
 						<Text
-							style={[
-								tw("text-lg font-medium"),
-								{ color: CardTypeGradients[cardType].color },
-							]}
+							className="text-lg font-medium"
+							style={{ color: CardTypeGradients[cardType].color }}
 						>
 							0 {currency}
 						</Text>

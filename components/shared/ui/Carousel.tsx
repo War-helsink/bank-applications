@@ -4,7 +4,6 @@ import type { CarouselRenderItem } from "react-native-reanimated-carousel";
 import * as Haptics from "expo-haptics";
 
 import { useState } from "react";
-import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export interface CarouselProps<T extends any = any> {
@@ -20,7 +19,6 @@ export const Carousel: React.FC<CarouselProps> = ({
 	data,
 	renderItem,
 }) => {
-	const tw = useTailwind();
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	const backgroundColor = useThemeColor("toolbarBackground");
@@ -37,7 +35,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 
 	return (
 		<View>
-			<View style={tw("mt-4 justify-center items-center")}>
+			<View className="mt-4 justify-center items-center">
 				<CarouselRN
 					loop={false}
 					width={width}
@@ -50,22 +48,20 @@ export const Carousel: React.FC<CarouselProps> = ({
 					renderItem={renderItem}
 				/>
 			</View>
-			<View style={tw("justify-center items-center my-2")}>
+			<View className="justify-center items-center my-2">
 				<View
-					style={[
-						tw("flex-row rounded-xl py-1 px-3"),
-						{ backgroundColor },
-					]}
+					className="flex-row rounded-xl py-1 px-3"
+					style={{ backgroundColor }}
 				>
 					{data.map((_, index) => (
 						<View
 							key={index}
-							style={[
-								tw("w-1.5 h-1.5 mx-1 rounded-full"),
+							className="w-1.5 h-1.5 mx-1 rounded-full"
+							style={
 								activeIndex === index
 									? { backgroundColor: activeDot }
-									: { backgroundColor: inactiveDot },
-							]}
+									: { backgroundColor: inactiveDot }
+							}
 						/>
 					))}
 				</View>

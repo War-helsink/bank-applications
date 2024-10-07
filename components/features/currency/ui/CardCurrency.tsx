@@ -2,7 +2,6 @@ import { View, TouchableOpacity } from "react-native";
 import { Text } from "@/components/shared";
 import * as Haptics from "expo-haptics";
 
-import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 import { Currency } from "@/core/config/currency";
@@ -16,7 +15,6 @@ export const CardCurrency: React.FC<CurrencyProps> = ({
 	activeCurrency,
 	setActiveCurrency,
 }) => {
-	const tw = useTailwind();
 	const activeBackgroundColor = useThemeColor("primary");
 	const backgroundColor = useThemeColor("toolbarBackground");
 	const borderColor = useThemeColor("toolbarBorder");
@@ -25,31 +23,29 @@ export const CardCurrency: React.FC<CurrencyProps> = ({
 	const currencies = Object.entries(Currency);
 
 	return (
-		<View style={tw("pt-4")}>
+		<View className="pt-4">
 			<Text>Card currency</Text>
-			<View style={tw("flex-row mt-4")}>
+			<View className="flex-row mt-4">
 				{currencies.map(([key, value]) => (
 					<TouchableOpacity
 						key={key}
-						style={[
-							{
-								backgroundColor:
-									activeCurrency === value
-										? activeBackgroundColor
-										: backgroundColor,
+						className="w-24 h-12 mr-4 border border-solid rounded-full justify-center items-center"
+						style={{
+							backgroundColor:
+								activeCurrency === value
+									? activeBackgroundColor
+									: backgroundColor,
 
-								borderColor,
-							},
-							tw(
-								"w-24 h-12 mr-4 border border-solid rounded-full justify-center items-center",
-							),
-						]}
+							borderColor,
+						}}
 						onPress={() => {
 							Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 							setActiveCurrency(value);
 						}}
 					>
-						<Text style={[tw("text-xs"), { color }]}>{key}</Text>
+						<Text className="text-xs" style={{ color }}>
+							{key}
+						</Text>
 					</TouchableOpacity>
 				))}
 			</View>

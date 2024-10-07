@@ -4,7 +4,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Haptics from "expo-haptics";
 
 import { useRouter } from "expo-router";
-import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useThemeGradient } from "@/core/hooks/useThemeGradient";
 
@@ -22,19 +21,18 @@ export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 	const backgroundGradient = useThemeGradient("addCard");
 	const color = useThemeColor("white");
 	const router = useRouter();
-	const tw = useTailwind();
 
 	return (
 		<LinearGradient
 			colors={backgroundGradient}
+			className="rounded-xl p-5 justify-center items-center"
 			style={[
 				{ width: width, height: height },
-				tw("rounded-xl p-5 justify-center items-center"),
 				GLOBAL_STYLES.shadow,
 			]}
 		>
 			<TouchableOpacity
-				style={tw("mx-3 flex items-center")}
+				className="mx-3 flex items-center"
 				onPress={() => {
 					Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
 					router.push("/add-card");

@@ -3,8 +3,6 @@ import { Text } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Haptics from "expo-haptics";
 
-import { useTailwind } from "tailwind-rn";
-
 import { PaymentNetworkImg } from "@/core/config/payment";
 import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
 import { GLOBAL_STYLES } from "@/core/style";
@@ -17,7 +15,6 @@ export interface CardItemProps {
 }
 
 export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
-	const tw = useTailwind();
 	const SVG = PaymentNetworkImg[card.paymentNetwork];
 
 	return (
@@ -30,40 +27,31 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 				colors={CardTypeGradients[card.cardType].colors}
 				start={CardTypeGradients[card.cardType].start}
 				end={CardTypeGradients[card.cardType].end}
-				style={[
-					{ width: width, height: height },
-					tw("rounded-xl p-5 justify-center items-center"),
-					GLOBAL_STYLES.shadow,
-				]}
+				className="rounded-xl p-5 justify-center items-center"
+				style={[{ width: width, height: height }, GLOBAL_STYLES.shadow]}
 			>
-				<View style={tw("h-full w-full justify-between")}>
-					<View style={tw("w-full flex")}>
+				<View className="h-full w-full justify-between">
+					<View className="w-full flex">
 						<Text style={{ color: CardTypeGradients[card.cardType].color }}>
 							{CardTypeDisplayNames[card.cardType]}
 						</Text>
 						<Text
-							style={[
-								tw("text-sm"),
-								{ color: CardTypeGradients[card.cardType].color },
-							]}
+							className="text-sm"
+							style={{ color: CardTypeGradients[card.cardType].color }}
 						>
 							{card.formatCardNumber}
 						</Text>
 						<Text
-							style={[
-								tw("text-sm"),
-								{ color: CardTypeGradients[card.cardType].color },
-							]}
+							className="text-sm"
+							style={{ color: CardTypeGradients[card.cardType].color }}
 						>
 							{card.expirationDate}
 						</Text>
 					</View>
-					<View style={tw("w-full flex-row justify-between items-center")}>
+					<View className="w-full flex-row justify-between items-center">
 						<Text
-							style={[
-								tw("text-lg font-medium"),
-								{ color: CardTypeGradients[card.cardType].color },
-							]}
+							className="text-lg font-medium"
+							style={{ color: CardTypeGradients[card.cardType].color }}
 						>
 							{`${card.balance} ${card.currency}`}
 						</Text>

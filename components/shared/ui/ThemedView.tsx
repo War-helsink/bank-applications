@@ -7,6 +7,7 @@ export interface ThemedViewProps extends ViewProps {
 }
 
 export function ThemedView({
+	className,
 	style,
 	lightColor,
 	darkColor,
@@ -17,5 +18,11 @@ export function ThemedView({
 		dark: darkColor,
 	});
 
-	return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+	return (
+		<View
+			className={className}
+			style={[{ backgroundColor }, style]}
+			{...otherProps}
+		/>
+	);
 }

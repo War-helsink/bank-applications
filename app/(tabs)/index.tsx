@@ -4,13 +4,9 @@ import { Header } from "@/components/widgets/header";
 import { CardsView } from "@/components/widgets/card";
 import { Information } from "@/components/widgets/information"
 
-import { useTailwind } from "tailwind-rn";
-
 const HomeScreen: React.FC = () => {
-	const tw = useTailwind();
-
 	return (
-		<ThemedView style={tw("h-full w-full pt-16")}>
+		<ThemedView className="h-full w-full pt-16">
 			<Header />
 			<ScrollView>
 				<Container>

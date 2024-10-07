@@ -1,12 +1,13 @@
 import { TouchableOpacity } from "react-native";
-import type { ViewStyle, StyleProp } from "react-native";
-import { useTailwind } from "tailwind-rn";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { Text } from "./Text";
 
+import { useThemeColor } from "@/core/hooks/useThemeColor";
+
+import type { ViewStyle, StyleProp } from "react-native";
 import type { TypeColors } from "@/core/types";
 
 export interface ButtonOpacityProps extends React.PropsWithChildren {
+	className?: string;
 	onPress?: () => void;
 	color?: TypeColors;
 	style?: StyleProp<ViewStyle>;
@@ -14,6 +15,7 @@ export interface ButtonOpacityProps extends React.PropsWithChildren {
 }
 
 export const ButtonOpacity: React.FC<ButtonOpacityProps> = ({
+	className,
 	children,
 	onPress,
 	style,
@@ -21,18 +23,18 @@ export const ButtonOpacity: React.FC<ButtonOpacityProps> = ({
 	disabled,
 }) => {
 	const backgroundColor = useThemeColor(colorName);
-	const underlayColor = useThemeColor(colorName);
 	const color = useThemeColor(`${colorName}Contrast`);
-	const tw = useTailwind();
 
 	return (
 		<TouchableOpacity
 			onPress={onPress}
 			disabled={disabled}
-			style={[{ backgroundColor }, tw("rounded-xl w-full py-3"), style]}
-			underlayColor={underlayColor}
+			className={`rounded-xl w-full py-3 ${className}`}
+			style={[{ backgroundColor }, style]}
 		>
-			<Text style={[{ color: color }, tw("text-center")]}>{children}</Text>
+			<Text className="text-center" style={{ color: color }}>
+				{children}
+			</Text>
 		</TouchableOpacity>
 	);
 };

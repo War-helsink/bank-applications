@@ -1,17 +1,16 @@
 import { View } from "react-native";
 import type { ViewProps } from "react-native";
-import { useTailwind } from "tailwind-rn";
 
 export type ContainerProps = ViewProps;
 
 export const Container: React.FC<ContainerProps> = ({
+	className,
 	children,
 	style,
 	...otherProps
 }) => {
-	const tw = useTailwind();
 	return (
-		<View style={[tw("px-4"), style]} {...otherProps}>
+		<View className={`px-4 ${className}`} style={style} {...otherProps}>
 			{children}
 		</View>
 	);

@@ -5,11 +5,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useAuth } from "@/core/hooks/useAuth";
 import { useRouter } from "expo-router";
-import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export const CardsView: React.FC = () => {
-	const tw = useTailwind();
 	const color = useThemeColor("text");
 	const { profile } = useAuth();
 	const router = useRouter();
@@ -20,9 +18,9 @@ export const CardsView: React.FC = () => {
 
 	return (
 		<View>
-			<View style={tw("w-full py-2 justify-center")}>
+			<View className="w-full py-2 justify-center">
 				<TouchableOpacity
-					style={tw("flex-row items-center")}
+					className="flex-row items-center"
 					onPress={() => router.push("/cards")}
 				>
 					<Text>All cards</Text>

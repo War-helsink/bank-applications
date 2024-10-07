@@ -1,12 +1,13 @@
 import { TouchableHighlight } from "react-native";
-import type { ViewStyle, StyleProp } from "react-native";
-import { useTailwind } from "tailwind-rn";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { Text } from "./Text";
 
+import { useThemeColor } from "@/core/hooks/useThemeColor";
+
+import type { ViewStyle, StyleProp } from "react-native";
 import type { TypeColors } from "@/core/types";
 
 export interface ButtonProps extends React.PropsWithChildren {
+	className?: string;
 	onPress?: () => void;
 	color?: TypeColors;
 	style?: StyleProp<ViewStyle>;
@@ -14,6 +15,7 @@ export interface ButtonProps extends React.PropsWithChildren {
 }
 
 export const Button: React.FC<ButtonProps> = ({
+	className,
 	children,
 	onPress,
 	style,
@@ -23,16 +25,18 @@ export const Button: React.FC<ButtonProps> = ({
 	const backgroundColor = useThemeColor(colorName);
 	const underlayColor = useThemeColor(colorName);
 	const color = useThemeColor(`${colorName}Contrast`);
-	const tw = useTailwind();
 
 	return (
 		<TouchableHighlight
 			onPress={onPress}
 			disabled={disabled}
-			style={[{ backgroundColor }, tw("rounded-xl w-full py-3"), style]}
+			className={`rounded-xl w-full py-3 ${className}`}
+			style={[{ backgroundColor }, style]}
 			underlayColor={underlayColor}
 		>
-			<Text style={[{ color: color }, tw("text-center")]}>{children}</Text>
+			<Text className="text-center" style={{ color: color }}>
+				{children}
+			</Text>
 		</TouchableHighlight>
 	);
 };

@@ -5,7 +5,6 @@ import * as Haptics from "expo-haptics";
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useLoader } from "@/core/hooks/useLoader";
-import { useTailwind } from "tailwind-rn";
 
 import { hasObjectChanged } from "@/core/helpers";
 
@@ -15,7 +14,6 @@ export interface IProfileContactData {
 }
 
 export const ProfileContactForm: React.FC = () => {
-	const tw = useTailwind();
 	const { profile } = useAuth();
 
 	if (profile === null) {
@@ -56,19 +54,19 @@ export const ProfileContactForm: React.FC = () => {
 	return (
 		<>
 			<Field
-				style={tw("mt-3")}
+				className="mt-3"
 				value={data.email}
 				onChange={(email) => setData({ ...data, email })}
 				placeholder="Email"
 			/>
 			<Field
-				style={tw("mt-3")}
+				className="mt-3"
 				value={data.phone}
 				onChange={(phone) => setData({ ...data, phone })}
 				placeholder="Phone"
 			/>
 
-			<Button style={tw("my-4")} onPress={updateProfile}>
+			<Button className="my-4" onPress={updateProfile}>
 				Update Profile
 			</Button>
 		</>

@@ -1,4 +1,4 @@
-import { Pressable, View, ScrollView} from "react-native";
+import { Pressable, View, ScrollView } from "react-native";
 import { Text, Toolbar } from "@/components/shared";
 import {
 	ProfileContactForm,
@@ -7,35 +7,33 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useAuth } from "@/core/hooks/useAuth";
-import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export const ProfileScreen: React.FC = () => {
 	const colorIcon = useThemeColor("medium");
 	const color = useThemeColor("danger");
 	const { logout } = useAuth();
-	const tw = useTailwind();
 
 	return (
-		<ScrollView style={tw("flex flex-col")}>
-			<Toolbar style={tw("my-2")}>
+		<ScrollView className="flex flex-col">
+			<Toolbar className="my-2">
 				<ProfileNameForm />
 			</Toolbar>
 
-			<Toolbar style={tw("my-2")}>
+			<Toolbar className="my-2">
 				<ProfileContactForm />
 			</Toolbar>
 
-			<Toolbar style={tw("my-2")}>
+			<Toolbar className="my-2">
 				<Pressable
-					style={tw("w-full flex-row items-center justify-between py-3")}
+					className="w-full flex-row items-center justify-between py-3"
 					onPress={logout}
 				>
-					<View
-						style={tw("flex-row items-center")}
-					>
+					<View className="flex-row items-center">
 						<Ionicons name="exit" size={24} color={color} />
-						<Text style={[{ color }, tw("ml-1")]}>Sign out of the account</Text>
+						<Text className="ml-1" style={{ color }}>
+							Sign out of the account
+						</Text>
 					</View>
 
 					<Ionicons name="chevron-forward" size={24} color={colorIcon} />

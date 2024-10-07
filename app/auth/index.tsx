@@ -3,7 +3,6 @@ import { Loader, Field, Button, Text } from "@/components/shared";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
-import { useTailwind } from "tailwind-rn";
 
 interface IData {
 	email: string;
@@ -11,7 +10,6 @@ interface IData {
 }
 
 export const AuthScreen: React.FC = () => {
-	const tw = useTailwind();
 	const { isLoading, login, register } = useAuth();
 	const [isReg, setIsReg] = useState(false);
 	const [data, setData] = useState<IData>({} as IData);
@@ -26,8 +24,8 @@ export const AuthScreen: React.FC = () => {
 	};
 
 	return (
-		<View style={tw("w-9/12")}>
-			<Text style={tw("text-center text-2xl font-bold mb-2")}>
+		<View className="w-9/12">
+			<Text className="text-center text-2xl font-bold mb-2">
 				{isReg ? "Sing Up" : "Sing In"}
 			</Text>
 
@@ -37,13 +35,13 @@ export const AuthScreen: React.FC = () => {
 				<>
 					<Field
 						value={data.email}
-						style={tw("mt-3")}
+						className="mt-3"
 						placeholder="Enter email"
 						onChange={(value) => setData((dat) => ({ ...dat, email: value }))}
 					/>
 					<Field
 						value={data.password}
-						style={tw("mt-3")}
+						className="mt-3"
 						placeholder="Enter password"
 						isSecure
 						onChange={(value) =>
@@ -51,12 +49,12 @@ export const AuthScreen: React.FC = () => {
 						}
 					/>
 
-					<Button style={tw("my-4")} onPress={submit}>
+					<Button className="my-4" onPress={submit}>
 						{isReg ? "Sing up" : "Log in"}
 					</Button>
 
 					<Pressable onPress={() => setIsReg((pre) => !pre)}>
-						<Text style={tw("text-right text-sm")}>
+						<Text className="text-right text-sm">
 							{isReg ? "Login" : "Register"}
 						</Text>
 					</Pressable>

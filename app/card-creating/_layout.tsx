@@ -16,7 +16,6 @@ import { useAuth } from "@/core/hooks/useAuth";
 import { useRoute } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import { useLoader } from "@/core/hooks/useLoader";
-import { useTailwind } from "tailwind-rn";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 import { PaymentNetwork } from "@/core/config/payment";
@@ -37,7 +36,6 @@ const CardCreationScreen: React.FC = () => {
 	const { showLoader, hideLoader } = useLoader();
 	const { cardType } = route.params as { cardType: CardType };
 
-	const tw = useTailwind();
 	const borderColor = useThemeColor("toolbarBorder");
 
 	const [activePaymentSystem, setActivePaymentSystem] = useState(
@@ -79,9 +77,9 @@ const CardCreationScreen: React.FC = () => {
 	};
 
 	return (
-		<ThemedView style={tw("h-full w-full flex-1 flex-col")}>
-			<Container style={tw("w-full flex-grow")}>
-				<ScrollView style={tw("w-full")}>
+		<ThemedView className="h-full w-full flex-1 flex-col">
+			<Container className="w-full flex-grow">
+				<ScrollView className="w-full">
 					<PaymentSystem
 						activePaymentSystem={activePaymentSystem}
 						setActivePaymentSystem={setActivePaymentSystem}
@@ -98,10 +96,11 @@ const CardCreationScreen: React.FC = () => {
 				</ScrollView>
 			</Container>
 			<View
-				style={[tw("w-full pt-4 pb-8 border-t border-solid"), { borderColor }]}
+				className="w-full pt-4 pb-8 border-t border-solid"
+				style={{ borderColor }}
 			>
-				<Container style={tw("justify-center items-center")}>
-					<ButtonOpacity style={tw("py-2")} onPress={creatingCard}>
+				<Container className="justify-center items-center">
+					<ButtonOpacity className="py-2" onPress={creatingCard}>
 						<Text>Add a card</Text>
 					</ButtonOpacity>
 				</Container>
