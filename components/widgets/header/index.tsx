@@ -2,11 +2,10 @@ import { View, TouchableOpacity } from "react-native";
 import { Container, Text, Avatar } from "@/components/shared";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { useThemeColor } from "@/core/hooks/useThemeColor";
-import { useRouter } from "expo-router";
-
 import { useAuth } from "@/core/hooks/useAuth";
+import { useRouter } from "expo-router";
 import { useTailwind } from "tailwind-rn";
+import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export const Header: React.FC = () => {
 	const color = useThemeColor("text");

@@ -53,6 +53,7 @@ export const Colors = {
 
 		toolbarBorder: "#c1c4cd",
 		toolbarBackground: "#fafafb",
+		mainSurfaceSecondary: "#f4f4f4",
 	},
 	dark: {
 		text: "#ffffff",
@@ -108,6 +109,7 @@ export const Colors = {
 
 		toolbarBorder: "#222222",
 		toolbarBackground: "#1f1f1f",
+		mainSurfaceSecondary: "#2f2f2f",
 	},
 };
 

@@ -83,6 +83,15 @@ export default function RootLayout() {
 										}}
 									/>
 									<Stack.Screen
+										name="exchange-rates"
+										options={{
+											title: "Exchange Rates",
+											headerShown: true,
+											headerBackTitleVisible: false,
+											headerTintColor: color,
+										}}
+									/>
+									<Stack.Screen
 										name="messages"
 										options={{
 											title: "Messages",

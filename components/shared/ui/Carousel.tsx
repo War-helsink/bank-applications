@@ -50,7 +50,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 					renderItem={renderItem}
 				/>
 			</View>
-			<View style={tw("justify-center items-center my-1")}>
+			<View style={tw("justify-center items-center my-2")}>
 				<View
 					style={[
 						tw("flex-row rounded-xl py-1 px-3"),
