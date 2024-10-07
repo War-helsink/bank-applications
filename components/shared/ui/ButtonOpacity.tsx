@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { TouchableOpacity } from "react-native";
 import { Text } from "./Text";
 
@@ -29,7 +30,7 @@ export const ButtonOpacity: React.FC<ButtonOpacityProps> = ({
 		<TouchableOpacity
 			onPress={onPress}
 			disabled={disabled}
-			className={`rounded-xl w-full py-3 ${className}`}
+			className={clsx("rounded-xl w-full py-3", className)}
 			style={[{ backgroundColor }, style]}
 		>
 			<Text className="text-center" style={{ color: color }}>

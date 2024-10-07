@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { TextInput } from "react-native";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -32,7 +33,7 @@ export const Field: React.FC<FieldProps> = ({
 			secureTextEntry={isSecure}
 			autoCapitalize="none"
 			placeholderTextColor={borderColor}
-			className={`rounded-xl p-3 border border-solid ${className}`}
+			className={clsx("rounded-xl p-3 border border-solid", className)}
 			style={[{ color, borderColor }, style]}
 		/>
 	);

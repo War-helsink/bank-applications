@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { TouchableHighlight } from "react-native";
 import { Text } from "./Text";
 
@@ -30,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
 		<TouchableHighlight
 			onPress={onPress}
 			disabled={disabled}
-			className={`rounded-xl w-full py-3 ${className}`}
+			className={clsx("rounded-xl w-full py-3", className)}
 			style={[{ backgroundColor }, style]}
 			underlayColor={underlayColor}
 		>
