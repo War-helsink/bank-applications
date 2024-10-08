@@ -2,14 +2,22 @@ import { View } from "react-native";
 import { Toolbar, Text, SkeletonLoader } from "@/components/shared";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
-import { useExchangeRates } from "../hooks/useExchangeRates";
 
 import { CurrenciesIcon } from "../config/exchange-rates";
 
-export const ExchangeRateNBU: React.FC = () => {
+import type { ExchangeRatesSimplified } from "../model/types";
+
+export interface ExchangeRateNBUProps {
+	isLoading: boolean;
+	exchangeRates: ExchangeRatesSimplified[];
+}
+
+export const ExchangeRateNBU: React.FC<ExchangeRateNBUProps> = ({
+	exchangeRates,
+	isLoading,
+}) => {
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 	const color = useThemeColor("mainSurfaceSecondaryColor");
-	const { isLoading, exchangeRates } = useExchangeRates();
 
 	return (
 		<Toolbar className="my-4 py-2">

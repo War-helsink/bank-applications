@@ -3,7 +3,6 @@ import { CardItem } from "./CardItem";
 import { Carousel } from "@/components/shared";
 import { Dimensions, View } from "react-native";
 
-import { useAuth } from "@/core/hooks/useAuth";
 import { useCards } from "@/core/hooks/useCards";
 
 const { width: viewportWidth } = Dimensions.get("window");
@@ -12,12 +11,6 @@ const cardWidth = Math.round(viewportWidth - 32);
 const cardHeight = Math.round(cardWidth * 0.6);
 
 export const CardSlides: React.FC = () => {
-	const { user } = useAuth();
-
-	if (user === null) {
-		return;
-	}
-
 	const cards = useCards();
 	const data = [...cards, { createCard: true }];
 

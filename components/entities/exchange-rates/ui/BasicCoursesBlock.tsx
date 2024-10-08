@@ -2,15 +2,23 @@ import { View } from "react-native";
 import { Toolbar, Text, SkeletonLoader } from "@/components/shared";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
-import { useExchangeRates } from "../hooks/useExchangeRates";
 
 import { CurrenciesIcon } from "../config/exchange-rates";
 import { defaultCurrencies } from "../config/exchange-rates";
 
-export const BasicCoursesBlock: React.FC = () => {
+import type { ExchangeRatesSimplified } from "../model/types";
+
+export interface BasicCoursesBlockProps {
+	isLoading: boolean;
+	exchangeRates: ExchangeRatesSimplified[];
+}
+
+export const BasicCoursesBlock: React.FC<BasicCoursesBlockProps> = ({
+	exchangeRates,
+	isLoading,
+}) => {
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 	const color = useThemeColor("mainSurfaceSecondaryColor");
-	const { isLoading, exchangeRates } = useExchangeRates();
 
 	const filterExchangeRates = exchangeRates.filter((exchangeRate) =>
 		defaultCurrencies.includes(exchangeRate.code),

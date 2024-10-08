@@ -3,16 +3,10 @@ import { Text, Link } from "@/components/shared";
 import { CardSlides } from "@/components/features/card";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { useAuth } from "@/core/hooks/useAuth";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export const CardsView: React.FC = () => {
 	const color = useThemeColor("text");
-	const { profile } = useAuth();
-
-	if (profile === null) {
-		return;
-	}
 
 	return (
 		<View>

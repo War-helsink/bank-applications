@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import type { ExchangeRatesSimplified } from "../model/types";
 import { getExchangeRates } from "../api/api";
@@ -9,8 +9,8 @@ export function useExchangeRates() {
 		[],
 	);
 
-	useEffect(() => {
-		getExchangeRates()
+	const trigger = useCallback(async () => {
+		await getExchangeRates()
 			.then((exchangeRates) => {
 				setExchangeRates(exchangeRates);
 				setIsLoading(false);
@@ -20,5 +20,9 @@ export function useExchangeRates() {
 			});
 	}, []);
 
-	return { isLoading, exchangeRates };
+	useEffect(() => {
+		trigger();
+	}, [trigger]);
+
+	return { isLoading, exchangeRates, trigger };
 }

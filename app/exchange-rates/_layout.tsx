@@ -1,19 +1,33 @@
-import { ScrollView } from "react-native";
-import { Container, ThemedView } from "@/components/shared";
+import {
+	ThemedView,
+	ScrollRefreshControl,
+	Container,
+} from "@/components/shared";
 import {
 	BasicCoursesBlock,
 	ExchangeRateNBU,
+	useExchangeRates,
 } from "@/components/entities/exchange-rates";
 
 const ExchangeRatesLayout: React.FC = () => {
+	const { trigger, isLoading, exchangeRates } = useExchangeRates();
+
+	console.log("ExchangeRatesLayout render");
+
 	return (
 		<ThemedView className="h-full w-full">
-			<ScrollView>
+			<ScrollRefreshControl callback={trigger}>
 				<Container className="mb-6">
-					<BasicCoursesBlock />
-					<ExchangeRateNBU />
+					<BasicCoursesBlock
+						exchangeRates={exchangeRates}
+						isLoading={isLoading}
+					/>
+					<ExchangeRateNBU
+						exchangeRates={exchangeRates}
+						isLoading={isLoading}
+					/>
 				</Container>
-			</ScrollView>
+			</ScrollRefreshControl>
 		</ThemedView>
 	);
 };

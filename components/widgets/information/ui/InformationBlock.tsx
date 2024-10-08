@@ -3,7 +3,6 @@ import { Toolbar, Text, Link } from "@/components/shared";
 import { ExchangeRatesBlock } from "@/components/entities/exchange-rates";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { useRouter } from "expo-router";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 export const InformationBlock: React.FC = () => {
@@ -13,7 +12,6 @@ export const InformationBlock: React.FC = () => {
 	const colorQuestions = useThemeColor("danger");
 	const colorStatements = useThemeColor("warning");
 	const colorTariffs = useThemeColor("success");
-	const router = useRouter();
 
 	return (
 		<Toolbar className="py-4 rounded-2xl my-2">
