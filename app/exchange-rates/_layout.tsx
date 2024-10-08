@@ -12,8 +12,6 @@ import {
 const ExchangeRatesLayout: React.FC = () => {
 	const { trigger, isLoading, exchangeRates } = useExchangeRates();
 
-	console.log("ExchangeRatesLayout render");
-
 	return (
 		<ThemedView className="h-full w-full">
 			<ScrollRefreshControl callback={trigger}>
