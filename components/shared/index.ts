@@ -6,6 +6,7 @@ export * from "./ui/Container";
 export * from "./ui/Field";
 export * from "./ui/Link";
 export * from "./ui/Loader";
+export * from "./ui/SkeletonLoader"
 export * from "./ui/Text";
 export * from "./ui/ThemedView";
 export * from "./ui/Toast";

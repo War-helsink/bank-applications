@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Toolbar, Text } from "@/components/shared";
+import { Toolbar, Text, SkeletonLoader } from "@/components/shared";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useExchangeRates } from "../hooks/useExchangeRates";
@@ -10,7 +10,7 @@ import { defaultCurrencies } from "../config/exchange-rates";
 export const BasicCoursesBlock: React.FC = () => {
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 	const color = useThemeColor("mainSurfaceSecondaryColor");
-	const { exchangeRates } = useExchangeRates();
+	const { isLoading, exchangeRates } = useExchangeRates();
 
 	const filterExchangeRates = exchangeRates.filter((exchangeRate) =>
 		defaultCurrencies.includes(exchangeRate.code),
@@ -40,29 +40,47 @@ export const BasicCoursesBlock: React.FC = () => {
 					Sell
 				</Text>
 			</View>
-			{filterExchangeRates.map((exchangeRate) => {
-				const SVG = CurrenciesIcon[exchangeRate.code];
-				return (
-					<View
-						key={exchangeRate.code}
-						className="w-full flex-row justify-between p-2 my-2"
-					>
-						<View className="flex-row" style={{ flex: 1 }}>
-							<View className="justify-center items-center pr-4">
-								<SVG width={24} height={18} />
+			{isLoading
+				? [...Array(2)].map((_, index) => (
+						<View
+							key={index}
+							className="w-full flex-row justify-between items-center p-2 my-2"
+						>
+							<View style={{ flex: 1 }}>
+								<SkeletonLoader width={70} height={25} radius={12} />
 							</View>
-							<Text className="text-xs">{exchangeRate.code}</Text>
-						</View>
 
-						<Text className="text-xs text-right" style={{ flex: 2 }}>
-							{(exchangeRate.rate - 0.2).toFixed(2)}
-						</Text>
-						<Text className="text-xs text-right" style={{ flex: 2 }}>
-							{(exchangeRate.rate + 0.2).toFixed(2)}
-						</Text>
-					</View>
-				);
-			})}
+							<View className="items-end" style={{ flex: 2 }}>
+								<SkeletonLoader width={50} height={25} radius={12} />
+							</View>
+							<View className="items-end" style={{ flex: 2 }}>
+								<SkeletonLoader width={50} height={25} radius={12} />
+							</View>
+						</View>
+					))
+				: filterExchangeRates.map((exchangeRate) => {
+						const SVG = CurrenciesIcon[exchangeRate.code];
+						return (
+							<View
+								key={exchangeRate.code}
+								className="w-full flex-row justify-between p-2 my-2"
+							>
+								<View className="flex-row" style={{ flex: 1 }}>
+									<View className="justify-center items-center pr-4">
+										<SVG width={24} height={18} />
+									</View>
+									<Text className="text-xs">{exchangeRate.code}</Text>
+								</View>
+
+								<Text className="text-xs text-right" style={{ flex: 2 }}>
+									{(exchangeRate.rate - 0.2).toFixed(2)}
+								</Text>
+								<Text className="text-xs text-right" style={{ flex: 2 }}>
+									{(exchangeRate.rate + 0.2).toFixed(2)}
+								</Text>
+							</View>
+						);
+					})}
 		</Toolbar>
 	);
 };

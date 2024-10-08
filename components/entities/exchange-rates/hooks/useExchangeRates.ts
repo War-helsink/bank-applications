@@ -4,7 +4,7 @@ import type { ExchangeRatesSimplified } from "../model/types";
 import { getExchangeRates } from "../api/api";
 
 export function useExchangeRates() {
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const [exchangeRates, setExchangeRates] = useState<ExchangeRatesSimplified[]>(
 		[],
 	);
@@ -13,10 +13,10 @@ export function useExchangeRates() {
 		getExchangeRates()
 			.then((exchangeRates) => {
 				setExchangeRates(exchangeRates);
-				setIsLoading(true);
+				setIsLoading(false);
 			})
 			.catch(() => {
-				setIsLoading(true);
+				setIsLoading(false);
 			});
 	}, []);
 
