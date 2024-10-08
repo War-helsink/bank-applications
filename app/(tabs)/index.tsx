@@ -2,7 +2,8 @@ import { ScrollView } from "react-native";
 import { ThemedView, Container } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
 import { CardsView } from "@/components/widgets/card";
-import { Information } from "@/components/widgets/information"
+import { OperationsBlock } from "@/components/widgets/operations";
+import { InformationBlock } from "@/components/widgets/information";
 
 const HomeScreen: React.FC = () => {
 	return (
@@ -11,7 +12,8 @@ const HomeScreen: React.FC = () => {
 			<ScrollView>
 				<Container>
 					<CardsView />
-					<Information />
+					<OperationsBlock />
+					<InformationBlock />
 				</Container>
 			</ScrollView>
 		</ThemedView>
