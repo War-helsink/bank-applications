@@ -18,7 +18,8 @@ export const CardCurrency: React.FC<CurrencyProps> = ({
 	const activeBackgroundColor = useThemeColor("primary");
 	const backgroundColor = useThemeColor("toolbarBackground");
 	const borderColor = useThemeColor("toolbarBorder");
-	const color = useThemeColor("white");
+	const activeColor = useThemeColor("white");
+	const color = useThemeColor("text");
 
 	const currencies = Object.entries(Currency);
 
@@ -43,7 +44,10 @@ export const CardCurrency: React.FC<CurrencyProps> = ({
 							setActiveCurrency(value);
 						}}
 					>
-						<Text className="text-xs" style={{ color }}>
+						<Text
+							className="text-xs"
+							style={{ color: activeCurrency === value ? activeColor : color }}
+						>
 							{key}
 						</Text>
 					</TouchableOpacity>
