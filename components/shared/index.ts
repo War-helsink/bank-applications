@@ -4,6 +4,7 @@ export * from "./ui/ButtonOpacity";
 export * from "./ui/Carousel";
 export * from "./ui/Container";
 export * from "./ui/Field";
+export * from "./ui/Link";
 export * from "./ui/Loader";
 export * from "./ui/Text";
 export * from "./ui/ThemedView";

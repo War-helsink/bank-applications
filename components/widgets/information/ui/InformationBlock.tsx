@@ -1,8 +1,7 @@
-import { View, TouchableOpacity } from "react-native";
-import { Toolbar, Text } from "@/components/shared";
+import { View } from "react-native";
+import { Toolbar, Text, Link } from "@/components/shared";
 import { ExchangeRatesBlock } from "@/components/entities/exchange-rates";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import * as Haptics from "expo-haptics";
 
 import { useRouter } from "expo-router";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -22,45 +21,46 @@ export const InformationBlock: React.FC = () => {
 			<ExchangeRatesBlock />
 
 			<View className="mt-4 flex-row flex-wrap justify-between">
-				<TouchableOpacity
+				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
 					style={{ backgroundColor }}
-					onPress={() => {
-						Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-						router.push("/messages");
-					}}
+					href="/messages"
 				>
 					<Ionicons name="chatbubble-ellipses" size={30} color={colorMess} />
 					<Text className="text-[10px] font-semibold">Message</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
+				</Link>
+				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
 					style={{ backgroundColor }}
 				>
 					<Ionicons name="happy" size={30} color={colorSupport} />
 					<Text className="text-[10px] font-semibold">Support service</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
+				</Link>
+				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
 					style={{ backgroundColor }}
 				>
-						<Ionicons name="help-circle" size={30} color={colorQuestions} />
-						<Text className="text-[10px] font-semibold">Frequently asked questions</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
+					<Ionicons name="help-circle" size={30} color={colorQuestions} />
+					<Text className="text-[10px] font-semibold">
+						Frequently asked questions
+					</Text>
+				</Link>
+				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
 					style={{ backgroundColor }}
 				>
-						<Ionicons name="documents" size={30} color={colorStatements} />
-						<Text className="text-[10px] font-semibold">Statements and references</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
+					<Ionicons name="documents" size={30} color={colorStatements} />
+					<Text className="text-[10px] font-semibold">
+						Statements and references
+					</Text>
+				</Link>
+				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
 					style={{ backgroundColor }}
 				>
-						<Ionicons name="document-text" size={30} color={colorTariffs} />
-						<Text className="text-[10px] font-semibold">Terms and tariffs</Text>
-				</TouchableOpacity>
+					<Ionicons name="document-text" size={30} color={colorTariffs} />
+					<Text className="text-[10px] font-semibold">Terms and tariffs</Text>
+				</Link>
 			</View>
 		</Toolbar>
 	);

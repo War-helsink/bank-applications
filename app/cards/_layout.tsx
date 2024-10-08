@@ -1,11 +1,16 @@
 import { View, ScrollView, TouchableOpacity } from "react-native";
-import { ThemedView, Container, Toolbar, Text } from "@/components/shared";
+import {
+	ThemedView,
+	Container,
+	Toolbar,
+	Text,
+	Link,
+} from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Haptics from "expo-haptics";
 
 import { useAuth } from "@/core/hooks/useAuth";
 import { useCards } from "@/core/hooks/useCards";
-import { useRouter } from "expo-router";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
@@ -21,7 +26,6 @@ const CardsLayout: React.FC = () => {
 	const backgroundColor = useThemeColor("medium");
 	const borderColor = useThemeColor("borderInput");
 	const color = useThemeColor("primary");
-	const router = useRouter();
 
 	const cards = useCards();
 
@@ -32,14 +36,9 @@ const CardsLayout: React.FC = () => {
 					<Toolbar className="my-6">
 						<View className="flex-row justify-between my-2">
 							<Text>Cards</Text>
-							<TouchableOpacity
-								onPress={() => {
-									Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-									router.push("/add-card");
-								}}
-							>
+							<Link href="/add-card">
 								<Text style={{ color }}>Add</Text>
-							</TouchableOpacity>
+							</Link>
 						</View>
 						<View>
 							{cards.map((card) => {

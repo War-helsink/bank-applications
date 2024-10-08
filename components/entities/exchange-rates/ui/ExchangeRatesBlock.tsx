@@ -1,8 +1,6 @@
-import { View, TouchableOpacity } from "react-native";
-import { Text } from "@/components/shared";
-import * as Haptics from "expo-haptics";
+import { View } from "react-native";
+import { Text, Link } from "@/components/shared";
 
-import { useRouter } from "expo-router";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useExchangeRates } from "../hooks/useExchangeRates";
 
@@ -10,7 +8,6 @@ import { CurrenciesIcon } from "../config/exchange-rates";
 import { defaultCurrencies } from "../config/exchange-rates";
 
 export const ExchangeRatesBlock: React.FC = () => {
-	const router = useRouter();
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 	const { exchangeRates } = useExchangeRates();
 
@@ -19,13 +16,10 @@ export const ExchangeRatesBlock: React.FC = () => {
 	);
 
 	return (
-		<TouchableOpacity
+		<Link
 			className="p-4 mt-4 rounded-2xl flex-row"
 			style={{ backgroundColor }}
-			onPress={() => {
-				Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-				router.push("/exchange-rates");
-			}}
+			href="/exchange-rates"
 		>
 			{filterExchangeRates.map((exchangeRate) => {
 				const SVG = CurrenciesIcon[exchangeRate.code];
@@ -42,6 +36,6 @@ export const ExchangeRatesBlock: React.FC = () => {
 					</View>
 				);
 			})}
-		</TouchableOpacity>
+		</Link>
 	);
 };

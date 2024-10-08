@@ -1,9 +1,7 @@
-import { TouchableOpacity } from "react-native";
+import { Link } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import * as Haptics from "expo-haptics";
 
-import { useRouter } from "expo-router";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useThemeGradient } from "@/core/hooks/useThemeGradient";
 
@@ -20,26 +18,16 @@ export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 }) => {
 	const backgroundGradient = useThemeGradient("addCard");
 	const color = useThemeColor("white");
-	const router = useRouter();
 
 	return (
 		<LinearGradient
 			colors={backgroundGradient}
 			className="rounded-xl p-5 justify-center items-center"
-			style={[
-				{ width: width, height: height },
-				GLOBAL_STYLES.shadow,
-			]}
+			style={[{ width: width, height: height }, GLOBAL_STYLES.shadow]}
 		>
-			<TouchableOpacity
-				className="mx-3 flex items-center"
-				onPress={() => {
-					Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-					router.push("/add-card");
-				}}
-			>
+			<Link className="mx-3 flex items-center" href="/add-card">
 				<Ionicons name="add-circle" size={32} color={color} />
-			</TouchableOpacity>
+			</Link>
 		</LinearGradient>
 	);
 };
