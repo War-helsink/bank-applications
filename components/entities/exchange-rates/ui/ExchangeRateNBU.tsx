@@ -8,7 +8,7 @@ import { CurrenciesIcon } from "../config/exchange-rates";
 
 export const ExchangeRateNBU: React.FC = () => {
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
-	const color = useThemeColor("text");
+	const color = useThemeColor("mainSurfaceSecondaryColor");
 	const { exchangeRates } = useExchangeRates();
 
 	return (
@@ -26,13 +26,7 @@ export const ExchangeRateNBU: React.FC = () => {
 					className="text-xs text-right font-semibold"
 					style={{ color, flex: 2 }}
 				>
-					Buy
-				</Text>
-				<Text
-					className="text-xs text-right font-semibold"
-					style={{ color, flex: 2 }}
-				>
-					Sell
+					Exchange rate
 				</Text>
 			</View>
 			{exchangeRates.map((exchangeRate) => {
@@ -54,10 +48,7 @@ export const ExchangeRateNBU: React.FC = () => {
 						</View>
 
 						<Text className="text-xs text-right" style={{ flex: 2 }}>
-							{(exchangeRate.rate - 0.2).toFixed(2)}
-						</Text>
-						<Text className="text-xs text-right" style={{ flex: 2 }}>
-							{(exchangeRate.rate + 0.2).toFixed(2)}
+							{exchangeRate.rate.toFixed(2)}
 						</Text>
 					</View>
 				);

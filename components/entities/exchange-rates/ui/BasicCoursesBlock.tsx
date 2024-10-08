@@ -9,7 +9,7 @@ import { defaultCurrencies } from "../config/exchange-rates";
 
 export const BasicCoursesBlock: React.FC = () => {
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
-	const color = useThemeColor("text");
+	const color = useThemeColor("mainSurfaceSecondaryColor");
 	const { exchangeRates } = useExchangeRates();
 
 	const filterExchangeRates = exchangeRates.filter((exchangeRate) =>

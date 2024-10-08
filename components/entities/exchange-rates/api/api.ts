@@ -15,8 +15,6 @@ export const getExchangeRates = async (): Promise<
 
 		const exchangeRates: ExchangeRatesApiResponse = await response.json();
 
-		console.log("exchangeRates: ", exchangeRates);
-
 		const newExchangeRates: ExchangeRatesSimplified[] = exchangeRates.map(
 			(exchangeRate) => ({
 				code: exchangeRate.cc,
