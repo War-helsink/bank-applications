@@ -39,8 +39,8 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 				className="w-24 h-16 rounded-xl p-2 flex justify-between"
 			>
 				<View className="flex-row">
-					<View className="w-4 h-1 rounded-xl" style={{ backgroundColor }} />
-					<View className="w-4 h-1 rounded-xl" style={{ backgroundColor }} />
+					<View className="w-5 h-1 rounded-xl mr-1" style={{ backgroundColor }} />
+					<View className="w-5 h-1 rounded-xl" style={{ backgroundColor }} />
 				</View>
 
 				<View className="w-8 h-1 rounded-xl" style={{ backgroundColor }} />
