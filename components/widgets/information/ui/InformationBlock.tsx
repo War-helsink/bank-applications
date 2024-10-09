@@ -24,14 +24,15 @@ export const InformationBlock: React.FC = () => {
 					style={{ backgroundColor }}
 					href="/messages"
 				>
-					<Ionicons name="chatbubble-ellipses" size={30} color={colorMess} />
+					<Ionicons name="notifications" size={30} color={colorMess} />
 					<Text className="text-[10px] font-semibold">Message</Text>
 				</Link>
 				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
 					style={{ backgroundColor }}
+					href="/support"
 				>
-					<Ionicons name="happy" size={30} color={colorSupport} />
+					<Ionicons name="chatbubble-ellipses" size={30} color={colorSupport} />
 					<Text className="text-[10px] font-semibold">Support service</Text>
 				</Link>
 				<Link
