@@ -1,7 +1,7 @@
 import { View, TouchableHighlight } from "react-native";
 import { Text } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
-import * as Haptics from "expo-haptics";
+// import * as Haptics from "expo-haptics";
 
 import { PaymentNetworkImg } from "@/core/config/payment";
 import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
@@ -19,9 +19,9 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 
 	return (
 		<TouchableHighlight
-			onPress={() => {
-				Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-			}}
+			// onPress={() => {
+			// 	Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+			// }}
 		>
 			<LinearGradient
 				colors={CardTypeGradients[card.cardType].colors}
