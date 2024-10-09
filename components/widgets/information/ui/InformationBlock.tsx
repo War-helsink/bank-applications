@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Toolbar, Text, Link } from "@/components/shared";
-import { ExchangeRatesBlock } from "@/components/entities/exchange-rates";
+import { ExchangeRatesBlock } from "@/components/features/exchange-rates";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";

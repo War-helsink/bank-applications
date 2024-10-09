@@ -10,6 +10,9 @@
 			"complexity": {
 				"noThisInStatic": "off",
 				"noUselessTypeConstraint": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off"
 			}
 		}
 	}

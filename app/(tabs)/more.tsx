@@ -1,17 +1,28 @@
-import { ThemedView, Container} from "@/components/shared";
+import { ScrollView } from "react-native";
+import { ThemedView, Container, Text } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
+import { Menu } from "@/components/widgets/menu";
+import { ExchangeRatesBlock } from "@/components/features/exchange-rates";
+import Constants from "expo-constants";
 
-const MoreScreen: React.FC = () =>{
-
+const MoreScreen: React.FC = () => {
 	return (
 		<ThemedView className="h-full w-full pt-16">
 			<Header />
-			<Container className="w-full h-full justify-center items-center">
-				
-			</Container>
+			<ScrollView>
+				<Container>
+					<Text type="subtitle" className="py-2">
+						More
+					</Text>
+					<ExchangeRatesBlock />
+					<Menu />
+					<Text className="text-center opacity-50 my-4">
+						Version: {Constants.expoConfig?.version}
+					</Text>
+				</Container>
+			</ScrollView>
 		</ThemedView>
 	);
-}
+};
 
 export default MoreScreen;
-
