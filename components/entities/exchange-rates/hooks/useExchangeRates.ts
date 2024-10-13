@@ -1,28 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
-
-import type { ExchangeRatesSimplified } from "../model/types";
+import { useQuery } from "@tanstack/react-query";
 import { getExchangeRates } from "../api/api";
+import { MINUTE } from "../config/exchange-rates"
 
 export function useExchangeRates() {
-	const [isLoading, setIsLoading] = useState(true);
-	const [exchangeRates, setExchangeRates] = useState<ExchangeRatesSimplified[]>(
-		[],
-	);
+	const {
+		data: exchangeRates = [],
+		isLoading,
+		refetch,
+	} = useQuery({
+		queryKey: ["exchangeRates"],
+		queryFn: getExchangeRates,
+		staleTime: MINUTE,
+    	gcTime: MINUTE * 10,
+	});
 
-	const trigger = useCallback(async () => {
-		await getExchangeRates()
-			.then((exchangeRates) => {
-				setExchangeRates(exchangeRates);
-				setIsLoading(false);
-			})
-			.catch(() => {
-				setIsLoading(false);
-			});
-	}, []);
-
-	useEffect(() => {
-		trigger();
-	}, [trigger]);
-
-	return { isLoading, exchangeRates, trigger };
+	return { isLoading, exchangeRates, refetch };
 }

@@ -5,7 +5,7 @@ import { useState, useCallback } from "react";
 import { useThemeGradient } from "@/core/hooks/useThemeGradient";
 
 export interface ScrollRefreshControlProps extends ScrollViewProps {
-	callback: () => Promise<void>;
+	callback: () => Promise<unknown>;
 }
 
 export const ScrollRefreshControl: React.FC<ScrollRefreshControlProps> = ({

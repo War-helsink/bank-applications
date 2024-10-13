@@ -10,11 +10,11 @@ import {
 } from "@/components/entities/exchange-rates";
 
 const ExchangeRatesLayout: React.FC = () => {
-	const { trigger, isLoading, exchangeRates } = useExchangeRates();
+	const { refetch, isLoading, exchangeRates } = useExchangeRates();
 
 	return (
 		<ThemedView className="h-full w-full">
-			<ScrollRefreshControl callback={trigger}>
+			<ScrollRefreshControl callback={refetch}>
 				<Container className="mb-6">
 					<BasicCoursesBlock
 						exchangeRates={exchangeRates}
