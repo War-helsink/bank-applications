@@ -1,6 +1,6 @@
 import Toast from "react-native-toast-message";
 import { Field, Button } from "@/components/shared";
-import * as Haptics from "expo-haptics";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
@@ -38,7 +38,7 @@ export const ProfileNameForm: React.FC = () => {
 			return await profile.update().then(() => {
 				hideLoader();
 
-				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+				notificationAsync(NotificationFeedbackType.Success);
 				Toast.show({
 					type: "success",
 					text1: "Changes saved successfully",
@@ -46,7 +46,7 @@ export const ProfileNameForm: React.FC = () => {
 			});
 		}
 
-		Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+		notificationAsync(NotificationFeedbackType.Error);
 		Toast.show({
 			type: "error",
 			text1: "To save the data, make changes",

@@ -1,7 +1,7 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { ThemedView, Container, Text } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
-import { ServiceItem, services } from "@/components/entities/services";
+import { Services } from "@/components/widgets/services";
 
 const ServicesScreen: React.FC = () => {
 	return (
@@ -12,11 +12,7 @@ const ServicesScreen: React.FC = () => {
 					<Text className="my-4 text-center" type="subtitle">
 						Services
 					</Text>
-					<View className="flex-row flex-wrap justify-center">
-						{services.map((service) => (
-							<ServiceItem key={service.title} service={service} />
-						))}
-					</View>
+					<Services />
 				</Container>
 			</ScrollView>
 		</ThemedView>

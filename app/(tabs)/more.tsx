@@ -9,18 +9,18 @@ const MoreScreen: React.FC = () => {
 	return (
 		<ThemedView className="h-full w-full pt-16">
 			<Header />
-			<ScrollView>
-				<Container>
-					<Text type="subtitle" className="py-2">
-						More
-					</Text>
-					<ExchangeRatesBlock />
+			<Container className="flex-1">
+				<Text type="subtitle" className="py-2">
+					More
+				</Text>
+				<ExchangeRatesBlock />
+				<ScrollView className="flex-1">
 					<Menu />
-					<Text className="text-center opacity-50 my-4">
-						Version: {Constants.expoConfig?.version}
-					</Text>
-				</Container>
-			</ScrollView>
+				</ScrollView>
+				<Text className="text-center opacity-50 my-4">
+					Version: {Constants.expoConfig?.version}
+				</Text>
+			</Container>
 		</ThemedView>
 	);
 };

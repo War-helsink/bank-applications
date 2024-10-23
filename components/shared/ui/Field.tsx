@@ -11,6 +11,7 @@ export interface FieldProps {
 	style?: StyleProp<TextStyle>;
 	value?: string;
 	placeholder?: string;
+	multiline?: boolean;
 	isSecure?: boolean;
 }
 
@@ -20,6 +21,7 @@ export const Field: React.FC<FieldProps> = ({
 	style,
 	onChange,
 	placeholder,
+	multiline,
 	isSecure,
 }) => {
 	const color = useThemeColor("text");
@@ -30,6 +32,7 @@ export const Field: React.FC<FieldProps> = ({
 			placeholder={placeholder}
 			onChangeText={onChange}
 			value={value}
+			multiline={multiline}
 			secureTextEntry={isSecure}
 			autoCapitalize="none"
 			placeholderTextColor={borderColor}

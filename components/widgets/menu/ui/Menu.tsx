@@ -1,10 +1,14 @@
 import { View } from "react-native";
-import { Text } from "@/components/shared";
+import { MenuItem } from "./MenuItem";
+
+import { menu } from "../config";
 
 export const Menu: React.FC = () => {
 	return (
 		<View>
-			<Text>Menu</Text>
+			{menu.map((item) => (
+				<MenuItem key={item.title} item={item} />
+			))}
 		</View>
 	);
 };

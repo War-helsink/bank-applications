@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import { View } from "react-native";
 import type { ViewProps } from "react-native";
 
@@ -10,7 +12,7 @@ export const Container: React.FC<ContainerProps> = ({
 	...otherProps
 }) => {
 	return (
-		<View className={`px-4 ${className}`} style={style} {...otherProps}>
+		<View className={clsx("px-4", className)} style={style} {...otherProps}>
 			{children}
 		</View>
 	);
