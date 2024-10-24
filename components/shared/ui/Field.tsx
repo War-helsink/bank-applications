@@ -34,7 +34,6 @@ export const Field: React.FC<FieldProps> = ({
 			value={value}
 			multiline={multiline}
 			secureTextEntry={isSecure}
-			autoCapitalize="none"
 			placeholderTextColor={borderColor}
 			className={clsx("rounded-xl p-3 border border-solid", className)}
 			style={[{ color, borderColor }, style]}

@@ -13,8 +13,8 @@ const MoreScreen: React.FC = () => {
 				<Text type="subtitle" className="py-2">
 					More
 				</Text>
-				<ExchangeRatesBlock />
 				<ScrollView className="flex-1">
+					<ExchangeRatesBlock />
 					<Menu />
 				</ScrollView>
 				<Text className="text-center opacity-50 my-4">
