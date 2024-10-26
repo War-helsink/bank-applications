@@ -8,18 +8,25 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-export interface MessageFieldProps {
+export interface SupportMessageFieldProps {
 	className?: string;
 	style?: StyleProp<ViewStyle>;
+	sendMessage: (text: string) => void;
 }
 
-export const MessageField: React.FC<MessageFieldProps> = ({
+export const SupportMessageField: React.FC<SupportMessageFieldProps> = ({
 	className,
 	style,
+	sendMessage,
 }) => {
 	const backgroundColor = useThemeColor("toolbarBackground");
 	const color = useThemeColor("primary");
-	const [messages, setMessages] = useState("");
+	const [message, setMessage] = useState("");
+
+	const onClick = () => {
+		sendMessage(message);
+		setMessage("");
+	};
 
 	return (
 		<View
@@ -32,11 +39,11 @@ export const MessageField: React.FC<MessageFieldProps> = ({
 			<Field
 				className="flex-1"
 				multiline
-				value={messages}
-				onChange={(value) => setMessages(value)}
+				value={message}
+				onChange={(value) => setMessage(value)}
 				placeholder="Enter your message"
 			/>
-			<Pressable className="ml-4">
+			<Pressable className="ml-4" onPress={onClick}>
 				<MaterialCommunityIcons
 					name="send-circle-outline"
 					size={42}

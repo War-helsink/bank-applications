@@ -4,4 +4,4 @@ export {
 	generateExpirationDate,
 	generateCVC,
 } from "./utils";
-export { Card } from "./model";
+export { Card } from "./model/card";

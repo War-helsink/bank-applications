@@ -29,3 +29,10 @@ export function validateLuhn(cardNumber: string) {
 
 	return sum % 10 === 0;
 }
+
+export function formatDateTime(date: Date): string {
+	const hours = String(date.getHours()).padStart(2, "0");
+	const minutes = String(date.getMinutes()).padStart(2, "0");
+
+	return `${hours}:${minutes}`;
+}

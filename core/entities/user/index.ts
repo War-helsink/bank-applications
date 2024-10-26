@@ -1,1 +1,1 @@
-export { UserProfile } from "./model";
+export { UserProfile } from "./model/user.profile";

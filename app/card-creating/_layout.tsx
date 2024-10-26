@@ -9,7 +9,7 @@ import {
 import { PaymentSystem } from "@/components/features/payment";
 import { CardCurrency } from "@/components/features/currency";
 import { CardDemo } from "@/components/features/card";
-import * as Haptics from "expo-haptics";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 import { useState } from "react";
 import { useAuth } from "@/core/hooks/useAuth";
@@ -58,7 +58,7 @@ const CardCreationScreen: React.FC = () => {
 
 			hideLoader();
 
-			Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+			notificationAsync(NotificationFeedbackType.Success);
 
 			Toast.show({
 				type: "success",
@@ -67,7 +67,7 @@ const CardCreationScreen: React.FC = () => {
 
 			router.replace("/");
 		} catch (_) {
-			Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+			notificationAsync(NotificationFeedbackType.Error);
 			Toast.show({
 				type: "error",
 				text1: "Error creating map",
