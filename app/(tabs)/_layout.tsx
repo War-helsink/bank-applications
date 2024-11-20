@@ -1,10 +1,16 @@
-import React from "react";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import { TabBarIcon } from "@/components/features/navigation";
+
+import { useAuth } from "@/core/hooks/useAuth";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-export default function TabLayout() {
+const TabLayout: React.FC = () => {
 	const tabBarActiveTintColor = useThemeColor("primary");
+	const { user } = useAuth();
+
+	if (!user) {
+		return <Redirect href="/auth" />;
+	}
 
 	return (
 		<Tabs
@@ -45,7 +51,9 @@ export default function TabLayout() {
 					title: "Support",
 					tabBarIcon: ({ color, focused }) => (
 						<TabBarIcon
-							name={focused ? "chatbubble-ellipses" : "chatbubble-ellipses-outline"}
+							name={
+								focused ? "chatbubble-ellipses" : "chatbubble-ellipses-outline"
+							}
 							focused={focused}
 							color={color}
 						/>
@@ -71,4 +79,6 @@ export default function TabLayout() {
 			/>
 		</Tabs>
 	);
-}
+};
+
+export default TabLayout;

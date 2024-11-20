@@ -1,6 +1,6 @@
-import { ThemedView, Container} from "@/components/shared";
+import { ThemedView, Container } from "@/components/shared";
 
-const StatisticsLayout: React.FC = () => {
+const StatisticsScreen: React.FC = () => {
 	return (
 		<ThemedView className="h-full w-full pt-16">
 			<Container className="w-full h-full justify-center items-center">
@@ -10,4 +10,4 @@ const StatisticsLayout: React.FC = () => {
 	);
 };
 
-export default StatisticsLayout;
+export default StatisticsScreen;

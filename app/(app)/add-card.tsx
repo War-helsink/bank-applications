@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import type { CardType } from "@/core/config/card";
 
-const AddCardLayout: React.FC = () => {
+const AddCardScreen: React.FC = () => {
 	const navigation = useNavigation();
 
 	const onAddNewCard = (cardType: CardType) => {
@@ -29,4 +29,4 @@ const AddCardLayout: React.FC = () => {
 	);
 };
 
-export default AddCardLayout;
+export default AddCardScreen;

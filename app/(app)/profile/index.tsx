@@ -9,7 +9,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 
-export const ProfileScreen: React.FC = () => {
+const ProfileScreen: React.FC = () => {
 	const colorIcon = useThemeColor("medium");
 	const color = useThemeColor("danger");
 	const { logout } = useAuth();
@@ -42,3 +42,5 @@ export const ProfileScreen: React.FC = () => {
 		</ScrollView>
 	);
 };
+
+export default ProfileScreen;

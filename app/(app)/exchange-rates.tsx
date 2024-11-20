@@ -9,7 +9,7 @@ import {
 	useExchangeRates,
 } from "@/components/entities/exchange-rates";
 
-const ExchangeRatesLayout: React.FC = () => {
+const ExchangeRatesScreen: React.FC = () => {
 	const { refetch, isLoading, exchangeRates } = useExchangeRates();
 
 	return (
@@ -30,4 +30,4 @@ const ExchangeRatesLayout: React.FC = () => {
 	);
 };
 
-export default ExchangeRatesLayout;
+export default ExchangeRatesScreen;

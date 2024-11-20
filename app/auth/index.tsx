@@ -9,7 +9,7 @@ interface IData {
 	password: string;
 }
 
-export const AuthScreen: React.FC = () => {
+const AuthScreen: React.FC = () => {
 	const { isLoading, login, register } = useAuth();
 	const [isReg, setIsReg] = useState(false);
 	const [data, setData] = useState<IData>({} as IData);
@@ -63,3 +63,5 @@ export const AuthScreen: React.FC = () => {
 		</View>
 	);
 };
+
+export default AuthScreen;

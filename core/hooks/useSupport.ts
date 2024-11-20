@@ -1,6 +1,5 @@
 import { Support } from "@/core/entities/support";
 import { useState, useEffect, useRef } from "react";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 
 import { onSnapshot, query, orderBy, limit } from "firebase/firestore";
 import type { Unsubscribe } from "firebase/firestore";
@@ -44,15 +43,9 @@ export const useSupport = (uid?: string) => {
 			return;
 		}
 
-		try {
-			const message = new Support({ text, uid });
+		const message = new Support({ text, uid });
 
-			await message.create();
-
-			notificationAsync(NotificationFeedbackType.Success);
-		} catch (_) {
-			notificationAsync(NotificationFeedbackType.Error);
-		}
+		await message.create();
 	};
 
 	return { messages, sendMessage };

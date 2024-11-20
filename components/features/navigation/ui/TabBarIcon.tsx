@@ -34,7 +34,7 @@ export const TabBarIcon: React.FC<TabBarIconProps> = ({
 
 	return (
 		<Animated.View style={focused && animatedStyle}>
-			<Ionicons size={28} style={[{ marginBottom: -3 }, style]} {...rest} />
+			<Ionicons size={20} style={[{ marginBottom: -3 }, style]} {...rest} />
 		</Animated.View>
 	);
 };

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import type { StyleProp, ViewStyle } from "react-native";
 import { View, Pressable } from "react-native";
 import { Field } from "@/components/shared";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useState } from "react";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -43,12 +43,12 @@ export const SupportMessageField: React.FC<SupportMessageFieldProps> = ({
 				onChange={(value) => setMessage(value)}
 				placeholder="Enter your message"
 			/>
-			<Pressable className="ml-4" onPress={onClick}>
-				<MaterialCommunityIcons
-					name="send-circle-outline"
-					size={42}
-					color={color}
-				/>
+			<Pressable
+				className="ml-4"
+				onPress={onClick}
+				disabled={message.length <= 0}
+			>
+				<Ionicons name="send" size={28} color={color} />
 			</Pressable>
 		</View>
 	);

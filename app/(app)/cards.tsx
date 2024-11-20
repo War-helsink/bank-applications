@@ -16,7 +16,7 @@ import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
 import { PaymentNetworkImg } from "@/core/config/payment";
 
-const CardsLayout: React.FC = () => {
+const CardsScreen: React.FC = () => {
 	const { user } = useAuth();
 
 	if (user === null) {
@@ -103,4 +103,4 @@ const CardsLayout: React.FC = () => {
 	);
 };
 
-export default CardsLayout;
+export default CardsScreen;
