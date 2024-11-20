@@ -12,11 +12,15 @@ export const ProfileLink: React.FC = () => {
 	const { profile } = useAuth();
 
 	return (
-		<Link href="/profile" className="flex-row pr-2 items-center rounded-full" style={{ backgroundColor }}>
+		<Link
+			href="/profile"
+			className="flex-row pr-2 items-center rounded-full"
+			style={{ backgroundColor }}
+		>
 			<Avatar name={profile?.lastName} />
 
 			<View className="flex-row items-center ml-2">
-				<Text className="text-sm">{profile?.lastName}</Text>
+				<Text className="text-base">{profile?.lastName}</Text>
 				<Ionicons name="chevron-forward" size={16} color={color} />
 			</View>
 		</Link>

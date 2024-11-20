@@ -14,10 +14,10 @@ export const Header: React.FC = () => {
 
 			<View className="flex flex-row">
 				<Link href="/messages" className="mx-3 flex items-center">
-					<Ionicons name="notifications" size={16} color={color} />
+					<Ionicons name="notifications" size={18} color={color} />
 				</Link>
 				<Link href="/statistics" className="mx-3 flex items-center">
-					<Ionicons name="bar-chart" size={16} color={color} />
+					<Ionicons name="bar-chart" size={18} color={color} />
 				</Link>
 			</View>
 		</Container>
