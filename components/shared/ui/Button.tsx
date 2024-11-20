@@ -1,5 +1,4 @@
-import clsx from 'clsx';
-
+import clsx from "clsx";
 import { TouchableHighlight } from "react-native";
 import { Text } from "./Text";
 

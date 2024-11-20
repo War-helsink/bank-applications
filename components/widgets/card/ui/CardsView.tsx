@@ -11,13 +11,13 @@ export const CardsView: React.FC = () => {
 	return (
 		<View>
 			<View className="w-full py-2 flex-row justify-between items-center">
-				<Link className="flex-row items-center" href="/cards">
+				<Link className="flex-row" href="/cards" button>
 					<Text>All cards</Text>
-					<Ionicons name="chevron-forward" size={20} color={color} />
+					<Ionicons name="chevron-forward" size={18} color={color} />
 				</Link>
 
-				<Link className="flex-row items-center" href="/add-card">
-					<Ionicons name="add" size={20} color={color} />
+				<Link href="/add-card" button>
+					<Ionicons name="add" size={18} color={color} />
 				</Link>
 			</View>
 			<CardSlides />
