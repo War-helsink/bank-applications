@@ -1,6 +1,7 @@
 import { Link } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { View } from "react-native";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useThemeGradient } from "@/core/hooks/useThemeGradient";
@@ -20,14 +21,17 @@ export const CreateCardItem: React.FC<CreateCardItemProps> = ({
 	const color = useThemeColor("white");
 
 	return (
-		<LinearGradient
-			colors={backgroundGradient}
-			className="rounded-xl p-5 justify-center items-center"
+		<View
+			className="rounded-xl p-5 justify-center items-center overflow-hidden"
 			style={[{ width: width, height: height }, GLOBAL_STYLES.shadow]}
 		>
-			<Link className="mx-3 flex items-center" href="/add-card">
+			<LinearGradient
+				colors={backgroundGradient}
+				style={{ width: width, height: height }}
+			/>
+			<Link className="absolute" href="/add-card">
 				<Ionicons name="add-circle" size={32} color={color} />
 			</Link>
-		</LinearGradient>
+		</View>
 	);
 };

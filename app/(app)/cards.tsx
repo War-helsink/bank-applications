@@ -1,4 +1,4 @@
-import { View, ScrollView, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import {
 	ThemedView,
 	Container,
@@ -33,7 +33,7 @@ const CardsScreen: React.FC = () => {
 		<ThemedView className="w-full h-full">
 			<ScrollView>
 				<Container>
-					<Toolbar className="my-6">
+					<Toolbar className="my-6 rounded-md">
 						<View className="flex-row justify-between my-2">
 							<Text>Cards</Text>
 							<Link href="/add-card">
@@ -56,7 +56,7 @@ const CardsScreen: React.FC = () => {
 											colors={CardTypeGradients[card.cardType].colors}
 											start={CardTypeGradients[card.cardType].start}
 											end={CardTypeGradients[card.cardType].end}
-											className="w-24 h-16 rounded-xl p-2 flex justify-between"
+											style={style.linearGradient}
 										>
 											<View className="flex-row">
 												<View
@@ -102,5 +102,15 @@ const CardsScreen: React.FC = () => {
 		</ThemedView>
 	);
 };
+
+const style = StyleSheet.create({
+	linearGradient: {
+		width: 96,
+		height: 64,
+		padding: 8,
+		borderRadius: 12,
+		justifyContent: "space-between",
+	},
+});
 
 export default CardsScreen;

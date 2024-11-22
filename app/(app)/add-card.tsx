@@ -15,7 +15,7 @@ const AddCardScreen: React.FC = () => {
 	return (
 		<ThemedView className="h-full w-full pt-4">
 			<Container className="w-full h-full">
-				<Toolbar className="justify-center items-center py-6">
+				<Toolbar className="justify-center items-center py-6 rounded-md">
 					<Text className="text-center font-bold">Upgrade card status</Text>
 					<Text className="text-center text-sm">
 						Add a name to the card or gain access to the lounge, fast-line, and

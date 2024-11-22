@@ -16,15 +16,15 @@ const ProfileScreen: React.FC = () => {
 
 	return (
 		<ScrollView className="flex flex-col">
-			<Toolbar className="my-2">
+			<Toolbar className="my-2 rounded-md">
 				<ProfileNameForm />
 			</Toolbar>
 
-			<Toolbar className="my-2">
+			<Toolbar className="my-2 rounded-md">
 				<ProfileContactForm />
 			</Toolbar>
 
-			<Toolbar className="my-2">
+			<Toolbar className="my-2 rounded-md">
 				<Pressable
 					className="w-full flex-row items-center justify-between py-3"
 					onPress={logout}

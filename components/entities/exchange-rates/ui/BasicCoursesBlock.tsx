@@ -25,7 +25,7 @@ export const BasicCoursesBlock: React.FC<BasicCoursesBlockProps> = ({
 	);
 
 	return (
-		<Toolbar className="my-4 py-2">
+		<Toolbar className="my-4 py-2 rounded-md">
 			<Text>Basic courses</Text>
 
 			<View

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "@/components/shared";
 
@@ -36,8 +36,7 @@ export const CardDemo: React.FC<CardDemoProps> = ({
 				colors={CardTypeGradients[cardType].colors}
 				start={CardTypeGradients[cardType].start}
 				end={CardTypeGradients[cardType].end}
-				className="w-72 h-40 px-4 py-2 rounded-xl"
-				style={GLOBAL_STYLES.shadow}
+				style={[style.linearGradient, GLOBAL_STYLES.shadow]}
 			>
 				<View className="h-full w-full justify-between">
 					<View className="w-full flex">
@@ -72,3 +71,15 @@ export const CardDemo: React.FC<CardDemoProps> = ({
 		</View>
 	);
 };
+
+const style = StyleSheet.create({
+	linearGradient: {
+		width: 288,
+		height: 160,
+		paddingTop: 8,
+		paddingBottom: 8,
+		paddingLeft: 16,
+		paddingRight: 16,
+		borderRadius: 12,
+	},
+});

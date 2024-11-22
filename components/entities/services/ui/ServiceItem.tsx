@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -26,10 +26,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({ service }) => {
 				impactAsync(ImpactFeedbackStyle.Soft);
 			}}
 		>
-			<LinearGradient
-				colors={gradient}
-				className="w-14 h-14 mx-4 rounded-xl overflow-hidden items-center justify-center"
-			>
+			<LinearGradient colors={gradient} style={style.linearGradient}>
 				<Percent percent={service.percent} />
 				<MaterialIcons name={service.iconName} color={color} size={30} />
 			</LinearGradient>
@@ -37,3 +34,16 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({ service }) => {
 		</TouchableOpacity>
 	);
 };
+
+const style = StyleSheet.create({
+	linearGradient: {
+		width: 56,
+		height: 56,
+		padding: 8,
+		marginLeft: 16,
+		marginRight: 16,
+		borderRadius: 12,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+});

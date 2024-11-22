@@ -1,7 +1,6 @@
 import { View, TouchableHighlight } from "react-native";
 import { Text } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
-// import * as Haptics from "expo-haptics";
 
 import { PaymentNetworkImg } from "@/core/config/payment";
 import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
@@ -19,18 +18,18 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 
 	return (
 		<TouchableHighlight
-			// onPress={() => {
-			// 	Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-			// }}
+			className="rounded-xl p-5 justify-center items-center overflow-hidden"
+			style={[{ width: width, height: height }, GLOBAL_STYLES.shadow]}
 		>
-			<LinearGradient
-				colors={CardTypeGradients[card.cardType].colors}
-				start={CardTypeGradients[card.cardType].start}
-				end={CardTypeGradients[card.cardType].end}
-				className="rounded-xl p-5 justify-center items-center"
-				style={[{ width: width, height: height }, GLOBAL_STYLES.shadow]}
-			>
-				<View className="h-full w-full justify-between">
+			<>
+				<LinearGradient
+					colors={CardTypeGradients[card.cardType].colors}
+					start={CardTypeGradients[card.cardType].start}
+					end={CardTypeGradients[card.cardType].end}
+					
+					style={{ width: width, height: height }}
+				/>
+				<View className="absolute h-full w-full justify-between">
 					<View className="w-full flex">
 						<Text style={{ color: CardTypeGradients[card.cardType].color }}>
 							{CardTypeDisplayNames[card.cardType]}
@@ -59,7 +58,7 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 						<SVG width={48} height={48} />
 					</View>
 				</View>
-			</LinearGradient>
+			</>
 		</TouchableHighlight>
 	);
 };

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { View } from "react-native";
 import type { ViewProps } from "react-native";
 
@@ -16,7 +17,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 
 	return (
 		<View
-			className={`px-4 py-1 border border-solid rounded-md ${className}`}
+			className={clsx("px-4 py-1 border border-solid", className)}
 			style={[{ backgroundColor, borderColor }, style]}
 			{...props}
 		>

@@ -1,6 +1,6 @@
-import { View, TouchableOpacity } from "react-native";
-import { Text } from "@/components/shared";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Text } from "@/components/shared";
 import * as Haptics from "expo-haptics";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -36,10 +36,13 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 				colors={CardTypeGradients[cardType].colors}
 				start={CardTypeGradients[cardType].start}
 				end={CardTypeGradients[cardType].end}
-				className="w-24 h-16 rounded-xl p-2 flex justify-between"
+				style={style.linearGradient}
 			>
 				<View className="flex-row">
-					<View className="w-5 h-1 rounded-xl mr-1" style={{ backgroundColor }} />
+					<View
+						className="w-5 h-1 rounded-xl mr-1"
+						style={{ backgroundColor }}
+					/>
 					<View className="w-5 h-1 rounded-xl" style={{ backgroundColor }} />
 				</View>
 
@@ -56,3 +59,13 @@ export const CardTypeItem: React.FC<CardTypeItemProps> = ({
 		</TouchableOpacity>
 	);
 };
+
+const style = StyleSheet.create({
+	linearGradient: {
+		width: 96,
+		height: 64,
+		padding: 8,
+		borderRadius: 12,
+		justifyContent: "space-between",
+	},
+});
