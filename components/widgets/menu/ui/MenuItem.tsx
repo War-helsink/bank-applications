@@ -13,7 +13,7 @@ export interface MenuItemProps {
 }
 
 export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
-	const backgroundColor = useThemeColor("mainSurfaceSecondary");
+	const backgroundColor = useThemeColor("toolbarBackground");
 	const iconBackgroundColor = useThemeColor("primary");
 	const color = useThemeColor("white");
 

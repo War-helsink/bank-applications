@@ -1,6 +1,5 @@
 import { View } from "react-native";
 import { Toolbar, Text, Link } from "@/components/shared";
-import { ExchangeRatesBlock } from "@/components/features/exchange-rates";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
@@ -15,8 +14,7 @@ export const InformationBlock: React.FC = () => {
 
 	return (
 		<Toolbar className="py-4 rounded-2xl my-2">
-			<Text>Information</Text>
-			<ExchangeRatesBlock />
+			<Text className="text-xs">INFORMATION</Text>
 
 			<View className="mt-4 flex-row flex-wrap justify-between">
 				<Link

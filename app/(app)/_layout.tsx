@@ -69,6 +69,14 @@ const AppLayout: React.FC = () => {
 					headerLeft: () => <ButtonBack />,
 				}}
 			/>
+			<Stack.Screen
+				name="transfer"
+				options={{
+					title: "Money transfer",
+					headerShown: true,
+					headerLeft: () => <ButtonBack />,
+				}}
+			/>
 		</Stack>
 	);
 };

@@ -10,6 +10,7 @@ export interface ExchangeRates {
 
 export interface ExchangeRatesSimplified {
 	code: CurrencyType;
+	text: string;
 	rate: number;
 }
 

@@ -16,6 +16,7 @@ export const getExchangeRates = async (): Promise<
 
 	const newExchangeRates: ExchangeRatesSimplified[] = exchangeRates.map(
 		(exchangeRate) => ({
+			text: exchangeRate.txt,
 			code: exchangeRate.cc,
 			rate: exchangeRate.rate,
 		}),

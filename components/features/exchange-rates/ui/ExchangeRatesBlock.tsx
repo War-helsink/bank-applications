@@ -1,5 +1,6 @@
 import { View } from "react-native";
-import { Text, Link, SkeletonLoader } from "@/components/shared";
+import { Toolbar, Text, Link, SkeletonLoader } from "@/components/shared";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import {
@@ -9,7 +10,10 @@ import {
 } from "@/components/entities/exchange-rates";
 
 export const ExchangeRatesBlock: React.FC = () => {
-	const backgroundColor = useThemeColor("mainSurfaceSecondary");
+	const dangerColor = useThemeColor("danger");
+	const successColor = useThemeColor("success");
+	const borderColor = useThemeColor("toolbarBorder");
+
 	const { isLoading, exchangeRates } = useExchangeRates();
 
 	const filterExchangeRates = exchangeRates.filter((exchangeRate) =>
@@ -17,40 +21,78 @@ export const ExchangeRatesBlock: React.FC = () => {
 	);
 
 	return (
-		<Link
-			className="p-4 mt-4 rounded-2xl flex-row"
-			style={{ backgroundColor }}
-			href="/exchange-rates"
-		>
+		<Toolbar className="py-4 rounded-2xl my-2 flex gap-4">
+			<View className="flex-row justify-between">
+				<Text className="text-xs">EXCHANGE RATE</Text>
+
+				<Link
+					className="flex-row items-center gap-1"
+					href="/(app)/exchange-rates"
+				>
+					<Text className="text-xs" style={{ color: dangerColor }}>
+						SEE MORE
+					</Text>
+					<Ionicons
+						name="chevron-forward-outline"
+						size={12}
+						color={dangerColor}
+					/>
+				</Link>
+			</View>
+
 			{isLoading
 				? [...Array(2)].map((_, index) => (
-						<View key={index} className="grow flex-row">
+						<View
+							key={index}
+							className="flex-row justify-between items-center pb-2 border-b"
+							style={{ borderColor }}
+						>
 							<View className="justify-center items-center pr-4">
-								<SkeletonLoader width={24} height={20} />
+								<SkeletonLoader width={64} height={32} />
 							</View>
-							<View>
-								<SkeletonLoader width={24} height={14} />
-								<View className="mt-1">
-									<SkeletonLoader width={75} height={14} />
-								</View>
-							</View>
+
+							<SkeletonLoader width={64} height={18} />
+
+							<SkeletonLoader width={64} height={18} />
 						</View>
 					))
-				: filterExchangeRates.map((exchangeRate) => {
+				: filterExchangeRates.map((exchangeRate, index) => {
 						const SVG = CurrenciesIcon[exchangeRate.code];
 
 						return (
-							<View key={exchangeRate.code} className="grow flex-row">
-								<View className="justify-center items-center pr-4">
-									<SVG width={24} height={18} />
+							<View
+								key={exchangeRate.code}
+								className="flex-row justify-between items-center pb-2 border-b"
+								style={{ borderColor }}
+							>
+								<View className="flex gap-1">
+									<View className="flex-row gap-2 items-center">
+										<SVG width={24} height={18} />
+										<Text className="text-base font-semibold">
+											{exchangeRate.code}
+										</Text>
+									</View>
+
+									<Text className="text-xs opacity-75">
+										{exchangeRate.text}
+									</Text>
 								</View>
-								<View>
-									<Text className="text-xs">{exchangeRate.code}</Text>
-									<Text className="text-xs font-bold">{`${(exchangeRate.rate - 0.2).toFixed(2)} / ${(exchangeRate.rate + 0.2).toFixed(2)}`}</Text>
+
+								<View className="flex-row items-center gap-1">
+									<Text className="text-sm opacity-75">
+										₴{(exchangeRate.rate - 0.2).toFixed(2)}
+									</Text>
+									<Text style={{ color: successColor }}>↗</Text>
+								</View>
+								<View className="flex-row items-center gap-1">
+									<Text className="text-sm opacity-75">
+										₴{(exchangeRate.rate + 0.2).toFixed(2)}
+									</Text>
+									<Text style={{ color: dangerColor }}>↘</Text>
 								</View>
 							</View>
 						);
 					})}
-		</Link>
+		</Toolbar>
 	);
 };
