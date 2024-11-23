@@ -10,7 +10,7 @@ const MoreScreen: React.FC = () => {
 		<ThemedView className="h-full w-full pt-16">
 			<Header />
 			<Container className="flex-1">
-				<Text type="subtitle" className="py-2">
+				<Text className="py-2 text-xl font-bold">
 					More
 				</Text>
 				<ScrollView className="flex-1">

@@ -20,7 +20,7 @@ export const SupportMessage: React.FC<SupportMessageProps> = ({ message }) => {
 	return (
 		<View
 			className={clsx(
-				"max-w-[95%] flex-row items-end rounded-lg my-2 py-2 px-3",
+				"max-w-[95%] flex-row items-end rounded-lg py-2 px-3",
 				message.support ? "self-start" : "self-end",
 			)}
 			style={{

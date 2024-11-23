@@ -40,6 +40,7 @@ const style = StyleSheet.create({
 		width: 56,
 		height: 56,
 		padding: 8,
+		overflow: "hidden",
 		marginLeft: 16,
 		marginRight: 16,
 		borderRadius: 12,

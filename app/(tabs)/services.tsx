@@ -9,7 +9,7 @@ const ServicesScreen: React.FC = () => {
 			<Header />
 			<ScrollView>
 				<Container>
-					<Text className="my-4 text-center" type="subtitle">
+					<Text className="my-4 text-center text-xl font-bold">
 						Services
 					</Text>
 					<Services />

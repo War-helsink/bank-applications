@@ -101,7 +101,7 @@ const CardCreationScreen: React.FC = () => {
 			>
 				<Container className="justify-center items-center">
 					<ButtonOpacity className="py-2" onPress={creatingCard}>
-						<Text>Add a card</Text>
+						<Text style={{ color: "#fff" }}>Add a card</Text>
 					</ButtonOpacity>
 				</Container>
 			</View>

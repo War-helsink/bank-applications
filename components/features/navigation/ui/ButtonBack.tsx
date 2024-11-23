@@ -1,4 +1,4 @@
-import { TouchableHighlight } from "react-native";
+import { TouchableOpacity, Platform } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useNavigation } from "expo-router";
@@ -10,12 +10,12 @@ export const ButtonBack: React.FC = () => {
 	const backgroundColor = useThemeColor("toolbarBackground");
 
 	return (
-		<TouchableHighlight
+		<TouchableOpacity
 			onPress={() => navigation.goBack()}
-			className="p-2.5 rounded-xl justify-center items-center"
+			className={`p-2.5 rounded-xl justify-center items-center ${Platform.OS === "android" && "mr-4"}`}
 			style={{ backgroundColor }}
 		>
 			<Ionicons name="chevron-back-outline" size={16} color={color} />
-		</TouchableHighlight>
+		</TouchableOpacity>
 	);
 };

@@ -15,7 +15,7 @@ export interface MenuItemProps {
 export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 	const iconBackgroundColor = useThemeColor("primary");
-	const color = useThemeColor("text");
+	const color = useThemeColor("white");
 
 	return (
 		<Pressable
