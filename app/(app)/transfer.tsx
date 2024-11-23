@@ -1,12 +1,20 @@
-import { Container, ThemedSafeAreaView } from "@/components/shared";
+import { ThemedBottomSheet, ThemedSafeAreaView } from "@/components/shared";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import { useMemo } from "react";
 
 const TransferScreen: React.FC = () => {
+	const snapPoints = useMemo(() => ["50%", "75%"], []);
+
 	return (
-		<ThemedSafeAreaView className="h-full w-full" edges={["bottom"]}>
-			<Container className="w-full h-full justify-center items-center">
-				
-			</Container>
-		</ThemedSafeAreaView>
+		<GestureHandlerRootView className="flex-1">
+			<ThemedSafeAreaView className="w-full h-full" edges={["bottom"]}>
+				<ThemedBottomSheet snapPoints={snapPoints}>
+
+
+				</ThemedBottomSheet>
+			</ThemedSafeAreaView>
+		</GestureHandlerRootView>
 	);
 };
 
