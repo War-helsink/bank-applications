@@ -9,7 +9,10 @@ export const ThemedBottomSheet = forwardRef<
 	BottomSheet,
 	ThemedBottomSheetProps
 >((props, ref) => {
-	const backgroundColor = useThemeColor("background");
+	const backgroundColor = useThemeColor("toolbarBackground");
+	const indicatorColor = useThemeColor("medium");
 
-	return <BottomSheet ref={ref} {...props} />;
+	return (
+		<BottomSheet ref={ref} {...props} backgroundStyle={{ backgroundColor }} handleIndicatorStyle={{backgroundColor: indicatorColor}} />
+	);
 });

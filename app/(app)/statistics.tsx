@@ -1,4 +1,3 @@
-import { Text } from "react-native";
 import { ThemedBottomSheet } from "@/components/shared";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemedSafeAreaView } from "@/components/shared";
