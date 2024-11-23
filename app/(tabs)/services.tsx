@@ -1,11 +1,11 @@
 import { ScrollView } from "react-native";
-import { ThemedView, Container, Text } from "@/components/shared";
+import { ThemedSafeAreaView, Container, Text } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
 import { Services } from "@/components/widgets/services";
 
 const ServicesScreen: React.FC = () => {
 	return (
-		<ThemedView className="h-full w-full pt-16">
+		<ThemedSafeAreaView className="h-full w-full" edges={["top"]}>
 			<Header />
 			<ScrollView>
 				<Container>
@@ -15,7 +15,7 @@ const ServicesScreen: React.FC = () => {
 					<Services />
 				</Container>
 			</ScrollView>
-		</ThemedView>
+		</ThemedSafeAreaView>
 	);
 };
 

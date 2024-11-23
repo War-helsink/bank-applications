@@ -1,5 +1,5 @@
 import { ScrollView } from "react-native";
-import { ThemedView, Container, Text } from "@/components/shared";
+import { ThemedSafeAreaView, Container, Text } from "@/components/shared";
 import { Header } from "@/components/widgets/header";
 import { Menu } from "@/components/widgets/menu";
 import { ExchangeRatesBlock } from "@/components/features/exchange-rates";
@@ -7,7 +7,7 @@ import Constants from "expo-constants";
 
 const MoreScreen: React.FC = () => {
 	return (
-		<ThemedView className="h-full w-full pt-16">
+		<ThemedSafeAreaView className="h-full w-full" edges={["top"]}>
 			<Header />
 			<Container className="flex-1">
 				<Text className="py-2 text-xl font-bold">
@@ -21,7 +21,7 @@ const MoreScreen: React.FC = () => {
 					Version: {Constants.expoConfig?.version}
 				</Text>
 			</Container>
-		</ThemedView>
+		</ThemedSafeAreaView>
 	);
 };
 

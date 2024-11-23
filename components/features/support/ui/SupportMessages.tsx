@@ -42,7 +42,7 @@ export const SupportMessages: React.FC<SupportMessagesProps> = ({
 					},
 					{} as Record<string, Support[]>,
 				),
-			).reverse(),
+			),
 		[messages],
 	);
 
@@ -61,6 +61,7 @@ export const SupportMessages: React.FC<SupportMessagesProps> = ({
 			<Container className={clsx(className)} style={style}>
 				<FlatList
 					inverted
+					contentContainerStyle={{ flexDirection: "column-reverse" }}
 					data={groupedMessages}
 					keyExtractor={([key]) => key}
 					renderItem={({ item: [date, items] }) => {

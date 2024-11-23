@@ -1,18 +1,17 @@
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { ThemedView } from "@/components/shared";
+import { ThemedSafeAreaView } from "@/components/shared";
 import { Support } from "@/components/widgets/support";
-
 
 const SupportScreen: React.FC = () => {
 	return (
-		<KeyboardAvoidingView
-			className="h-full w-full"
-			behavior={Platform.OS === "ios" ? "padding" : "height"}
-		>
-			<ThemedView className="h-full w-full pt-16">
+		<ThemedSafeAreaView className="h-full w-full" edges={["top"]}>
+			<KeyboardAvoidingView
+				className="h-full w-full"
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
+			>
 				<Support className="flex-1" />
-			</ThemedView>
-		</KeyboardAvoidingView>
+			</KeyboardAvoidingView>
+		</ThemedSafeAreaView>
 	);
 };
 

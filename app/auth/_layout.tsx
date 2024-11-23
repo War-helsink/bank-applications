@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { Container, ThemedView } from "@/components/shared";
+import { Container, ThemedSafeAreaView } from "@/components/shared";
 import { useAuth } from "@/core/hooks/useAuth";
 import { Slot, Redirect } from "expo-router";
 
@@ -11,16 +11,16 @@ const AuthLayout: React.FC = () => {
 	}
 
 	return (
-		<KeyboardAvoidingView
-			className="h-full w-full"
-			behavior={Platform.OS === "ios" ? "padding" : "height"}
-		>
-			<ThemedView className="h-full w-full pt-16">
+		<ThemedSafeAreaView className="h-full w-full">
+			<KeyboardAvoidingView
+				className="h-full w-full"
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
+			>
 				<Container className="w-full h-full justify-center items-center">
 					<Slot />
 				</Container>
-			</ThemedView>
-		</KeyboardAvoidingView>
+			</KeyboardAvoidingView>
+		</ThemedSafeAreaView>
 	);
 };
 

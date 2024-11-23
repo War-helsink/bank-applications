@@ -9,6 +9,8 @@ import Animated, {
 	withSequence,
 } from "react-native-reanimated";
 
+import { useEffect } from "react";
+
 export interface TabBarIconProps
 	extends IconProps<ComponentProps<typeof Ionicons>["name"]> {
 	focused?: boolean;
@@ -21,13 +23,21 @@ export const TabBarIcon: React.FC<TabBarIconProps> = ({
 }) => {
 	const rotationAnimation = useSharedValue(0);
 
-	rotationAnimation.value = withRepeat(
-		withSequence(
-			withTiming(1.2, { duration: 200 }),
-			withTiming(1, { duration: 200 }),
-		),
-		2,
-	);
+	useEffect(() => {
+		if (focused) {
+			rotationAnimation.value = withRepeat(
+				withSequence(
+					withTiming(1.2, { duration: 200 }),
+					withTiming(1, { duration: 200 }),
+				),
+				2,
+				false,
+			);
+		} else {
+			rotationAnimation.value = 1;
+		}
+	}, [focused, rotationAnimation]);
+
 	const animatedStyle = useAnimatedStyle(() => ({
 		transform: [{ scale: rotationAnimation.value }],
 	}));

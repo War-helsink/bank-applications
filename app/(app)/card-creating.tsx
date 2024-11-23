@@ -1,10 +1,10 @@
 import Toast from "react-native-toast-message";
 import { ScrollView, View } from "react-native";
 import {
-	Container,
-	ThemedView,
 	Text,
+	Container,
 	ButtonOpacity,
+	ThemedSafeAreaView,
 } from "@/components/shared";
 import { PaymentSystem } from "@/components/features/payment";
 import { CardCurrency } from "@/components/features/currency";
@@ -77,7 +77,7 @@ const CardCreationScreen: React.FC = () => {
 	};
 
 	return (
-		<ThemedView className="h-full w-full flex-1 flex-col">
+		<ThemedSafeAreaView className="h-full w-full flex-1 flex-col" edges={["bottom"]}>
 			<Container className="w-full flex-grow">
 				<ScrollView className="w-full">
 					<PaymentSystem
@@ -96,7 +96,7 @@ const CardCreationScreen: React.FC = () => {
 				</ScrollView>
 			</Container>
 			<View
-				className="w-full pt-4 pb-8 border-t border-solid"
+				className="w-full pt-4 border-t border-solid"
 				style={{ borderColor }}
 			>
 				<Container className="justify-center items-center">
@@ -105,7 +105,7 @@ const CardCreationScreen: React.FC = () => {
 					</ButtonOpacity>
 				</Container>
 			</View>
-		</ThemedView>
+		</ThemedSafeAreaView>
 	);
 };
 

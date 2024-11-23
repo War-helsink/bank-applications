@@ -9,6 +9,7 @@ export * from "./ui/Loader";
 export * from "./ui/ScrollRefreshControl";
 export * from "./ui/SkeletonLoader";
 export * from "./ui/Text";
-export * from "./ui/ThemedView";
+export * from "./ui/ThemedBottomSheet";
+export * from "./ui/ThemedSafeAreaView";
 export * from "./ui/Toast";
 export * from "./ui/Toolbar";

@@ -1,4 +1,4 @@
-import { Container, ThemedView, Toolbar, Text } from "@/components/shared";
+import { Container, ThemedSafeAreaView, Toolbar, Text } from "@/components/shared";
 import { CardTypeList } from "@/components/widgets/card";
 
 import { useNavigation } from "@react-navigation/native";
@@ -13,7 +13,7 @@ const AddCardScreen: React.FC = () => {
 	};
 
 	return (
-		<ThemedView className="h-full w-full pt-4">
+		<ThemedSafeAreaView className="h-full w-full pt-4" edges={["bottom"]}>
 			<Container className="w-full h-full">
 				<Toolbar className="justify-center items-center py-6 rounded-md">
 					<Text className="text-center font-bold">Upgrade card status</Text>
@@ -25,7 +25,7 @@ const AddCardScreen: React.FC = () => {
 
 				<CardTypeList onSetCardType={onAddNewCard} />
 			</Container>
-		</ThemedView>
+		</ThemedSafeAreaView>
 	);
 };
 

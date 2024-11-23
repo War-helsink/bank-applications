@@ -1,6 +1,6 @@
 import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import {
-	ThemedView,
+	ThemedSafeAreaView,
 	Container,
 	Toolbar,
 	Text,
@@ -30,7 +30,7 @@ const CardsScreen: React.FC = () => {
 	const cards = useCards();
 
 	return (
-		<ThemedView className="w-full h-full">
+		<ThemedSafeAreaView className="w-full h-full" edges={["bottom"]}>
 			<ScrollView>
 				<Container>
 					<Toolbar className="my-6 rounded-md">
@@ -99,7 +99,7 @@ const CardsScreen: React.FC = () => {
 					</Toolbar>
 				</Container>
 			</ScrollView>
-		</ThemedView>
+		</ThemedSafeAreaView>
 	);
 };
 

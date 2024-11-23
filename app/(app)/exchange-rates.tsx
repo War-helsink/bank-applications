@@ -1,5 +1,5 @@
 import {
-	ThemedView,
+	ThemedSafeAreaView,
 	ScrollRefreshControl,
 	Container,
 } from "@/components/shared";
@@ -13,7 +13,7 @@ const ExchangeRatesScreen: React.FC = () => {
 	const { refetch, isLoading, exchangeRates } = useExchangeRates();
 
 	return (
-		<ThemedView className="h-full w-full">
+		<ThemedSafeAreaView className="h-full w-full" edges={["bottom"]}>
 			<ScrollRefreshControl callback={refetch}>
 				<Container className="mb-6">
 					<BasicCoursesBlock
@@ -26,7 +26,7 @@ const ExchangeRatesScreen: React.FC = () => {
 					/>
 				</Container>
 			</ScrollRefreshControl>
-		</ThemedView>
+		</ThemedSafeAreaView>
 	);
 };
 
