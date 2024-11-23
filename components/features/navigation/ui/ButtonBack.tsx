@@ -1,4 +1,5 @@
 import { TouchableOpacity, Platform } from "react-native";
+import { impactAsync, ImpactFeedbackStyle } from "expo-haptics";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useNavigation } from "expo-router";
@@ -11,7 +12,10 @@ export const ButtonBack: React.FC = () => {
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigation.goBack()}
+			onPress={() => {
+				impactAsync(ImpactFeedbackStyle.Soft);
+				navigation.goBack();
+			}}
 			className={`p-2.5 rounded-xl justify-center items-center ${Platform.OS === "android" && "mr-4"}`}
 			style={{ backgroundColor }}
 		>
