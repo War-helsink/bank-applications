@@ -35,6 +35,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 			const userProfile = new UserProfile({
 				id: user.uid,
 				lastName: "No name",
+				password: password,
 				email: user.email as string,
 			});
 
