@@ -1,26 +1,11 @@
 import { URL_API } from "../config/exchange-rates";
-import type {
-	ExchangeRatesApiResponse,
-	ExchangeRatesSimplified,
-} from "../model/types";
+import type { ExchangeRatesApiResponse } from "../model/types";
 
-export const getExchangeRates = async (): Promise<
-	ExchangeRatesSimplified[]
-> => {
+export const getExchangeRates = async (): Promise<ExchangeRatesApiResponse> => {
 	const response = await fetch(URL_API);
 	if (!response.ok) {
 		throw new Error("Failed to fetch exchange rates");
 	}
 
-	const exchangeRates: ExchangeRatesApiResponse = await response.json();
-
-	const newExchangeRates: ExchangeRatesSimplified[] = exchangeRates.map(
-		(exchangeRate) => ({
-			text: exchangeRate.txt,
-			code: exchangeRate.cc,
-			rate: exchangeRate.rate,
-		}),
-	);
-
-	return newExchangeRates;
+	return await response.json();
 };

@@ -1,9 +1,10 @@
+import type React from "react";
 import { Link, Stack } from "expo-router";
 import { StyleSheet } from "react-native";
 
 import { Text, ThemedSafeAreaView } from "@/components/shared";
 
-export default function NotFoundScreen() {
+const NotFoundScreen: React.FC = () => {
 	return (
 		<>
 			<Stack.Screen options={{ title: "Oops!" }} />
@@ -15,7 +16,7 @@ export default function NotFoundScreen() {
 			</ThemedSafeAreaView>
 		</>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -29,3 +30,5 @@ const styles = StyleSheet.create({
 		paddingVertical: 15,
 	},
 });
+
+export default NotFoundScreen;

@@ -4,8 +4,8 @@ import {
 	Container,
 } from "@/components/shared";
 import {
-	BasicCoursesBlock,
-	ExchangeRateNBU,
+	ExchangeRatesBlock,
+	defaultCurrencies,
 	useExchangeRates,
 } from "@/components/entities/exchange-rates";
 
@@ -16,13 +16,20 @@ const ExchangeRatesScreen: React.FC = () => {
 		<ThemedSafeAreaView className="h-full w-full" edges={["bottom"]}>
 			<ScrollRefreshControl callback={refetch}>
 				<Container className="mb-6">
-					<BasicCoursesBlock
-						exchangeRates={exchangeRates}
+					<ExchangeRatesBlock
+						exchangeRates={exchangeRates.filter((exchangeRate) =>
+							defaultCurrencies.includes(exchangeRate.code),
+						)}
 						isLoading={isLoading}
+						title="BASIC COURSES"
+						route={false}
 					/>
-					<ExchangeRateNBU
+					<ExchangeRatesBlock
 						exchangeRates={exchangeRates}
 						isLoading={isLoading}
+						title="COURSES NBU"
+						oneRate
+						route={false}
 					/>
 				</Container>
 			</ScrollRefreshControl>

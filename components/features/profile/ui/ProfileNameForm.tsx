@@ -1,12 +1,4 @@
-import Toast from "react-native-toast-message";
-import { Field, Button } from "@/components/shared";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-
-import { useState } from "react";
-import { useAuth } from "@/core/hooks/useAuth";
-import { useLoader } from "@/core/hooks/useLoader";
-
-import { hasObjectChanged } from "@/core/helpers";
+import { FieldOpacity, Toolbar } from "@/components/shared";
 
 export interface IProfileNameData {
 	firstName: string;
@@ -14,69 +6,34 @@ export interface IProfileNameData {
 	lastName: string;
 }
 
-export const ProfileNameForm: React.FC = () => {
-	const { profile } = useAuth();
+export interface ProfileNameFormProps extends IProfileNameData {
+	setDataParam?: (value: string, key: keyof IProfileNameData) => void;
+}
 
-	if (profile === null) {
-		return;
-	}
-
-	const { showLoader, hideLoader } = useLoader();
-	const [data, setData] = useState<IProfileNameData>({
-		firstName: profile.firstName,
-		secondName: profile.secondName,
-		lastName: profile.lastName,
-	});
-
-	const updateProfile = async () => {
-		const { firstName, secondName, lastName } = profile;
-
-		if (hasObjectChanged({ firstName, secondName, lastName }, data)) {
-			showLoader();
-			profile.setData(data);
-
-			return await profile.update().then(() => {
-				hideLoader();
-
-				notificationAsync(NotificationFeedbackType.Success);
-				Toast.show({
-					type: "success",
-					text1: "Changes saved successfully",
-				});
-			});
-		}
-
-		notificationAsync(NotificationFeedbackType.Error);
-		Toast.show({
-			type: "error",
-			text1: "To save the data, make changes",
-		});
-	};
-
+export const ProfileNameForm: React.FC<ProfileNameFormProps> = ({
+	firstName,
+	secondName,
+	lastName,
+	setDataParam,
+}) => {
 	return (
-		<>
-			<Field
-				className="mt-3"
-				value={data.firstName}
-				onChange={(firstName) => setData({ ...data, firstName })}
+		<Toolbar className="rounded-xl px-0 py-0">
+			<FieldOpacity
+				value={firstName}
+				onChange={(firstName) => setDataParam?.(firstName, "firstName")}
 				placeholder="First name"
 			/>
-			<Field
-				className="mt-3"
-				value={data.secondName}
-				onChange={(secondName) => setData({ ...data, secondName })}
+			<FieldOpacity
+				value={secondName}
+				onChange={(secondName) => setDataParam?.(secondName, "secondName")}
 				placeholder="Second name"
 			/>
-			<Field
-				className="mt-3"
-				value={data.lastName}
-				onChange={(lastName) => setData({ ...data, lastName })}
+			<FieldOpacity
+				border={false}
+				value={lastName}
+				onChange={(lastName) => setDataParam?.(lastName, "lastName")}
 				placeholder="Last name"
 			/>
-
-			<Button className="my-4" onPress={updateProfile}>
-				Update Profile
-			</Button>
-		</>
+		</Toolbar>
 	);
 };

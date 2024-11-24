@@ -6,8 +6,8 @@ import {
 	FriendsListTransfer,
 	OperationsBlock,
 } from "@/components/features/money-transfer";
-import { ExchangeRatesBlock } from "@/components/features/exchange-rates";
 import { InformationBlock } from "@/components/features/information";
+import { ExchangeRates } from "@/components/entities/exchange-rates";
 
 const HomeScreen: React.FC = () => {
 	return (
@@ -18,7 +18,7 @@ const HomeScreen: React.FC = () => {
 					<CardsView />
 					<OperationsBlock />
 					<FriendsListTransfer />
-					<ExchangeRatesBlock />
+					<ExchangeRates />
 					<InformationBlock />
 				</Container>
 			</ScrollView>

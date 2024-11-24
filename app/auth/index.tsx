@@ -1,3 +1,4 @@
+import type React from "react";
 import { Pressable, View } from "react-native";
 import { Loader, Field, Button, Text } from "@/components/shared";
 

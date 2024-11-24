@@ -1,6 +1,6 @@
 export { useExchangeRates } from "./hooks/useExchangeRates";
 
-export {CurrenciesIcon, defaultCurrencies} from "./config/exchange-rates";
+export { CurrenciesIcon, defaultCurrencies } from "./config/exchange-rates";
 
-export { BasicCoursesBlock } from "./ui/BasicCoursesBlock";
-export { ExchangeRateNBU } from "./ui/ExchangeRateNBU";
+export { ExchangeRates } from "./ui/ExchangeRates";
+export { ExchangeRatesBlock } from "./ui/ExchangeRatesBlock";

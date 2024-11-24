@@ -4,25 +4,25 @@ import {
 	ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 
 import { Toast } from "@/components/shared";
 import { AuthProvider } from "@/core/providers/AuthProvider";
 import { CardsProvider } from "@/core/providers/CardsProvider";
 import { LoaderProvider } from "@/core/providers/LoaderProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { useColorScheme } from "@/core/hooks/useColorScheme";
 
+import { queryClient } from "@/core/config/queryClient";
 import "react-native-reanimated";
 import "../global.css";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
-const queryClient = new QueryClient();
 
 const RootLayout: React.FC = () => {
 	const colorScheme = useColorScheme();
@@ -58,6 +58,7 @@ const RootLayout: React.FC = () => {
 					</CardsProvider>
 				</AuthProvider>
 			</QueryClientProvider>
+			<StatusBar style="auto" />
 			<Toast />
 		</ThemeProvider>
 	);

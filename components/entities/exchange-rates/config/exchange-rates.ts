@@ -17,7 +17,6 @@ import SE from "../../../../assets/icons/flag/SE.svg";
 import UA from "../../../../assets/icons/flag/UA.svg";
 import US from "../../../../assets/icons/flag/US.svg";
 
-export const MINUTE = 1000 * 60;
 export const URL_API =
 	"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
 

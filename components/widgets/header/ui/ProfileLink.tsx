@@ -17,7 +17,7 @@ export const ProfileLink: React.FC = () => {
 			className="flex-row pr-2 items-center rounded-full"
 			style={{ backgroundColor }}
 		>
-			<Avatar name={profile?.lastName} />
+			<Avatar name={profile?.lastName} avatarUrl={profile?.avatarUrl} />
 
 			<View className="flex-row items-center ml-2">
 				<Text className="text-base">{profile?.lastName}</Text>

@@ -1,74 +1,31 @@
-import Toast from "react-native-toast-message";
-import { Field, Button } from "@/components/shared";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-
-import { useState } from "react";
-import { useAuth } from "@/core/hooks/useAuth";
-import { useLoader } from "@/core/hooks/useLoader";
-
-import { hasObjectChanged } from "@/core/helpers";
+import { FieldOpacity, Toolbar } from "@/components/shared";
 
 export interface IProfileContactData {
 	phone: string;
 	email: string;
 }
+export interface ProfileContactFormProps extends IProfileContactData {
+	setDataParam?: (value: string, key: keyof IProfileContactData) => void;
+}
 
-export const ProfileContactForm: React.FC = () => {
-	const { profile } = useAuth();
-
-	if (profile === null) {
-		return;
-	}
-
-	const { showLoader, hideLoader } = useLoader();
-	const [data, setData] = useState<IProfileContactData>({
-		phone: profile.phone,
-		email: profile.email,
-	});
-
-	const updateProfile = async () => {
-		const { phone, email } = profile;
-
-		if (hasObjectChanged({ phone, email }, data)) {
-			showLoader();
-			profile.setData(data);
-
-			return await profile.update().then(() => {
-				hideLoader();
-
-				notificationAsync(NotificationFeedbackType.Success);
-				Toast.show({
-					type: "success",
-					text1: "Changes saved successfully",
-				});
-			});
-		}
-
-		notificationAsync(NotificationFeedbackType.Error);
-		Toast.show({
-			type: "error",
-			text1: "To save the data, make changes",
-		});
-	};
-
+export const ProfileContactForm: React.FC<ProfileContactFormProps> = ({
+	phone,
+	email,
+	setDataParam,
+}) => {
 	return (
-		<>
-			<Field
-				className="mt-3"
-				value={data.email}
-				onChange={(email) => setData({ ...data, email })}
+		<Toolbar className="rounded-xl px-0 py-0">
+			<FieldOpacity
 				placeholder="Email"
+				value={email}
+				onChange={(email) => setDataParam?.(email, "email")}
 			/>
-			<Field
-				className="mt-3"
-				value={data.phone}
-				onChange={(phone) => setData({ ...data, phone })}
+			<FieldOpacity
+				border={false}
 				placeholder="Phone"
+				value={phone}
+				onChange={(phone) => setDataParam?.(phone, "phone")}
 			/>
-
-			<Button className="my-4" onPress={updateProfile}>
-				Update Profile
-			</Button>
-		</>
+		</Toolbar>
 	);
 };

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getExchangeRates } from "../api/api";
-import { MINUTE } from "../config/exchange-rates"
+
+import type { ExchangeRatesSimplified } from "../model/types";
 
 export function useExchangeRates() {
 	const {
@@ -10,8 +11,15 @@ export function useExchangeRates() {
 	} = useQuery({
 		queryKey: ["exchangeRates"],
 		queryFn: getExchangeRates,
-		staleTime: MINUTE,
-    	gcTime: MINUTE * 10,
+		select: (exchangeRates) =>
+			exchangeRates.map(
+				(exchangeRate) =>
+					({
+						text: exchangeRate.txt,
+						code: exchangeRate.cc,
+						rate: exchangeRate.rate,
+					}) as ExchangeRatesSimplified,
+			),
 	});
 
 	return { isLoading, exchangeRates, refetch };

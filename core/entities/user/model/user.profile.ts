@@ -6,12 +6,14 @@ export interface UserProfileData extends BaseFirestoreData {
 	secondName?: string;
 	lastName?: string;
 
-	avatarUrl?: string;
+	avatarUrl?: string | null;
 	theme?: string;
 
 	password?: string;
 	email?: string;
 	phone?: string;
+
+	birthday?: Date;
 	updatedAt?: Date;
 	createdAt?: Date;
 }
@@ -23,13 +25,14 @@ export class UserProfile extends BaseFirestore {
 	secondName: string;
 	lastName: string;
 
-	avatarUrl: string;
+	avatarUrl: string | null;
 	theme: string;
 
 	password: string;
 	email: string;
 	phone: string;
 
+	birthday: Date | null;
 	updatedAt: Date | null;
 	createdAt: Date;
 
@@ -40,13 +43,14 @@ export class UserProfile extends BaseFirestore {
 		this.secondName = data.secondName ? data.secondName : "";
 		this.lastName = data.lastName ? data.lastName : "";
 
-		this.avatarUrl = data.avatarUrl ? data.avatarUrl : "";
+		this.avatarUrl = data.avatarUrl ? data.avatarUrl : null;
 		this.theme = data.theme ? data.theme : "os";
 
 		this.password = data.password ? data.password : "";
 		this.email = data.email ? data.email : "";
 		this.phone = data.phone ? data.phone : "";
 
+		this.birthday = data.birthday ? new Date(data.birthday) : null;
 		this.updatedAt = data.updatedAt ? new Date(data.updatedAt) : null;
 		this.createdAt = data.createdAt ? new Date(data.createdAt) : new Date();
 	}
@@ -54,6 +58,9 @@ export class UserProfile extends BaseFirestore {
 	protected static convertTimestampsFromFirestore(data: DocumentData) {
 		super.convertTimestampsFromFirestore(data);
 
+		if (data.birthday) {
+			data.birthday = data.birthday.toDate();
+		}
 		if (data.updatedAt) {
 			data.updatedAt = data.updatedAt.toDate();
 		}
