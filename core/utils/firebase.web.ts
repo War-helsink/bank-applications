@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import type { FirebaseError } from "firebase/app";
 
+import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -82,3 +83,6 @@ export const logout = () => signOut(auth);
 
 // Initialize Firestore
 export const firestore = getFirestore(app);
+
+// Initialize Storage
+export const storage = getStorage(app);

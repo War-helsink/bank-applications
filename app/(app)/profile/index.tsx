@@ -14,6 +14,7 @@ import { useAuth } from "@/core/hooks/useAuth";
 import { useLoader } from "@/core/hooks/useLoader";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { hasObjectChanged } from "@/core/helpers";
+import { StorageService } from "@/core/services";
 
 const ProfileScreen: React.FC = () => {
 	const color = useThemeColor("danger");
@@ -25,12 +26,19 @@ const ProfileScreen: React.FC = () => {
 		return;
 	}
 
+	const [avatarInfo, setAvatarInfo] = useState<{
+		avatarUrl: string | null;
+		name: string | null;
+	}>({
+		avatarUrl: profile.avatarUrl,
+		name: null,
+	});
+
 	const [data, setData] = useState({
 		firstName: profile.firstName,
 		secondName: profile.secondName,
 		lastName: profile.lastName,
 
-		avatarUrl: profile.avatarUrl,
 		phone: profile.phone,
 		email: profile.email,
 	});
@@ -40,15 +48,13 @@ const ProfileScreen: React.FC = () => {
 		newData[key] = value;
 		setData(newData);
 
-		const { firstName, secondName, lastName, avatarUrl, phone, email } =
-			profile;
+		const { firstName, secondName, lastName, phone, email } = profile;
 
 		setChanges(
 			hasObjectChanged(newData, {
 				firstName,
 				secondName,
 				lastName,
-				avatarUrl,
 				phone,
 				email,
 			}),
@@ -61,9 +67,12 @@ const ProfileScreen: React.FC = () => {
 			secondName: profile.secondName,
 			lastName: profile.lastName,
 
-			avatarUrl: profile.avatarUrl,
 			phone: profile.phone,
 			email: profile.email,
+		});
+		setAvatarInfo({
+			avatarUrl: profile.avatarUrl,
+			name: null,
 		});
 		setChanges(false);
 	}, [profile]);
@@ -71,6 +80,21 @@ const ProfileScreen: React.FC = () => {
 	const save = async () => {
 		if (changes) {
 			showLoader();
+
+			if (avatarInfo.avatarUrl !== profile.avatarUrl) {
+				const avatarStorageService = new StorageService(`avatar/${profile.id}`);
+
+				if (profile.avatarUrl && profile.avatarUrl.length > 0) {
+					await avatarStorageService.deleteFile(profile.avatarUrl);
+				}
+
+				const newAvatarUrl = await avatarStorageService.uploadImageAsync(
+					avatarInfo.avatarUrl as string,
+					avatarInfo.name as string,
+				);
+				profile.setData({ avatarUrl: newAvatarUrl });
+			}
+
 			profile.setData(data);
 
 			return await profile.update().then(() => {
@@ -103,8 +127,11 @@ const ProfileScreen: React.FC = () => {
 
 				<AvatarUploader
 					name={profile?.lastName}
-					avatarUrl={data.avatarUrl}
-					onChangeAvatar={(avatarUrl) => setDate(avatarUrl, "avatarUrl")}
+					avatarUrl={avatarInfo.avatarUrl}
+					onChangeAvatar={(avatarInfo) => {
+						setAvatarInfo(avatarInfo);
+						setChanges(true);
+					}}
 				/>
 
 				<ProfileNameForm
