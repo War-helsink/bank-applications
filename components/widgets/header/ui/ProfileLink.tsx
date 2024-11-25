@@ -6,7 +6,7 @@ import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useAuth } from "@/core/hooks/useAuth";
 
 export const ProfileLink: React.FC = () => {
-	const color = useThemeColor("text");
+	const color = useThemeColor("danger");
 	const backgroundColor = useThemeColor("toolbarBackground");
 
 	const { profile } = useAuth();
@@ -14,10 +14,16 @@ export const ProfileLink: React.FC = () => {
 	return (
 		<Link
 			href="/profile"
-			className="flex-row pr-2 items-center rounded-full"
+			className="flex-row pr-2 items-center rounded-2xl"
 			style={{ backgroundColor }}
 		>
-			<Avatar name={profile?.lastName} avatarUrl={profile?.avatarUrl} />
+			<Avatar
+				name={profile?.lastName}
+				avatarUrl={profile?.avatarUrl}
+				className="border-2 border-solid"
+				style={{ borderColor: color }}
+				size="large"
+			/>
 
 			<View className="flex-row items-center ml-2">
 				<Text className="text-base">{profile?.lastName}</Text>
