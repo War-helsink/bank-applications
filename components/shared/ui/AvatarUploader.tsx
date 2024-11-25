@@ -6,11 +6,12 @@ import {
 	launchImageLibraryAsync,
 } from "expo-image-picker";
 
-import { useState, useEffect } from "react";
 import { useThemeColor } from "@/core/hooks/useThemeColor";
+import { useCachedAvatar } from "@/core/hooks/useCached";
 
 export interface AvatarUploaderProps {
 	name?: string;
+	uid: string;
 	avatarUrl?: string | null;
 	onChangeAvatar?: (avatarInfo: {
 		avatarUrl: string | null;
@@ -19,6 +20,7 @@ export interface AvatarUploaderProps {
 }
 
 export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
+	uid,
 	name,
 	avatarUrl = null,
 	onChangeAvatar,
@@ -27,11 +29,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 	const selectAvatarColor = useThemeColor("primary");
 	const color = useThemeColor("white");
 
-	const [avatarUri, setAvatarUri] = useState<string | null>(null);
-
-	useEffect(() => {
-		setAvatarUri(avatarUrl);
-	}, [avatarUrl]);
+	const uri = useCachedAvatar(uid, avatarUrl);
 
 	const pickImage = async () => {
 		const permissionResult = await requestMediaLibraryPermissionsAsync();
@@ -52,7 +50,6 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 		});
 
 		if (!result.canceled) {
-			setAvatarUri(result.assets[0].uri);
 			onChangeAvatar?.({
 				avatarUrl: result.assets[0].uri,
 				name: result.assets[0].fileName as string,
@@ -62,8 +59,8 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 
 	return (
 		<View className="w-full justify-center items-center gap-4">
-			{avatarUri ? (
-				<Image source={{ uri: avatarUri }} className="rounded-full h-32 w-32" />
+			{uri ? (
+				<Image source={{ uri }} className="rounded-full h-32 w-32" />
 			) : (
 				<View
 					className="rounded-full items-center justify-center h-32 w-32"

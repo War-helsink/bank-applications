@@ -3,6 +3,7 @@ import { Text } from "./Text";
 import { View, Image } from "react-native";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
+import { useCachedAvatar } from "@/core/hooks/useCached";
 
 import type { ViewStyle, StyleProp } from "react-native";
 
@@ -11,11 +12,13 @@ export interface AvatarProps {
 	style?: StyleProp<ViewStyle>;
 	name?: string;
 	avatarUrl?: string | null;
+	uid: string;
 	size?: "small" | "large";
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
 	name,
+	uid,
 	avatarUrl,
 	size = "small",
 	style,
@@ -25,6 +28,8 @@ export const Avatar: React.FC<AvatarProps> = ({
 	const color = useThemeColor("white");
 	const isSmall = size === "small";
 
+	const uri = useCachedAvatar(uid, avatarUrl);
+
 	return (
 		<View
 			className={clsx(
@@ -33,11 +38,8 @@ export const Avatar: React.FC<AvatarProps> = ({
 			)}
 			style={[{ backgroundColor }, style]}
 		>
-			{avatarUrl ? (
-				<Image
-					source={{ uri: avatarUrl }}
-					className="rounded-2xl w-full h-full"
-				/>
+			{uri ? (
+				<Image source={{ uri }} className="rounded-2xl w-full h-full" />
 			) : (
 				<Text
 					className={`${isSmall ? "text-lg" : "text-xl"} font-medium`}

@@ -15,12 +15,12 @@ export class StorageService {
 	basePath: string;
 	collRef: StorageReference;
 
-	static async getBlob(url: string): Promise<{ blob: Blob; name: string }> {
+	static async getBlob(url: Url): Promise<{ blob: Blob; name: string }> {
 		const fileRef = ref(storage, url);
 		return { name: fileRef.name, blob: await getBlob(fileRef) };
 	}
 
-	static urlInRef(url: string): StorageReference {
+	static urlInRef(url: Url): StorageReference {
 		return ref(storage, url);
 	}
 
@@ -29,7 +29,7 @@ export class StorageService {
 		this.collRef = ref(storage, this.basePath);
 	}
 
-	async deleteFile(url: string): Promise<void> {
+	async deleteFile(url: Url): Promise<void> {
 		const fileRef = ref(storage, url);
 		return deleteObject(fileRef);
 	}

@@ -126,7 +126,8 @@ const ProfileScreen: React.FC = () => {
 				/>
 
 				<AvatarUploader
-					name={profile?.lastName}
+					uid={profile.id}
+					name={profile.lastName}
 					avatarUrl={avatarInfo.avatarUrl}
 					onChangeAvatar={(avatarInfo) => {
 						setAvatarInfo(avatarInfo);
