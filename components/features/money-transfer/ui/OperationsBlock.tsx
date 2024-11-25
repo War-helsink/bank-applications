@@ -11,12 +11,12 @@ export const OperationsBlock: React.FC = () => {
 	function getLastMonthExpensesPhrase() {
 		const now = new Date();
 		const lastMonthDate = new Date(now.getFullYear(), now.getMonth(), 0);
-	  
+
 		const year = lastMonthDate.getFullYear();
-		const month = lastMonthDate.toLocaleString('en-US', { month: 'short' });
-	  
+		const month = lastMonthDate.toLocaleString("en-US", { month: "short" });
+
 		return `Expenses in ${month} ${year}`;
-	  }
+	}
 
 	return (
 		<View className="flex-row my-2">
@@ -26,7 +26,9 @@ export const OperationsBlock: React.FC = () => {
 				</Link>
 
 				<Text className="text-xs">ALL OPERATIONS</Text>
-				<Text className="text-[10px] opacity-75">{getLastMonthExpensesPhrase()}</Text>
+				<Text className="text-[10px] opacity-75">
+					{getLastMonthExpensesPhrase()}
+				</Text>
 				<Text className="text-xl font-bold">$0</Text>
 			</Toolbar>
 
@@ -35,7 +37,9 @@ export const OperationsBlock: React.FC = () => {
 					<Ionicons name="cart" size={18} color={color} />
 				</Link>
 				<Text className="text-xs">CONSUMER LOAN</Text>
-				<Text className="text-[10px] opacity-75">{getLastMonthExpensesPhrase()}</Text>
+				<Text className="text-[10px] opacity-75">
+					{getLastMonthExpensesPhrase()}
+				</Text>
 				<Text className="text-xl font-bold">-$0</Text>
 			</Toolbar>
 		</View>
