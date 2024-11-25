@@ -25,7 +25,7 @@ export const CardTypeGradients: Record<
 	CardType,
 	{
 		color: string;
-		colors: string[];
+		colors: [string, string];
 		start: [number, number];
 		end: [number, number];
 	}

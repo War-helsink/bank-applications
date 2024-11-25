@@ -1,3 +1,4 @@
+import type React from "react";
 import { View, TouchableHighlight } from "react-native";
 import { Text } from "@/components/shared";
 import { LinearGradient } from "expo-linear-gradient";
@@ -26,7 +27,6 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 					colors={CardTypeGradients[card.cardType].colors}
 					start={CardTypeGradients[card.cardType].start}
 					end={CardTypeGradients[card.cardType].end}
-					
 					style={{ width: width, height: height }}
 				/>
 				<View className="absolute h-full w-full justify-between">
