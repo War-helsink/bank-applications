@@ -117,36 +117,38 @@ export const ProfileScreen: React.FC = () => {
 	};
 
 	return (
-		<View className="h-full flex-col justify-between">
-			<View className="pt-4 flex gap-4">
-				<ProfileChangeHeader
-					changes={changes}
-					onCancel={cancel}
-					onSave={save}
-				/>
+		<View className="h-full flex-col justify-between gap-4">
+			<ScrollView>
+				<View className="pt-4 flex gap-4">
+					<ProfileChangeHeader
+						changes={changes}
+						onCancel={cancel}
+						onSave={save}
+					/>
 
-				<AvatarUploader
-					uid={profile.id}
-					name={profile.lastName}
-					avatarUrl={avatarInfo.avatarUrl}
-					onChangeAvatar={(avatarInfo) => {
-						setAvatarInfo(avatarInfo);
-						setChanges(true);
-					}}
-				/>
+					<AvatarUploader
+						uid={profile.id}
+						name={profile.lastName}
+						avatarUrl={avatarInfo.avatarUrl}
+						onChangeAvatar={(avatarInfo) => {
+							setAvatarInfo(avatarInfo);
+							setChanges(true);
+						}}
+					/>
 
-				<ProfileNameForm
-					firstName={data.firstName}
-					secondName={data.secondName}
-					lastName={data.lastName}
-					setDataParam={setDate}
-				/>
-				<ProfileContactForm
-					phone={data.phone}
-					email={data.email}
-					setDataParam={setDate}
-				/>
-			</View>
+					<ProfileNameForm
+						firstName={data.firstName}
+						secondName={data.secondName}
+						lastName={data.lastName}
+						setDataParam={setDate}
+					/>
+					<ProfileContactForm
+						phone={data.phone}
+						email={data.email}
+						setDataParam={setDate}
+					/>
+				</View>
+			</ScrollView>
 
 			<Toolbar className="rounded-xl">
 				<Pressable className="w-full items-center py-2" onPress={logout}>
