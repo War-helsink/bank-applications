@@ -17,6 +17,7 @@ export const ExchangeRates: React.FC<ExchangeRatesProps> = (props) => {
 
 	return (
 		<ExchangeRatesBlock
+			title="EXCHANGE RATE"
 			isLoading={isLoading}
 			exchangeRates={exchangeRates.filter((exchangeRate) =>
 				defaultCurrencies.includes(exchangeRate.code),

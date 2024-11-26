@@ -17,7 +17,7 @@ export interface ExchangeRatesBlockProps {
 }
 
 export const ExchangeRatesBlock: React.FC<ExchangeRatesBlockProps> = ({
-	title = "EXCHANGE RATE",
+	title,
 	route = true,
 	oneRate,
 	isLoading,
