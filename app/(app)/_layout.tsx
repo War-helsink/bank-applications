@@ -61,15 +61,6 @@ const AppLayout: React.FC = () => {
 				}}
 			/>
 			<Stack.Screen
-				name="profile"
-				options={{
-					title: "Profile",
-					headerShown: true,
-					headerLeft: () => <ButtonBack />,
-				}}
-			/>
-
-			<Stack.Screen
 				name="statistics"
 				options={{
 					title: "Statistics",

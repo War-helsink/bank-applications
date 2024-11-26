@@ -2,11 +2,11 @@ import Toast from "react-native-toast-message";
 import { Pressable, View, ScrollView } from "react-native";
 import { Text, Toolbar, AvatarUploader } from "@/components/shared";
 import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-import {
-	ProfileChangeHeader,
-	ProfileContactForm,
-	ProfileNameForm,
-} from "@/components/features/profile";
+
+import { ProfileChangeHeader } from "./ProfileChangeHeader";
+import { ProfileContactForm } from "./ProfileContactForm";
+import { ProfileNameForm } from "./ProfileNameForm";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useState, useCallback } from "react";
@@ -16,10 +16,10 @@ import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { hasObjectChanged } from "@/core/helpers";
 import { StorageService } from "@/core/services";
 
-const ProfileScreen: React.FC = () => {
+export const ProfileScreen: React.FC = () => {
+	const { logout, profile } = useAuth();
 	const color = useThemeColor("danger");
 	const [changes, setChanges] = useState(false);
-	const { logout, profile } = useAuth();
 	const { showLoader, hideLoader } = useLoader();
 
 	if (profile === null) {
@@ -117,7 +117,7 @@ const ProfileScreen: React.FC = () => {
 	};
 
 	return (
-		<ScrollView>
+		<View className="h-full flex-col justify-between">
 			<View className="pt-4 flex gap-4">
 				<ProfileChangeHeader
 					changes={changes}
@@ -146,18 +146,16 @@ const ProfileScreen: React.FC = () => {
 					email={data.email}
 					setDataParam={setDate}
 				/>
-
-				<Toolbar className="rounded-xl">
-					<Pressable className="w-full items-center py-2" onPress={logout}>
-						<View className="flex-row items-center gap-1">
-							<Ionicons name="exit" size={24} color={color} />
-							<Text style={{ color }}>Log out</Text>
-						</View>
-					</Pressable>
-				</Toolbar>
 			</View>
-		</ScrollView>
+
+			<Toolbar className="rounded-xl">
+				<Pressable className="w-full items-center py-2" onPress={logout}>
+					<View className="flex-row items-center gap-1">
+						<Ionicons name="exit" size={24} color={color} />
+						<Text style={{ color }}>Log out</Text>
+					</View>
+				</Pressable>
+			</Toolbar>
+		</View>
 	);
 };
-
-export default ProfileScreen;

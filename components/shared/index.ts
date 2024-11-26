@@ -4,6 +4,7 @@ export * from "./ui/Button";
 export * from "./ui/ButtonOpacity";
 export * from "./ui/Carousel";
 export * from "./ui/Container";
+export * from "./ui/CustomModalDrawer";
 export * from "./ui/Field";
 export * from "./ui/FieldOpacity";
 export * from "./ui/Link";
