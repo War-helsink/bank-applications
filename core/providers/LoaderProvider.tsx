@@ -1,6 +1,6 @@
 import { createContext, useState, useMemo } from "react";
 import { Loader } from "@/components/shared";
-import { View, StyleSheet } from "react-native";
+import { View, Modal, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
 
 export interface ILoaderContext {
@@ -28,14 +28,15 @@ export const LoaderProvider: React.FC<React.PropsWithChildren> = ({
 	return (
 		<LoaderContext.Provider value={value}>
 			{children}
-			{loading && (
+
+			<Modal visible={loading} transparent={true} animationType="fade">
 				<View style={styles.fullscreenContainer}>
 					<BlurView style={styles.blurView} intensity={50} tint="light" />
 					<View style={styles.activityContainer}>
 						<Loader />
 					</View>
 				</View>
-			)}
+			</Modal>
 		</LoaderContext.Provider>
 	);
 };
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		justifyContent: "center",
 		alignItems: "center",
-		zIndex: 1000,
+		zIndex: 1000000,
 	},
 	blurView: {
 		...StyleSheet.absoluteFillObject,
