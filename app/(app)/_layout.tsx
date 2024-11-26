@@ -45,6 +45,14 @@ const AppLayout: React.FC = () => {
 				}}
 			/>
 			<Stack.Screen
+				name="friends"
+				options={{
+					title: "Friends",
+					headerShown: true,
+					headerLeft: () => <ButtonBack />,
+				}}
+			/>
+			<Stack.Screen
 				name="messages"
 				options={{
 					title: "Messages",
