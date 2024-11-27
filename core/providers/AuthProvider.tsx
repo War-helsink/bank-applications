@@ -142,10 +142,12 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
 	}, [user, profile]);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, async (user) => {
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
 			setUser(user);
 			setIsLoadingInitial(false);
 		});
+
+		return () => unsubscribe();
 	});
 
 	const value = useMemo(

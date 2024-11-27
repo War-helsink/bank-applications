@@ -33,7 +33,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 	return (
 		<View
 			className={clsx(
-				`rounded-2xl items-center justify-center ${isSmall ? "w-9 h-9" : "w-12 h-12"}`,
+				`rounded-2xl items-center justify-center ${isSmall ? "w-9 h-9" : "w-14 h-14"}`,
 				className,
 			)}
 			style={[{ backgroundColor }, style]}

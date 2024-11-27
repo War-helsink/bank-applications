@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Text, Avatar, Link } from "@/components/shared";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { ProfileModal } from "@/components/features/profile";
+import { ProfileModal } from "./ProfileModal";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 import { useAuth } from "@/core/hooks/useAuth";

@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Container, Link } from "@/components/shared";
+import { ProfileLink } from "@/components/features/profile";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { ProfileLink } from "./ProfileLink";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
 

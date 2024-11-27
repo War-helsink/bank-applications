@@ -2,11 +2,13 @@ import { firestore } from "@/core/utils/firebase";
 import {
 	collection,
 	onSnapshot,
+	or,
 	doc,
 	query,
 	where,
 	getDoc,
 	setDoc,
+	getDocs,
 	updateDoc,
 	deleteDoc,
 } from "firebase/firestore";
@@ -70,7 +72,9 @@ export class BaseFirestore {
 		return data;
 	}
 
-	static async get(id: string) {
+	static async get<T extends BaseFirestore = BaseFirestore>(
+		id: string,
+	): Promise<T | undefined> {
 		const docRef = doc(collection(firestore, this.collPath), id).withConverter(
 			this.converter(),
 		);
@@ -79,12 +83,76 @@ export class BaseFirestore {
 			.then((docSnap) => {
 				if (docSnap.exists()) {
 					const data = docSnap.data();
-					return new this({ ...data, id });
+					return new this({ ...data, id }) as T;
 				}
-				throw new Error("Error while creating.");
+				throw new Error("Error while receiving.");
 			})
 			.catch(() => {
-				throw new Error("Error while creating.");
+				throw new Error("Error while receiving.");
+			});
+	}
+
+	static async getQuery<T extends BaseFirestore = BaseFirestore>(
+		fieldPath: string | FieldPath,
+		opStr: WhereFilterOp,
+		value: unknown,
+	): Promise<T[]> {
+		const q = query(
+			collection(firestore, this.collPath),
+			where(fieldPath, opStr, value),
+		).withConverter(this.converter());
+
+		return getDocs(q)
+			.then((querySnapshot) => {
+				const documents: T[] = [];
+
+				querySnapshot.forEach((doc) => {
+					const document = doc.data();
+					document.id = doc.id;
+
+					documents.push(document as T);
+				});
+
+				return documents;
+			})
+			.catch((err) => {
+				console.log(err);
+				return [];
+			});
+	}
+
+	static async getAllQuery<T extends BaseFirestore = BaseFirestore>(
+		wheres: {
+			fieldPath: string | FieldPath;
+			opStr: WhereFilterOp;
+			value: unknown;
+		}[],
+	): Promise<T[]> {
+		const q = query(
+			collection(firestore, this.collPath),
+			or(
+				...wheres.map(({ fieldPath, opStr, value }) =>
+					where(fieldPath, opStr, value),
+				),
+			),
+		).withConverter(this.converter());
+
+		return getDocs(q)
+			.then((querySnapshot) => {
+				const documents: T[] = [];
+
+				querySnapshot.forEach((doc) => {
+					const document = doc.data();
+					document.id = doc.id;
+
+					documents.push(document as T);
+				});
+
+				return documents;
+			})
+			.catch((err) => {
+				console.log(err);
+				return [];
 			});
 	}
 
@@ -159,7 +227,7 @@ export class BaseFirestore {
 
 	subscribeDocumentChanged(callback: (data: this) => void): void {
 		const docRef = doc(this.collRef, this.id);
-		
+
 		if (this.unsubscribe === null) {
 			this.unsubscribe = onSnapshot(
 				docRef,

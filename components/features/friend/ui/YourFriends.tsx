@@ -1,8 +1,10 @@
 import { View, ScrollView } from "react-native";
-import { Toolbar, Link, Text } from "@/components/shared";
+import { Toolbar, Link, Text, Avatar } from "@/components/shared";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeColor } from "@/core/hooks/useThemeColor";
+import { useGetFriends } from "@/core/hooks/useFriends";
+import { useAuth } from "@/core/hooks/useAuth";
 
 export interface YourFriendsProps {
 	title?: string;
@@ -15,12 +17,12 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 	linkFriends,
 	linkTransfer,
 }) => {
+	const { profile } = useAuth();
 	const color = useThemeColor("danger");
 	const addFriendColor = useThemeColor("text");
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 
-	// Need to add friends
-	const friends = [];
+	const { friends } = useGetFriends(profile?.id);
 
 	return (
 		<Toolbar className="py-4 rounded-2xl my-2 flex gap-4">
@@ -37,17 +39,29 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 				)}
 			</View>
 			<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-				{linkFriends && (
-					<View className="flex-row gap-2">
+				<View className="flex-row gap-2">
+					{friends &&
+						friends.users.length > 0 &&
+						friends.users.map((friendsUserData) => (
+							<Avatar
+								key={friendsUserData.uid}
+								uid={friendsUserData.uid}
+								name={friendsUserData.lastName}
+								avatarUrl={friendsUserData.avatarUrl}
+								size="large"
+							/>
+						))}
+
+					{linkFriends && (
 						<Link
-							className="w-14 h-14 rounded-2xl flex justify-center items-center"
+							className="w-12 h-12 rounded-2xl flex justify-center items-center"
 							style={{ backgroundColor }}
 							href="/(app)/friends"
 						>
 							<Ionicons name="add" size={18} color={addFriendColor} />
 						</Link>
-					</View>
-				)}
+					)}
+				</View>
 			</ScrollView>
 		</Toolbar>
 	);
