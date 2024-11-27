@@ -4,11 +4,11 @@ import { UserProfile } from "@/core/entities/user";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useDebounceValue } from "./useDebounce";
 
-export const useSearchFriends = (searchValue?: string) => {
+export const useSearchFriends = (uid?: string, searchValue?: string) => {
 	const debouncedSearchValue = useDebounceValue(searchValue, 1000);
 
 	const { data: searchUsers, refetch } = useQuery({
-		queryKey: ["friends", "search", debouncedSearchValue],
+		queryKey: ["friends", "search", debouncedSearchValue, uid],
 		queryFn: async () => {
 			if (!debouncedSearchValue) {
 				return [];
@@ -21,12 +21,14 @@ export const useSearchFriends = (searchValue?: string) => {
 					{ fieldPath: "secondName", opStr: "==", value: debouncedSearchValue },
 
 					{ fieldPath: "lastName", opStr: "==", value: debouncedSearchValue },
-				]);
+				]).then((searchUsers) => {
+					return searchUsers.filter((searchUser) => searchUser.id !== uid);
+				});
 			} catch (err) {
 				return [];
 			}
 		},
-		enabled: !!debouncedSearchValue,
+		enabled: !!debouncedSearchValue && !!uid,
 	});
 
 	if (!searchUsers) {

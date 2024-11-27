@@ -5,7 +5,7 @@ export interface FriendsUserData {
 	firstName: string;
 	secondName: string;
 	lastName: string;
-	avatarUrl: string;
+	avatarUrl: string | null;
 }
 
 export interface FriendsData extends BaseFirestoreData {
@@ -21,5 +21,12 @@ export class Friends extends BaseFirestore {
 		super(data);
 
 		this.users = data.users ? data.users : [];
+	}
+
+	async addUsers(userData: FriendsUserData) {
+		if (this.users.findIndex((user) => userData.uid === user.uid) === -1) {
+			this.users.push(userData);
+			return this.update();
+		}
 	}
 }

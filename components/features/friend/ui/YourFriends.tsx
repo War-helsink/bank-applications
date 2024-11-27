@@ -8,12 +8,14 @@ import { useAuth } from "@/core/hooks/useAuth";
 
 export interface YourFriendsProps {
 	title?: string;
+	name?: boolean;
 	linkFriends?: boolean;
 	linkTransfer?: boolean;
 }
 
 export const YourFriends: React.FC<YourFriendsProps> = ({
 	title,
+	name,
 	linkFriends,
 	linkTransfer,
 }) => {
@@ -42,19 +44,33 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 				<View className="flex-row gap-2">
 					{friends &&
 						friends.users.length > 0 &&
-						friends.users.map((friendsUserData) => (
-							<Avatar
-								key={friendsUserData.uid}
-								uid={friendsUserData.uid}
-								name={friendsUserData.lastName}
-								avatarUrl={friendsUserData.avatarUrl}
-								size="large"
-							/>
-						))}
+						friends.users.map((friendsUserData) =>
+							name ? (
+								<View key={friendsUserData.uid} className="flex items-center">
+									<Avatar
+										uid={friendsUserData.uid}
+										name={friendsUserData.lastName}
+										avatarUrl={friendsUserData.avatarUrl}
+										size="large"
+									/>
+
+									<Text className="mt-2">{friendsUserData.lastName}</Text>
+									<Text>{friendsUserData.secondName}</Text>
+								</View>
+							) : (
+								<Avatar
+									key={friendsUserData.uid}
+									uid={friendsUserData.uid}
+									name={friendsUserData.lastName}
+									avatarUrl={friendsUserData.avatarUrl}
+									size="large"
+								/>
+							),
+						)}
 
 					{linkFriends && (
 						<Link
-							className="w-12 h-12 rounded-2xl flex justify-center items-center"
+							className="w-14 h-14 rounded-2xl flex justify-center items-center"
 							style={{ backgroundColor }}
 							href="/(app)/friends"
 						>
