@@ -7,6 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "bank-applications",
     "userInterfaceStyle": "automatic",
+  
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",

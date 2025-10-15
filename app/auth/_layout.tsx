@@ -7,7 +7,7 @@ const AuthLayout: React.FC = () => {
 	const { user } = useAuth();
 
 	if (user) {
-		return <Redirect href="/(tabs)/" />;
+		return <Redirect href="/(tabs)" />;
 	}
 
 	return (
