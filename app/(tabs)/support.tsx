@@ -1,6 +1,6 @@
+import { ThemedSafeAreaView } from "@/shared/ui";
+import { Support } from "@/widgets/support";
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { ThemedSafeAreaView } from "@/components/shared";
-import { Support } from "@/components/widgets/support";
 
 const SupportScreen: React.FC = () => {
 	return (

@@ -1,11 +1,11 @@
+import { ExchangeRates } from "@/entities/exchange-rates";
+import { YourFriends } from "@/features/friend";
+import { InformationBlock } from "@/features/information";
+import { OperationsBlock } from "@/features/money-transfer";
+import { Container, ThemedSafeAreaView } from "@/shared/ui";
+import { CardsView } from "@/widgets/card";
+import { Header } from "@/widgets/header";
 import { ScrollView } from "react-native";
-import { ThemedSafeAreaView, Container } from "@/components/shared";
-import { Header } from "@/components/widgets/header";
-import { CardsView } from "@/components/widgets/card";
-import { OperationsBlock } from "@/components/features/money-transfer";
-import { YourFriends } from "@/components/features/friend";
-import { InformationBlock } from "@/components/features/information";
-import { ExchangeRates } from "@/components/entities/exchange-rates";
 
 const HomeScreen: React.FC = () => {
 	return (

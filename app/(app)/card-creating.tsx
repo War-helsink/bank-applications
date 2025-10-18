@@ -1,33 +1,30 @@
-import Toast from "react-native-toast-message";
-import { ScrollView, View } from "react-native";
+import { useSession } from "@/entities/session";
+import { CardDemo } from "@/features/card";
+import { CardCurrency } from "@/features/currency";
+import { PaymentSystem } from "@/features/payment";
+import type { CardType } from "@/entities/card";
+import { Currency } from "@/shared/config/currency";
+import { PaymentNetwork } from "@/shared/config/payment";
+import { Card } from "@/entities/card";
+import { useLoader } from "@/shared/hooks/useLoader";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import {
-	Text,
-	Container,
 	ButtonOpacity,
+	Container,
+	Text,
 	ThemedSafeAreaView,
-} from "@/components/shared";
-import { PaymentSystem } from "@/components/features/payment";
-import { CardCurrency } from "@/components/features/currency";
-import { CardDemo } from "@/components/features/card";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-
-import { useState } from "react";
-import { useAuth } from "@/core/hooks/useAuth";
+} from "@/shared/ui";
 import { useRoute } from "@react-navigation/native";
+import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import { useRouter } from "expo-router";
-import { useLoader } from "@/core/hooks/useLoader";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
-
-import { PaymentNetwork } from "@/core/config/payment";
-import { Currency } from "@/core/config/currency";
-
-import type { CardType } from "@/core/config/card";
-import { Card } from "@/core/entities/card";
+import { useState } from "react";
+import { ScrollView, View } from "react-native";
+import Toast from "react-native-toast-message";
 
 const CardCreationScreen: React.FC = () => {
-	const { user } = useAuth();
+	const { session } = useSession();
 
-	if (user === null) {
+	if (!session) {
 		return null;
 	}
 
@@ -77,7 +74,10 @@ const CardCreationScreen: React.FC = () => {
 	};
 
 	return (
-		<ThemedSafeAreaView className="h-full w-full flex-1 flex-col" edges={["bottom"]}>
+		<ThemedSafeAreaView
+			className="h-full w-full flex-1 flex-col"
+			edges={["bottom"]}
+		>
 			<Container className="w-full flex-grow">
 				<ScrollView className="w-full">
 					<PaymentSystem

@@ -1,12 +1,11 @@
-import { Stack, Redirect } from "expo-router";
-import { ButtonBack } from "@/components/features/navigation";
-
-import { useAuth } from "@/core/hooks/useAuth";
+import { useSession } from "@/entities/session";
+import { ButtonBack } from "@/features/navigation";
+import { Redirect, Stack } from "expo-router";
 
 const AppLayout: React.FC = () => {
-	const { user } = useAuth();
+	const { session } = useSession();
 
-	if (!user) {
+	if (!session) {
 		return <Redirect href="/auth" />;
 	}
 

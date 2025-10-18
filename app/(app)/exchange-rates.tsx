@@ -1,13 +1,13 @@
 import {
-	ThemedSafeAreaView,
-	ScrollRefreshControl,
-	Container,
-} from "@/components/shared";
-import {
-	ExchangeRatesBlock,
 	defaultCurrencies,
+	ExchangeRatesBlock,
 	useExchangeRates,
-} from "@/components/entities/exchange-rates";
+} from "@/entities/exchange-rates";
+import {
+	Container,
+	ScrollRefreshControl,
+	ThemedSafeAreaView,
+} from "@/shared/ui";
 
 const ExchangeRatesScreen: React.FC = () => {
 	const { refetch, isLoading, exchangeRates } = useExchangeRates();

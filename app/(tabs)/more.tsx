@@ -1,9 +1,9 @@
-import { ScrollView } from "react-native";
-import { ThemedSafeAreaView, Container, Text } from "@/components/shared";
-import { Header } from "@/components/widgets/header";
-import { Menu } from "@/components/widgets/menu";
-import { ExchangeRates } from "@/components/entities/exchange-rates";
+import { ExchangeRates } from "@/entities/exchange-rates";
+import { Container, Text, ThemedSafeAreaView } from "@/shared/ui";
+import { Header } from "@/widgets/header";
+import { Menu } from "@/widgets/menu";
 import Constants from "expo-constants";
+import { ScrollView } from "react-native";
 
 const MoreScreen: React.FC = () => {
 	return (

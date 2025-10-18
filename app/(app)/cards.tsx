@@ -1,25 +1,23 @@
-import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { useSession } from "@/entities/session";
+import { PaymentNetworkImg } from "@/shared/config";
+import { CardTypeDisplayNames, CardTypeGradients } from "@/entities/card";
+import { useCards } from "@/shared/hooks/useCards";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import {
-	ThemedSafeAreaView,
 	Container,
-	Toolbar,
-	Text,
 	Link,
-} from "@/components/shared";
-import { LinearGradient } from "expo-linear-gradient";
+	Text,
+	ThemedSafeAreaView,
+	Toolbar,
+} from "@/shared/ui";
 import * as Haptics from "expo-haptics";
-
-import { useAuth } from "@/core/hooks/useAuth";
-import { useCards } from "@/core/hooks/useCards";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
-
-import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
-import { PaymentNetworkImg } from "@/core/config/payment";
+import { LinearGradient } from "expo-linear-gradient";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const CardsScreen: React.FC = () => {
-	const { user } = useAuth();
+	const { session } = useSession();
 
-	if (user === null) {
+	if (!session) {
 		return;
 	}
 

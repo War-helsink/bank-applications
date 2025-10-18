@@ -1,29 +1,27 @@
-import { Container, ThemedSafeAreaView } from "@/components/shared";
+import { useSession } from "@/entities/session";
+import type { UserType } from "@/entities/user";
 import {
 	SearchFriendInput,
 	SelectFriends,
 	YourFriends,
-} from "@/components/features/friend";
-
-import { useState } from "react";
-import { useAuth } from "@/core/hooks/useAuth";
+} from "@/features/friend";
 import {
-	useSearchFriends,
-	useRefetchFriends,
 	useGetFriends,
-} from "@/core/hooks/useFriends";
-
-import type { UserProfile } from "@/core/entities/user";
+	useRefetchFriends,
+	useSearchFriends,
+} from "@/entities/friends";
+import { Container, ThemedSafeAreaView } from "@/shared/ui";
+import { useState } from "react";
 
 const FriendsScreen: React.FC = () => {
-	const { user } = useAuth();
+	const { session } = useSession();
 	const [searchValue, setSearchValue] = useState<string>();
-	const { searchUsers } = useSearchFriends(user?.uid, searchValue);
-	const refetch = useRefetchFriends(user?.uid);
+	const { searchUsers } = useSearchFriends(session?.uid, searchValue);
+	const refetch = useRefetchFriends(session?.uid);
 
-	const { friends } = useGetFriends(user?.uid);
+	const { friends } = useGetFriends(session?.uid);
 
-	const addNewFriend = (user: UserProfile) => {
+	const addNewFriend = (user: UserType) => {
 		if (!friends) {
 			return;
 		}
