@@ -2,7 +2,7 @@ import { G, Path, Svg, type SvgProps } from "react-native-svg";
 
 export const MastercardIcon: React.FC<SvgProps> = (props) => {
 	return (
-		<Svg width="24" height="24" fill="none" {...props}>
+		<Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
 			<G fill="none" fillRule="evenodd">
 				<Path d="M1 5h22v14.667H1z" />
 				<Path

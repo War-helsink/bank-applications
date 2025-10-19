@@ -1,5 +1,5 @@
 import { StorageService } from "@/shared/services";
-import * as FileSystem from "expo-file-system";
+import { Directory, Paths, File } from "expo-file-system";
 import { useEffect, useState } from "react";
 
 export const useCachedAvatar = (uid: string, uri?: string | null) => {
@@ -17,22 +17,19 @@ export const useCachedAvatar = (uid: string, uri?: string | null) => {
 		const manageImageCache = async () => {
 			try {
 				const imageRef = StorageService.urlInRef(uri);
-				const userDir = new FileSystem.Directory(FileSystem.Paths.cache, uid);
+				const userDir = new Directory(Paths.cache, uid);
 				if (!userDir.exists) {
 					userDir.create({ intermediates: true, idempotent: true });
 				}
 
-				const localFile = new FileSystem.File(userDir, imageRef.name);
+				const localFile = new File(userDir, imageRef.name);
 
 				if (localFile.exists) {
 					setLocalUri(localFile.uri);
 					return;
 				}
 
-				const downloadedFile = await FileSystem.File.downloadFileAsync(
-					uri,
-					localFile,
-				);
+				const downloadedFile = await File.downloadFileAsync(uri, localFile);
 				setLocalUri(downloadedFile.uri);
 			} catch {
 				setLocalUri(null);

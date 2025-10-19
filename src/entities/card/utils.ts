@@ -1,5 +1,6 @@
 import { PaymentNetwork } from "@/shared/config";
 import { getRandomInt, validateLuhn } from "@/shared/helpers";
+import type { Card, CreateCardProps } from "./types";
 
 export function getPrefixPaymentNetwork(
 	paymentNetwork: PaymentNetwork,
@@ -54,4 +55,40 @@ export function generateCVC(): string {
 	}
 
 	return cvv;
+}
+
+export function formatCardNumber(cardNumber: string): string {
+	return cardNumber.replace(/(\d{4})(?=\d)/g, "$1 ");
+}
+
+export function maskCardNumberEnd(cardNumber: string): string {
+	const parts = formatCardNumber(cardNumber).split(" ");
+	return `**** ${parts[3]}`;
+}
+
+export function maskCardNumberMiddle(cardNumber: string): string {
+	const parts = formatCardNumber(cardNumber).split(" ");
+	return `**** ${parts[1]} ****`;
+}
+
+export function generateCard({
+	uid,
+	cardType,
+	paymentNetwork,
+	currency,
+}: CreateCardProps): Card {
+	const cardNumber = generateCardNumber(paymentNetwork);
+	return {
+		id: cardNumber,
+
+		uid,
+		balance: 0,
+		cardNumber,
+		cardType,
+		currency,
+		paymentNetwork,
+		createdAt: new Date(),
+		expirationDate: generateExpirationDate(),
+		cvc: generateCVC(),
+	};
 }

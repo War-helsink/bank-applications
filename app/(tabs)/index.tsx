@@ -11,7 +11,7 @@ const HomeScreen: React.FC = () => {
 	return (
 		<ThemedSafeAreaView className="h-full w-full" edges={["top"]}>
 			<Header />
-			<ScrollView>
+			<ScrollView showsVerticalScrollIndicator={false}>
 				<Container>
 					<CardsView />
 					<OperationsBlock />

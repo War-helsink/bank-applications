@@ -2,10 +2,9 @@ import { useSession } from "@/entities/session";
 import { CardDemo } from "@/features/card";
 import { CardCurrency } from "@/features/currency";
 import { PaymentSystem } from "@/features/payment";
-import type { CardType } from "@/entities/card";
+import { useCreateCard, type CardType } from "@/entities/card";
 import { Currency } from "@/shared/config/currency";
 import { PaymentNetwork } from "@/shared/config/payment";
-import { Card } from "@/entities/card";
 import { useLoader } from "@/shared/hooks/useLoader";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import {
@@ -15,21 +14,16 @@ import {
 	ThemedSafeAreaView,
 } from "@/shared/ui";
 import { useRoute } from "@react-navigation/native";
-import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
-import Toast from "react-native-toast-message";
 
 const CardCreationScreen: React.FC = () => {
 	const { session } = useSession();
 
-	if (!session) {
-		return null;
-	}
-
 	const route = useRoute();
 	const router = useRouter();
+	const { mutate: createCard } = useCreateCard();
 	const { showLoader, hideLoader } = useLoader();
 	const { cardType } = route.params as { cardType: CardType };
 
@@ -41,36 +35,21 @@ const CardCreationScreen: React.FC = () => {
 
 	const [activeCurrency, setActiveCurrency] = useState(Currency.UAH);
 
-	const creatingCard = async () => {
+	if (!session) {
+		return null;
+	}
+
+	const creatingCard = () => {
 		showLoader();
-		try {
-			const card = new Card({
-				uid: user.uid,
-				currency: activeCurrency,
-				paymentNetwork: activePaymentSystem,
-				cardType: cardType,
-			});
+		createCard({
+			uid: session.uid,
+			cardType,
+			paymentNetwork: activePaymentSystem,
+			currency: activeCurrency,
+		});
 
-			await card.create();
-
-			hideLoader();
-
-			notificationAsync(NotificationFeedbackType.Success);
-
-			Toast.show({
-				type: "success",
-				text1: "The map has been successfully created.",
-			});
-
-			router.replace("/");
-		} catch (_) {
-			notificationAsync(NotificationFeedbackType.Error);
-			Toast.show({
-				type: "error",
-				text1: "Error creating map",
-			});
-			hideLoader();
-		}
+		hideLoader();
+		router.replace("/");
 	};
 
 	return (

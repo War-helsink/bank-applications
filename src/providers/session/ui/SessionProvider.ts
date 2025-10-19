@@ -1,3 +1,4 @@
+import { mapFirebaseSession } from "@/entities/session";
 import { BASE_QUERY_KEY } from "@/shared/config";
 import { auth } from "@/shared/utils/firebase";
 import { useQueryClient } from "@tanstack/react-query";
@@ -11,10 +12,11 @@ export const SessionProvider: React.FC<React.PropsWithChildren> = ({
 	const queryClient = useQueryClient();
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, async () => {
-			await queryClient.invalidateQueries({
-				queryKey: [BASE_QUERY_KEY.session],
-			});
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			queryClient.setQueryData(
+				[BASE_QUERY_KEY.session],
+				mapFirebaseSession(user),
+			);
 			setIsInitialized(true);
 		});
 		return () => unsubscribe();

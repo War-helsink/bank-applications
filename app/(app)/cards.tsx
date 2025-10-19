@@ -1,7 +1,11 @@
 import { useSession } from "@/entities/session";
 import { PaymentNetworkImg } from "@/shared/config";
-import { CardTypeDisplayNames, CardTypeGradients } from "@/entities/card";
-import { useCards } from "@/shared/hooks/useCards";
+import {
+	CardTypeDisplayNames,
+	CardTypeGradients,
+	maskCardNumberMiddle,
+	useCards,
+} from "@/entities/card";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import {
 	Container,
@@ -17,15 +21,15 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 const CardsScreen: React.FC = () => {
 	const { session } = useSession();
 
-	if (!session) {
-		return;
-	}
-
 	const backgroundColor = useThemeColor("medium");
 	const borderColor = useThemeColor("borderInput");
 	const color = useThemeColor("primary");
 
-	const cards = useCards();
+	const { cards } = useCards();
+
+	if (!session) {
+		return;
+	}
 
 	return (
 		<ThemedSafeAreaView className="w-full h-full" edges={["bottom"]}>
@@ -39,7 +43,7 @@ const CardsScreen: React.FC = () => {
 							</Link>
 						</View>
 						<View>
-							{cards.map((card) => {
+							{cards?.map((card) => {
 								const SVG = PaymentNetworkImg[card.paymentNetwork];
 
 								return (
@@ -83,7 +87,7 @@ const CardsScreen: React.FC = () => {
 											<View className="flex-row items-center">
 												<SVG width={32} height={32} />
 												<Text className="ml-2 text-xs">
-													{card.maskCardNumberMiddle}
+													{maskCardNumberMiddle(card.cardNumber)}
 												</Text>
 											</View>
 											<Text className="text-sm font-medium">

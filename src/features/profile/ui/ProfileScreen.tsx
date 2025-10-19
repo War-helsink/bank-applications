@@ -22,25 +22,21 @@ export const ProfileScreen: React.FC = () => {
 	const [changes, setChanges] = useState(false);
 	const { showLoader, hideLoader } = useLoader();
 
-	if (!user) {
-		return;
-	}
-
 	const [avatarInfo, setAvatarInfo] = useState<{
 		avatarUrl: string | null;
 		name: string | null;
 	}>({
-		avatarUrl: user.avatarUrl,
+		avatarUrl: user?.avatarUrl ?? null,
 		name: null,
 	});
 
 	const [data, setData] = useState({
-		firstName: user.firstName,
-		secondName: user.secondName,
-		lastName: user.lastName,
+		firstName: user?.firstName ?? "",
+		secondName: user?.secondName ?? "",
+		lastName: user?.lastName ?? "",
 
-		phone: user.phone,
-		email: user.email,
+		phone: user?.phone ?? "",
+		email: user?.email ?? "",
 	});
 
 	const setDate = (value: string, key: keyof typeof data) => {
@@ -48,7 +44,13 @@ export const ProfileScreen: React.FC = () => {
 		newData[key] = value;
 		setData(newData);
 
-		const { firstName, secondName, lastName, phone, email } = user;
+		const {
+			firstName = "",
+			secondName = "",
+			lastName = "",
+			phone = "",
+			email = "",
+		} = user ?? {};
 
 		setChanges(
 			hasObjectChanged(newData, {
@@ -63,21 +65,25 @@ export const ProfileScreen: React.FC = () => {
 
 	const cancel = useCallback(() => {
 		setData({
-			firstName: user.firstName,
-			secondName: user.secondName,
-			lastName: user.lastName,
+			firstName: user?.firstName ?? "",
+			secondName: user?.secondName ?? "",
+			lastName: user?.lastName ?? "",
 
-			phone: user.phone,
-			email: user.email,
+			phone: user?.phone ?? "",
+			email: user?.email ?? "",
 		});
 		setAvatarInfo({
-			avatarUrl: user.avatarUrl,
+			avatarUrl: user?.avatarUrl ?? null,
 			name: null,
 		});
 		setChanges(false);
 	}, [user]);
 
 	const save = async () => {
+		if (!user) {
+			return;
+		}
+
 		if (changes) {
 			let newUserData: Partial<UserType> = { ...data };
 
@@ -87,7 +93,9 @@ export const ProfileScreen: React.FC = () => {
 				const avatarStorageService = new StorageService(`avatar/${user.id}`);
 
 				if (user.avatarUrl && user.avatarUrl.length > 0) {
-					await avatarStorageService.deleteFile(user.avatarUrl);
+					await avatarStorageService
+						.deleteFile(user.avatarUrl)
+						.catch(() => null);
 				}
 
 				const newAvatarUrl = await avatarStorageService.uploadImageAsync(

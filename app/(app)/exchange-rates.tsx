@@ -14,7 +14,10 @@ const ExchangeRatesScreen: React.FC = () => {
 
 	return (
 		<ThemedSafeAreaView className="h-full w-full" edges={["bottom"]}>
-			<ScrollRefreshControl callback={refetch}>
+			<ScrollRefreshControl
+				showsVerticalScrollIndicator={false}
+				callback={refetch}
+			>
 				<Container className="mb-6">
 					<ExchangeRatesBlock
 						exchangeRates={exchangeRates.filter((exchangeRate) =>

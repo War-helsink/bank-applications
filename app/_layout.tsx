@@ -1,4 +1,4 @@
-import { CardsProvider } from "@/providers/CardsProvider";
+import { CardsProvider } from "@/providers/card";
 import { LoaderProvider } from "@/providers/loader";
 import { QueryProvider } from "@/providers/query";
 import { SessionProvider } from "@/providers/session";
