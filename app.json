@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "bank-applications-54",
-    "slug": "bank-applications-54",
+    "name": "bank-applications",
+    "slug": "bank-applications",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "bankapplications54",
+    "scheme": "bank-applications",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -44,6 +44,17 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "20d6a692-7139-4252-8e9c-d1653004fccc"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/20d6a692-7139-4252-8e9c-d1653004fccc"
     }
   }
 }
