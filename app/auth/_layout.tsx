@@ -1,13 +1,13 @@
+import { useSession } from "@/entities/session";
+import { Container, ThemedSafeAreaView } from "@/shared/ui";
+import { Redirect, Slot } from "expo-router";
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { Container, ThemedSafeAreaView } from "@/components/shared";
-import { useAuth } from "@/core/hooks/useAuth";
-import { Slot, Redirect } from "expo-router";
 
 const AuthLayout: React.FC = () => {
-	const { user } = useAuth();
+	const { session } = useSession();
 
-	if (user) {
-		return <Redirect href="/(tabs)/" />;
+	if (session) {
+		return <Redirect href="/(tabs)" />;
 	}
 
 	return (

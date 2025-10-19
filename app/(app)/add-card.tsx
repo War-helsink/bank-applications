@@ -1,9 +1,7 @@
-import { Container, ThemedSafeAreaView, Toolbar, Text } from "@/components/shared";
-import { CardTypeList } from "@/components/widgets/card";
-
+import type { CardType } from "@/entities/card";
+import { Container, Text, ThemedSafeAreaView, Toolbar } from "@/shared/ui";
+import { CardTypeList } from "@/widgets/card";
 import { useNavigation } from "@react-navigation/native";
-
-import type { CardType } from "@/core/config/card";
 
 const AddCardScreen: React.FC = () => {
 	const navigation = useNavigation();

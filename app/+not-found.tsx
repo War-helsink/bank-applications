@@ -1,21 +1,22 @@
 import { Link, Stack } from "expo-router";
+import type React from "react";
 import { StyleSheet } from "react-native";
 
-import { Text, ThemedSafeAreaView } from "@/components/shared";
+import { Text, ThemedSafeAreaView } from "@/shared/ui";
 
-export default function NotFoundScreen() {
+const NotFoundScreen: React.FC = () => {
 	return (
 		<>
 			<Stack.Screen options={{ title: "Oops!" }} />
 			<ThemedSafeAreaView style={styles.container}>
-				<Text className="text-4xl font-bold">This screen doesn't exist.</Text>
+				<Text className="text-4xl font-bold">This screen doesn&apos;t exist.</Text>
 				<Link href="/" style={styles.link}>
 					<Text className="text-base">Go to home screen!</Text>
 				</Link>
 			</ThemedSafeAreaView>
 		</>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -29,3 +30,5 @@ const styles = StyleSheet.create({
 		paddingVertical: 15,
 	},
 });
+
+export default NotFoundScreen;

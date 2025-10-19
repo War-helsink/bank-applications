@@ -1,21 +1,25 @@
+import { ExchangeRates } from "@/entities/exchange-rates";
+import { YourFriends } from "@/features/friend";
+import { InformationBlock } from "@/features/information";
+import { OperationsBlock } from "@/features/money-transfer";
+import { Container, ThemedSafeAreaView } from "@/shared/ui";
+import { CardsView } from "@/widgets/card";
+import { Header } from "@/widgets/header";
 import { ScrollView } from "react-native";
-import { ThemedSafeAreaView, Container } from "@/components/shared";
-import { Header } from "@/components/widgets/header";
-import { CardsView } from "@/components/widgets/card";
-import { OperationsBlock } from "@/components/widgets/operations";
-import { InformationBlock } from "@/components/widgets/information";
 
 const HomeScreen: React.FC = () => {
 	return (
 		<ThemedSafeAreaView className="h-full w-full" edges={["top"]}>
-				<Header />
-				<ScrollView>
-					<Container>
-						<CardsView />
-						<OperationsBlock />
-						<InformationBlock />
-					</Container>
-				</ScrollView>
+			<Header />
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<Container>
+					<CardsView />
+					<OperationsBlock />
+					<YourFriends title="QUICK MONEY TRANSFER" linkFriends linkTransfer />
+					<ExchangeRates />
+					<InformationBlock />
+				</Container>
+			</ScrollView>
 		</ThemedSafeAreaView>
 	);
 };

@@ -1,20 +1,18 @@
-import { ScrollView } from "react-native";
-import { ThemedSafeAreaView, Container, Text } from "@/components/shared";
-import { Header } from "@/components/widgets/header";
-import { Menu } from "@/components/widgets/menu";
-import { ExchangeRatesBlock } from "@/components/features/exchange-rates";
+import { ExchangeRates } from "@/entities/exchange-rates";
+import { Container, Text, ThemedSafeAreaView } from "@/shared/ui";
+import { Header } from "@/widgets/header";
+import { Menu } from "@/widgets/menu";
 import Constants from "expo-constants";
+import { ScrollView } from "react-native";
 
 const MoreScreen: React.FC = () => {
 	return (
 		<ThemedSafeAreaView className="h-full w-full" edges={["top"]}>
 			<Header />
 			<Container className="flex-1">
-				<Text className="py-2 text-xl font-bold">
-					More
-				</Text>
+				<Text className="py-2 text-xl font-bold">More</Text>
 				<ScrollView className="flex-1">
-					<ExchangeRatesBlock />
+					<ExchangeRates />
 					<Menu />
 				</ScrollView>
 				<Text className="text-center opacity-50 my-4">

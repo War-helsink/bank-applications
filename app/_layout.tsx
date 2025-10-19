@@ -1,28 +1,24 @@
+import { CardsProvider } from "@/providers/card";
+import { LoaderProvider } from "@/providers/loader";
+import { QueryProvider } from "@/providers/query";
+import { SessionProvider } from "@/providers/session";
+import { useColorScheme } from "@/shared/hooks/useColorScheme";
+import { Toast } from "@/shared/ui";
 import {
 	DarkTheme,
 	DefaultTheme,
 	ThemeProvider,
 } from "@react-navigation/native";
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-
-import { Toast } from "@/components/shared";
-import { AuthProvider } from "@/core/providers/AuthProvider";
-import { CardsProvider } from "@/core/providers/CardsProvider";
-import { LoaderProvider } from "@/core/providers/LoaderProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { useFonts } from "expo-font";
-import { useColorScheme } from "@/core/hooks/useColorScheme";
-
 import "react-native-reanimated";
 import "../global.css";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
-const queryClient = new QueryClient();
 
 const RootLayout: React.FC = () => {
 	const colorScheme = useColorScheme();
@@ -43,8 +39,8 @@ const RootLayout: React.FC = () => {
 
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-			<QueryClientProvider client={queryClient}>
-				<AuthProvider>
+			<QueryProvider>
+				<SessionProvider>
 					<CardsProvider>
 						<LoaderProvider>
 							<Stack>
@@ -56,8 +52,9 @@ const RootLayout: React.FC = () => {
 							</Stack>
 						</LoaderProvider>
 					</CardsProvider>
-				</AuthProvider>
-			</QueryClientProvider>
+				</SessionProvider>
+			</QueryProvider>
+			<StatusBar style="auto" />
 			<Toast />
 		</ThemeProvider>
 	);

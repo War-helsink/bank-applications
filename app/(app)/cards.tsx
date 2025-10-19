@@ -1,33 +1,35 @@
-import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { useSession } from "@/entities/session";
+import { PaymentNetworkImg } from "@/shared/config";
 import {
-	ThemedSafeAreaView,
+	CardTypeDisplayNames,
+	CardTypeGradients,
+	maskCardNumberMiddle,
+	useCards,
+} from "@/entities/card";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
+import {
 	Container,
-	Toolbar,
-	Text,
 	Link,
-} from "@/components/shared";
-import { LinearGradient } from "expo-linear-gradient";
+	Text,
+	ThemedSafeAreaView,
+	Toolbar,
+} from "@/shared/ui";
 import * as Haptics from "expo-haptics";
-
-import { useAuth } from "@/core/hooks/useAuth";
-import { useCards } from "@/core/hooks/useCards";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
-
-import { CardTypeGradients, CardTypeDisplayNames } from "@/core/config/card";
-import { PaymentNetworkImg } from "@/core/config/payment";
+import { LinearGradient } from "expo-linear-gradient";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const CardsScreen: React.FC = () => {
-	const { user } = useAuth();
-
-	if (user === null) {
-		return;
-	}
+	const { session } = useSession();
 
 	const backgroundColor = useThemeColor("medium");
 	const borderColor = useThemeColor("borderInput");
 	const color = useThemeColor("primary");
 
-	const cards = useCards();
+	const { cards } = useCards();
+
+	if (!session) {
+		return;
+	}
 
 	return (
 		<ThemedSafeAreaView className="w-full h-full" edges={["bottom"]}>
@@ -41,7 +43,7 @@ const CardsScreen: React.FC = () => {
 							</Link>
 						</View>
 						<View>
-							{cards.map((card) => {
+							{cards?.map((card) => {
 								const SVG = PaymentNetworkImg[card.paymentNetwork];
 
 								return (
@@ -85,7 +87,7 @@ const CardsScreen: React.FC = () => {
 											<View className="flex-row items-center">
 												<SVG width={32} height={32} />
 												<Text className="ml-2 text-xs">
-													{card.maskCardNumberMiddle}
+													{maskCardNumberMiddle(card.cardNumber)}
 												</Text>
 											</View>
 											<Text className="text-sm font-medium">

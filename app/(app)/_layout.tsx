@@ -1,12 +1,11 @@
-import { Stack, Redirect } from "expo-router";
-import { ButtonBack } from "@/components/features/navigation";
-
-import { useAuth } from "@/core/hooks/useAuth";
+import { useSession } from "@/entities/session";
+import { ButtonBack } from "@/features/navigation";
+import { Redirect, Stack } from "expo-router";
 
 const AppLayout: React.FC = () => {
-	const { user } = useAuth();
+	const { session } = useSession();
 
-	if (!user) {
+	if (!session) {
 		return <Redirect href="/auth" />;
 	}
 
@@ -45,6 +44,14 @@ const AppLayout: React.FC = () => {
 				}}
 			/>
 			<Stack.Screen
+				name="friends"
+				options={{
+					title: "Friends",
+					headerShown: true,
+					headerLeft: () => <ButtonBack />,
+				}}
+			/>
+			<Stack.Screen
 				name="messages"
 				options={{
 					title: "Messages",
@@ -53,18 +60,17 @@ const AppLayout: React.FC = () => {
 				}}
 			/>
 			<Stack.Screen
-				name="profile"
+				name="statistics"
 				options={{
-					title: "Profile",
+					title: "Statistics",
 					headerShown: true,
 					headerLeft: () => <ButtonBack />,
 				}}
 			/>
-
 			<Stack.Screen
-				name="statistics"
+				name="transfer"
 				options={{
-					title: "Statistics",
+					title: "Money transfer",
 					headerShown: true,
 					headerLeft: () => <ButtonBack />,
 				}}

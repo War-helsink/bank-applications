@@ -1,14 +1,13 @@
+import { useSession } from "@/entities/session";
+import { TabBarIcon } from "@/features/navigation";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Redirect, Tabs } from "expo-router";
-import { TabBarIcon } from "@/components/features/navigation";
-
-import { useAuth } from "@/core/hooks/useAuth";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
 
 const TabLayout: React.FC = () => {
 	const tabBarActiveTintColor = useThemeColor("primary");
-	const { user } = useAuth();
+	const { session } = useSession();
 
-	if (!user) {
+	if (!session) {
 		return <Redirect href="/auth" />;
 	}
 

@@ -1,38 +1,29 @@
-import Toast from "react-native-toast-message";
-import { ScrollView, View } from "react-native";
+import { useSession } from "@/entities/session";
+import { CardDemo } from "@/features/card";
+import { CardCurrency } from "@/features/currency";
+import { PaymentSystem } from "@/features/payment";
+import { useCreateCard, type CardType } from "@/entities/card";
+import { Currency } from "@/shared/config/currency";
+import { PaymentNetwork } from "@/shared/config/payment";
+import { useLoader } from "@/shared/hooks/useLoader";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import {
-	Text,
-	Container,
 	ButtonOpacity,
+	Container,
+	Text,
 	ThemedSafeAreaView,
-} from "@/components/shared";
-import { PaymentSystem } from "@/components/features/payment";
-import { CardCurrency } from "@/components/features/currency";
-import { CardDemo } from "@/components/features/card";
-import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
-
-import { useState } from "react";
-import { useAuth } from "@/core/hooks/useAuth";
+} from "@/shared/ui";
 import { useRoute } from "@react-navigation/native";
 import { useRouter } from "expo-router";
-import { useLoader } from "@/core/hooks/useLoader";
-import { useThemeColor } from "@/core/hooks/useThemeColor";
-
-import { PaymentNetwork } from "@/core/config/payment";
-import { Currency } from "@/core/config/currency";
-
-import type { CardType } from "@/core/config/card";
-import { Card } from "@/core/entities/card";
+import { useState } from "react";
+import { ScrollView, View } from "react-native";
 
 const CardCreationScreen: React.FC = () => {
-	const { user } = useAuth();
-
-	if (user === null) {
-		return null;
-	}
+	const { session } = useSession();
 
 	const route = useRoute();
 	const router = useRouter();
+	const { mutate: createCard } = useCreateCard();
 	const { showLoader, hideLoader } = useLoader();
 	const { cardType } = route.params as { cardType: CardType };
 
@@ -44,40 +35,28 @@ const CardCreationScreen: React.FC = () => {
 
 	const [activeCurrency, setActiveCurrency] = useState(Currency.UAH);
 
-	const creatingCard = async () => {
+	if (!session) {
+		return null;
+	}
+
+	const creatingCard = () => {
 		showLoader();
-		try {
-			const card = new Card({
-				uid: user.uid,
-				currency: activeCurrency,
-				paymentNetwork: activePaymentSystem,
-				cardType: cardType,
-			});
+		createCard({
+			uid: session.uid,
+			cardType,
+			paymentNetwork: activePaymentSystem,
+			currency: activeCurrency,
+		});
 
-			await card.create();
-
-			hideLoader();
-
-			notificationAsync(NotificationFeedbackType.Success);
-
-			Toast.show({
-				type: "success",
-				text1: "The map has been successfully created.",
-			});
-
-			router.replace("/");
-		} catch (_) {
-			notificationAsync(NotificationFeedbackType.Error);
-			Toast.show({
-				type: "error",
-				text1: "Error creating map",
-			});
-			hideLoader();
-		}
+		hideLoader();
+		router.replace("/");
 	};
 
 	return (
-		<ThemedSafeAreaView className="h-full w-full flex-1 flex-col" edges={["bottom"]}>
+		<ThemedSafeAreaView
+			className="h-full w-full flex-1 flex-col"
+			edges={["bottom"]}
+		>
 			<Container className="w-full flex-grow">
 				<ScrollView className="w-full">
 					<PaymentSystem
