@@ -6,7 +6,8 @@ export * from "./Carousel";
 export * from "./Container";
 export * from "./CustomModalDrawer";
 export * from "./Field";
-export * from "./FieldOpacity";
+export * from "./FieldClear";
+export * from "./FieldPassword";
 export * from "./icons";
 export * from "./Link";
 export * from "./Loader";
@@ -17,4 +18,3 @@ export * from "./ThemedBottomSheet";
 export * from "./ThemedSafeAreaView";
 export * from "./Toast";
 export * from "./Toolbar";
-

@@ -1,4 +1,4 @@
-import { auth } from "@/shared/utils/firebase";
+import { auth } from "@/shared/utils";
 import type { FirebaseError } from "firebase/app";
 import {
 	createUserWithEmailAndPassword,
@@ -6,7 +6,7 @@ import {
 	signOut,
 } from "firebase/auth";
 
-export const register = (email: string, password: string) =>
+export const signUp = (email: string, password: string) =>
 	createUserWithEmailAndPassword(auth, email, password).catch(
 		(err: FirebaseError) => {
 			switch (err.code) {

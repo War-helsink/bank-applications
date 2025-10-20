@@ -1,7 +1,7 @@
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Field } from "@/shared/ui";
+import { cn } from "@/shared/utils";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import clsx from "clsx";
 import { useState } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 import { Pressable, View } from "react-native";
@@ -28,7 +28,7 @@ export const SupportMessageField: React.FC<SupportMessageFieldProps> = ({
 
 	return (
 		<View
-			className={clsx(
+			className={cn(
 				"flex-row items-center justify-between py-2 px-4",
 				className,
 			)}

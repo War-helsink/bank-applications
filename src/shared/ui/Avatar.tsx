@@ -1,9 +1,9 @@
 import { useCachedAvatar } from "@/shared/hooks/useCached";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import clsx from "clsx";
 import type { StyleProp, ViewStyle } from "react-native";
 import { Image, View } from "react-native";
 import { Text } from "./Text";
+import { cn } from "../utils";
 
 export interface AvatarProps {
 	className?: string;
@@ -30,7 +30,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
 	return (
 		<View
-			className={clsx(
+			className={cn(
 				`rounded-2xl items-center justify-center ${isSmall ? "w-9 h-9" : "w-14 h-14"}`,
 				className,
 			)}

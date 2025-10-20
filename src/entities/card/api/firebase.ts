@@ -10,7 +10,7 @@ import {
 	orderBy,
 } from "firebase/firestore";
 import { CARD_COLLECTION } from "../config/collection";
-import { firestore } from "@/shared/utils/firebase";
+import { firestore } from "@/shared/utils";
 import { cardConverter } from "../lib/converter";
 import type { Card, CreateCardProps } from "../types";
 import { generateCard } from "../utils";

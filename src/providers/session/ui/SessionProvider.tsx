@@ -1,14 +1,13 @@
 import { mapFirebaseSession } from "@/entities/session";
 import { BASE_QUERY_KEY } from "@/shared/config";
-import { auth } from "@/shared/utils/firebase";
+import { auth } from "@/shared/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useEffect, Suspense } from "react";
 
 export const SessionProvider: React.FC<React.PropsWithChildren> = ({
 	children,
 }) => {
-	const [isInitialized, setIsInitialized] = useState(false);
 	const queryClient = useQueryClient();
 
 	useEffect(() => {
@@ -17,10 +16,9 @@ export const SessionProvider: React.FC<React.PropsWithChildren> = ({
 				[BASE_QUERY_KEY.session],
 				mapFirebaseSession(user),
 			);
-			setIsInitialized(true);
 		});
 		return () => unsubscribe();
 	}, [queryClient]);
 
-	return isInitialized ? children : null;
+	return <Suspense fallback={null}>{children}</Suspense>;
 };

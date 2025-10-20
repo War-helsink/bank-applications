@@ -47,7 +47,11 @@ const RootLayout: React.FC = () => {
 								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 								<Stack.Screen name="(app)" options={{ headerShown: false }} />
 								<Stack.Screen name="auth" options={{ headerShown: false }} />
-
+								<Stack.Screen name="policy" options={{ headerShown: false }} />
+								<Stack.Screen
+									name="start"
+									options={{ title: "Start", headerShown: true }}
+								/>
 								<Stack.Screen name="+not-found" />
 							</Stack>
 						</LoaderProvider>

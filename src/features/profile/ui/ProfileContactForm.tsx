@@ -1,4 +1,4 @@
-import { FieldOpacity, Toolbar } from "@/shared/ui";
+import { FieldClear, Toolbar } from "@/shared/ui";
 
 export interface IProfileContactData {
 	phone: string;
@@ -15,13 +15,13 @@ export const ProfileContactForm: React.FC<ProfileContactFormProps> = ({
 }) => {
 	return (
 		<Toolbar className="rounded-xl px-0 py-0">
-			<FieldOpacity
+			<FieldClear
 				placeholder="Email"
 				value={email}
 				onChange={(email) => setDataParam?.(email, "email")}
 			/>
-			<FieldOpacity
-				border={false}
+			<FieldClear
+				className="border-0"
 				placeholder="Phone"
 				value={phone}
 				onChange={(phone) => setDataParam?.(phone, "phone")}

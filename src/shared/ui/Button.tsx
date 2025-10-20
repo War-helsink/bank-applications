@@ -1,10 +1,10 @@
-import clsx from "clsx";
 import type { StyleProp, ViewStyle } from "react-native";
 import { TouchableHighlight } from "react-native";
 
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import type { TypeColors } from "@/shared/types";
 import { Text } from "./Text";
+import { cn } from "../utils";
 
 export interface ButtonProps extends React.PropsWithChildren {
 	className?: string;
@@ -30,7 +30,11 @@ export const Button: React.FC<ButtonProps> = ({
 		<TouchableHighlight
 			onPress={onPress}
 			disabled={disabled}
-			className={clsx("rounded-xl w-full py-3", className)}
+			className={cn(
+				"rounded-xl w-full py-3",
+				disabled && "opacity-75",
+				className,
+			)}
 			style={[{ backgroundColor }, style]}
 			underlayColor={underlayColor}
 		>

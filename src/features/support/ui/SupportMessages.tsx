@@ -3,11 +3,11 @@ import { formatDateChat } from "@/shared/helpers";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Container, Text } from "@/shared/ui";
-import clsx from "clsx";
 import { useMemo } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
 import { SupportMessage } from "./SupportMessage";
+import { cn } from "@/shared/utils";
 
 export interface SupportMessagesProps {
 	className?: string;
@@ -54,7 +54,7 @@ export const SupportMessages: React.FC<SupportMessagesProps> = ({
 			style={isDark ? styles.backgroundColorDark : styles.backgroundColorLight}
 			imageStyle={styles.image}
 		>
-			<Container className={clsx(className)} style={style}>
+			<Container className={cn(className)} style={style}>
 				<FlatList
 					inverted
 					contentContainerStyle={{ flexDirection: "column-reverse" }}

@@ -1,5 +1,5 @@
 import type { Url, Urls } from "@/shared/types";
-import { storage } from "@/shared/utils/firebase";
+import { storage } from "@/shared/utils";
 import {
 	deleteObject,
 	getBlob,

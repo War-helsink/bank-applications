@@ -1,4 +1,4 @@
-import { firestore } from "@/shared/utils/firebase";
+import { firestore } from "@/shared/utils";
 import type {
 	CollectionReference,
 	DocumentData,

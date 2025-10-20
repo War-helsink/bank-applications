@@ -4,9 +4,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Haptics from "expo-haptics";
 import { FirebaseError } from "firebase/app";
 import Toast from "react-native-toast-message";
-import { register } from "../api";
+import { signUp } from "../api";
 
-export function useRegister() {
+export function useSignUp() {
 	const queryClient = useQueryClient();
 
 	return useMutation({
@@ -18,7 +18,7 @@ export function useRegister() {
 			password: string;
 		}) => {
 			try {
-				const { user } = await register(email, password);
+				const { user } = await signUp(email, password);
 
 				await createUser({ uid: user.uid, email, password });
 			} catch (err) {

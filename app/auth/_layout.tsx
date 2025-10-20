@@ -1,7 +1,5 @@
+import { Redirect, Stack } from "expo-router";
 import { useSession } from "@/entities/session";
-import { Container, ThemedSafeAreaView } from "@/shared/ui";
-import { Redirect, Slot } from "expo-router";
-import { KeyboardAvoidingView, Platform } from "react-native";
 
 const AuthLayout: React.FC = () => {
 	const { session } = useSession();
@@ -11,16 +9,16 @@ const AuthLayout: React.FC = () => {
 	}
 
 	return (
-		<ThemedSafeAreaView className="h-full w-full">
-			<KeyboardAvoidingView
-				className="h-full w-full"
-				behavior={Platform.OS === "ios" ? "padding" : "height"}
-			>
-				<Container className="w-full h-full justify-center items-center">
-					<Slot />
-				</Container>
-			</KeyboardAvoidingView>
-		</ThemedSafeAreaView>
+		<Stack>
+			<Stack.Screen
+				name="login"
+				options={{ headerShown: false, animation: "none" }}
+			/>
+			<Stack.Screen
+				name="signup"
+				options={{ headerShown: false, animation: "none" }}
+			/>
+		</Stack>
 	);
 };
 

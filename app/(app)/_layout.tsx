@@ -6,7 +6,7 @@ const AppLayout: React.FC = () => {
 	const { session } = useSession();
 
 	if (!session) {
-		return <Redirect href="/auth" />;
+		return <Redirect href="/auth/login" />;
 	}
 
 	return (

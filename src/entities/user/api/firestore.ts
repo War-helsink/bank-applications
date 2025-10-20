@@ -10,7 +10,7 @@ import {
 	where,
 } from "firebase/firestore";
 import { USER_COLLECTION } from "../config";
-import { firestore } from "@/shared/utils/firebase";
+import { firestore } from "@/shared/utils";
 import { userConverter } from "../lib/converter";
 import { intiUserData } from "../utils";
 import type { CreateUserPayload, UserType } from "../types";
