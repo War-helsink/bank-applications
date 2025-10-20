@@ -12,7 +12,6 @@ export * from "./icons";
 export * from "./Link";
 export * from "./Loader";
 export * from "./ScrollRefreshControl";
-export * from "./SkeletonLoader";
 export * from "./Text";
 export * from "./ThemedBottomSheet";
 export * from "./ThemedSafeAreaView";
