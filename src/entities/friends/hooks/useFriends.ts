@@ -17,7 +17,7 @@ export function useSearchFriends(uid?: string, searchValue?: string) {
 				return getSearchUsers(debouncedSearchValue).then((searchUsers) => {
 					return searchUsers.filter((searchUser) => searchUser.id !== uid);
 				});
-			} catch (err) {
+			} catch {
 				return [];
 			}
 		},
@@ -37,7 +37,7 @@ export const useGetFriends = (uid?: string) => {
 		queryFn: async () => {
 			try {
 				return await Friends.get<Friends>(uid as string);
-			} catch (err) {
+			} catch {
 				const data = new Friends({
 					id: uid,
 				});

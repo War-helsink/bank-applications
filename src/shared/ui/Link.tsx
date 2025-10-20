@@ -1,13 +1,13 @@
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import clsx from "clsx";
 import { ImpactFeedbackStyle, impactAsync } from "expo-haptics";
 import { type Href, useRouter } from "expo-router";
 import { TouchableOpacity, type TouchableOpacityProps } from "react-native";
+import { cn } from "../utils";
 
 export interface LinkProps extends TouchableOpacityProps {
 	href?: Href;
 	button?: boolean;
-	routerType?: "push" | "replace";
+	routerType?: "push" | "replace" | "navigate";
 	haptics?: boolean;
 	typeHaptics?: ImpactFeedbackStyle;
 }
@@ -41,9 +41,12 @@ export const Link: React.FC<LinkProps> = ({
 					case "replace": {
 						return router.replace(href);
 					}
+					case "navigate": {
+						return router.navigate(href);
+					}
 				}
 			}}
-			className={clsx(
+			className={cn(
 				{ "p-2.5 rounded-xl justify-center items-center": button },
 				className,
 			)}

@@ -1,13 +1,15 @@
-import BottomSheet, { type BottomSheetProps } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+	BottomSheetView,
+	type BottomSheetProps,
+} from "@gorhom/bottom-sheet";
 
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 
 export interface ThemedBottomSheetProps extends BottomSheetProps {
-	ref: React.RefObject<BottomSheet>;
+	ref?: React.RefObject<BottomSheet>;
 }
 
 export const ThemedBottomSheet: React.FC<ThemedBottomSheetProps> = ({
-	ref,
 	...props
 }) => {
 	const backgroundColor = useThemeColor("toolbarBackground");
@@ -15,11 +17,11 @@ export const ThemedBottomSheet: React.FC<ThemedBottomSheetProps> = ({
 
 	return (
 		<BottomSheet
-			ref={ref}
 			{...props}
 			backgroundStyle={{ backgroundColor }}
 			handleIndicatorStyle={{ backgroundColor: indicatorColor }}
-		/>
+		>
+			<BottomSheetView className="flex-1">{props.children}</BottomSheetView>
+		</BottomSheet>
 	);
 };
-

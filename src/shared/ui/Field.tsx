@@ -1,41 +1,29 @@
-import clsx from "clsx";
-import type { StyleProp, TextStyle } from "react-native";
+import type { TextInputProps } from "react-native";
 import { TextInput } from "react-native";
 
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
+import { cn } from "../utils";
 
-export interface FieldProps {
-	className?: string;
+export interface FieldProps extends Omit<TextInputProps, "onChange"> {
 	onChange?: (value: string) => void;
-	style?: StyleProp<TextStyle>;
-	value?: string;
-	placeholder?: string;
-	multiline?: boolean;
-	isSecure?: boolean;
 }
 
 export const Field: React.FC<FieldProps> = ({
 	className,
-	value,
 	style,
 	onChange,
-	placeholder,
-	multiline,
-	isSecure,
+	...props
 }) => {
 	const color = useThemeColor("text");
 	const borderColor = useThemeColor("borderInput");
 
 	return (
 		<TextInput
-			placeholder={placeholder}
 			onChangeText={onChange}
-			value={value}
-			multiline={multiline}
-			secureTextEntry={isSecure}
 			placeholderTextColor={borderColor}
-			className={clsx("rounded-xl p-3 border border-solid", className)}
+			className={cn("rounded-xl p-3 border border-solid", className)}
 			style={[{ color, borderColor }, style]}
+			{...props}
 		/>
 	);
 };

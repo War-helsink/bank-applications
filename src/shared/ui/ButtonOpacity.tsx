@@ -1,9 +1,9 @@
-import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import type { TypeColors } from "@/shared/types";
-import clsx from "clsx";
 import type { StyleProp, ViewStyle } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
+import type { TypeColors } from "@/shared/types";
 import { Text } from "./Text";
+import { cn } from "../utils";
 
 export interface ButtonOpacityProps extends React.PropsWithChildren {
 	className?: string;
@@ -28,7 +28,7 @@ export const ButtonOpacity: React.FC<ButtonOpacityProps> = ({
 		<TouchableOpacity
 			onPress={onPress}
 			disabled={disabled}
-			className={clsx("rounded-xl w-full py-3", className)}
+			className={cn("rounded-xl w-full py-3", className)}
 			style={[{ backgroundColor }, style]}
 		>
 			<Text className="text-center" style={{ color: color }}>

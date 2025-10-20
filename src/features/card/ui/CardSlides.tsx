@@ -21,13 +21,19 @@ export const CardSlides: React.FC = () => {
 			renderItem={({ item }) => {
 				if (item.createCard) {
 					return (
-						<View className="w-full h-full justify-center items-center">
+						<View
+							key="create-card"
+							className="w-full h-full justify-center items-center"
+						>
 							<CreateCardItem width={cardWidth} height={cardHeight} />
 						</View>
 					);
 				}
 				return (
-					<View className="w-full h-full justify-center items-center">
+					<View
+						key={item.id}
+						className="w-full h-full justify-center items-center"
+					>
 						<CardItem width={cardWidth} height={cardHeight} card={item} />
 					</View>
 				);

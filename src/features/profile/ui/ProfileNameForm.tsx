@@ -1,4 +1,4 @@
-import { FieldOpacity, Toolbar } from "@/shared/ui";
+import { FieldClear, Toolbar } from "@/shared/ui";
 
 export interface IProfileNameData {
 	firstName: string;
@@ -18,18 +18,18 @@ export const ProfileNameForm: React.FC<ProfileNameFormProps> = ({
 }) => {
 	return (
 		<Toolbar className="rounded-xl px-0 py-0">
-			<FieldOpacity
+			<FieldClear
 				value={firstName}
 				onChange={(firstName) => setDataParam?.(firstName, "firstName")}
 				placeholder="First name"
 			/>
-			<FieldOpacity
+			<FieldClear
 				value={secondName}
 				onChange={(secondName) => setDataParam?.(secondName, "secondName")}
 				placeholder="Second name"
 			/>
-			<FieldOpacity
-				border={false}
+			<FieldClear
+				className="border-0"
 				value={lastName}
 				onChange={(lastName) => setDataParam?.(lastName, "lastName")}
 				placeholder="Last name"
