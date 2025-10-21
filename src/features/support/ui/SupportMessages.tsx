@@ -46,8 +46,8 @@ export const SupportMessages: React.FC<SupportMessagesProps> = ({
 		<ImageBackground
 			source={
 				isDark
-					? require("../../../../assets/images/support/chat-bg-dark.png")
-					: require("../../../../assets/images/support/chat-bg-light.png")
+					? require("@assets/images/support/chat-bg-dark.png")
+					: require("@assets/images/support/chat-bg-light.png")
 			}
 			className="flex-1"
 			resizeMode="repeat"

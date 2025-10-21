@@ -42,7 +42,7 @@ export const SignUpForm: React.FC = () => {
 				<Text className="text-center text-4xl font-bold">
 					Create an account
 				</Text>
-				<Link href="/auth/login">
+				<Link href="/(unauthenticated)/auth/login">
 					<Text className="text-center text-base">
 						Already have an account?{" "}
 						<Text style={{ color: linkColor }}>Login</Text>
@@ -118,7 +118,7 @@ export const SignUpForm: React.FC = () => {
 				<Text className="text-center text-sm font-light">
 					By clicking continue, you agree to our{" "}
 					<LickText
-						href="/policy/terms-of-service"
+						href="/(unauthenticated)/policy/terms-of-service"
 						className="underline"
 						style={{ color: linkColor }}
 					>
@@ -126,7 +126,7 @@ export const SignUpForm: React.FC = () => {
 					</LickText>{" "}
 					and{" "}
 					<LickText
-						href="/policy/privacy-policy"
+						href="/(unauthenticated)/policy/privacy-policy"
 						className="underline"
 						style={{ color: linkColor }}
 					>

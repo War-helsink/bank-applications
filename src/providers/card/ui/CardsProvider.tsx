@@ -7,8 +7,8 @@ import { BASE_QUERY_KEY } from "@/shared/config";
 export const CardsProvider: React.FC<React.PropsWithChildren> = ({
 	children,
 }) => {
-	const { session } = useSession();
 	const queryClient = useQueryClient();
+	const { session } = useSession();
 
 	useEffect(() => {
 		if (!session) {

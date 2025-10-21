@@ -108,18 +108,24 @@ export const LoginForm: React.FC = () => {
 
 				<Text className="text-center text-sm font-light opacity-50">
 					By clicking continue, you agree to our{" "}
-					<LickText href="/policy/terms-of-service" className="underline">
+					<LickText
+						href="/(unauthenticated)/policy/terms-of-service"
+						className="underline"
+					>
 						Terms of Service
 					</LickText>{" "}
 					and{" "}
-					<LickText href="/policy/privacy-policy" className="underline">
+					<LickText
+						href="/(unauthenticated)/policy/privacy-policy"
+						className="underline"
+					>
 						Privacy Policy
 					</LickText>
 					.
 				</Text>
 			</View>
 			<View className="p-6">
-				<Link href="/auth/signup">
+				<Link href="/(unauthenticated)/auth/signup">
 					<Text className="text-center text-base">
 						New to account? <Text style={{ color: linkColor }}>Sign up</Text>
 					</Text>

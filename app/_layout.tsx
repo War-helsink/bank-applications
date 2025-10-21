@@ -11,31 +11,27 @@ import {
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "../global.css";
+import { SplashController } from "@/shared/services";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashController.start();
+SplashController.register("layout");
 
 const RootLayout: React.FC = () => {
 	const colorScheme = useColorScheme();
 
 	const [loaded] = useFonts({
-		SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+		SpaceMono: require("@assets/fonts/SpaceMono-Regular.ttf"),
 	});
 
 	useEffect(() => {
 		if (loaded) {
-			SplashScreen.hideAsync();
+			SplashController.finish("layout");
 		}
 	}, [loaded]);
-
-	if (!loaded) {
-		return null;
-	}
 
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -46,11 +42,9 @@ const RootLayout: React.FC = () => {
 							<Stack>
 								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 								<Stack.Screen name="(app)" options={{ headerShown: false }} />
-								<Stack.Screen name="auth" options={{ headerShown: false }} />
-								<Stack.Screen name="policy" options={{ headerShown: false }} />
 								<Stack.Screen
-									name="start"
-									options={{ title: "Start", headerShown: true }}
+									name="(unauthenticated)"
+									options={{ headerShown: false }}
 								/>
 								<Stack.Screen name="+not-found" />
 							</Stack>
