@@ -1,5 +1,6 @@
 import { Redirect, Stack } from "expo-router";
 import { useSession } from "@/entities/session";
+import { ButtonBack } from "@/features/navigation";
 
 const AuthLayout: React.FC = () => {
 	const { session } = useSession();
@@ -9,14 +10,27 @@ const AuthLayout: React.FC = () => {
 	}
 
 	return (
-		<Stack>
+		<Stack
+			screenOptions={{ headerShown: true, headerLeft: () => <ButtonBack /> }}
+		>
+			<Stack.Screen name="login" options={{ headerShown: false }} />
 			<Stack.Screen
-				name="login"
-				options={{ headerShown: false, animation: "none" }}
+				name="confirm-phone"
+				options={{
+					title: "Confirm Phone",
+				}}
+			/>
+			<Stack.Screen
+				name="phone"
+				options={{
+					title: "Phone",
+				}}
 			/>
 			<Stack.Screen
 				name="signup"
-				options={{ headerShown: false, animation: "none" }}
+				options={{
+					title: "Signup",
+				}}
 			/>
 		</Stack>
 	);

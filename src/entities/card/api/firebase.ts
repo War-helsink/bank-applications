@@ -19,7 +19,7 @@ export async function getUserCards(uid: string): Promise<Card[]> {
 	const q = query(
 		collection(firestore, CARD_COLLECTION),
 		where("uid", "==", uid),
-		orderBy("createdAt", "desc"),
+		orderBy("createdAt", "asc"),
 	).withConverter(cardConverter());
 
 	return getDocs(q).then((querySnapshot) => {
@@ -43,7 +43,7 @@ export function subscribeToUserCards(
 	const q = query(
 		collection(firestore, CARD_COLLECTION),
 		where("uid", "==", uid),
-		orderBy("createdAt", "desc"),
+		orderBy("createdAt", "asc"),
 	).withConverter(cardConverter());
 
 	return onSnapshot(q, (querySnapshot) =>

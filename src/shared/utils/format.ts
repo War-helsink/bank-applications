@@ -25,3 +25,7 @@ export function formatDateChat(date: Date): string {
 	}
 	return "Today";
 }
+
+export function formatPhoneNumber(phone: string): string {
+	return `+380 ${phone.slice(0, 2)} ${phone.slice(2, 5)}-${phone.slice(5)}`;
+}

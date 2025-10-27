@@ -1,5 +1,4 @@
 import type { Support } from "@/entities/support";
-import { formatDateChat } from "@/shared/helpers";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Container, Text } from "@/shared/ui";
@@ -7,7 +6,7 @@ import { useMemo } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 import { FlatList, ImageBackground, StyleSheet, View } from "react-native";
 import { SupportMessage } from "./SupportMessage";
-import { cn } from "@/shared/utils";
+import { cn, formatDateChat } from "@/shared/utils";
 
 export interface SupportMessagesProps {
 	className?: string;

@@ -1,19 +1,23 @@
 import type React from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { LoginWidget } from "@/widgets/auth";
 import { ThemedSafeAreaView } from "@/shared/ui";
+import { PhoneWidget } from "@/widgets/auth";
 
-const LoginScreen: React.FC = () => {
+const PhoneScreen: React.FC = () => {
 	return (
-		<ThemedSafeAreaView className="h-full w-full">
+		<ThemedSafeAreaView
+			className="flex-1 w-full"
+			edges={["bottom", "left", "right"]}
+		>
 			<KeyboardAvoidingView
 				className="h-full w-full"
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				keyboardVerticalOffset={100}
 			>
-				<LoginWidget />
+				<PhoneWidget />
 			</KeyboardAvoidingView>
 		</ThemedSafeAreaView>
 	);
 };
 
-export default LoginScreen;
+export default PhoneScreen;

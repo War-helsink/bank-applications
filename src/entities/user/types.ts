@@ -21,4 +21,9 @@ export type CreateUserPayload = {
 	uid: string;
 	email: string;
 	password: string;
+
+	firstName: string;
+	secondName: string;
+	lastName: string;
+	phone: string;
 };

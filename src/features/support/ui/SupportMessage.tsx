@@ -1,8 +1,7 @@
 import type { Support } from "@/entities/support";
-import { formatDateTime } from "@/shared/helpers";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Text } from "@/shared/ui";
-import { cn } from "@/shared/utils";
+import { cn, formatDateTime } from "@/shared/utils";
 import { View } from "react-native";
 
 export interface SupportMessageProps {

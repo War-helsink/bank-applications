@@ -1,10 +1,4 @@
-import { useCallback, useState } from "react";
-import type {
-	BlurEvent,
-	FocusEvent,
-	TextInputProps,
-	ViewProps,
-} from "react-native";
+import type { TextInputProps, ViewProps } from "react-native";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
@@ -21,30 +15,12 @@ export const FieldClear: React.FC<FieldClearProps> = ({
 	style,
 	value,
 	onChange,
-	onFocus,
-	onBlur,
 	clear = true,
 	containerProps,
 	...props
 }) => {
 	const { className: containerClassName, ...otherContainerProps } =
 		containerProps || {};
-	const [isFocused, setIsFocused] = useState(false);
-
-	const onFocusFn = useCallback(
-		(e: FocusEvent) => {
-			setIsFocused(true);
-			onFocus?.(e);
-		},
-		[onFocus],
-	);
-	const onBlurFn = useCallback(
-		(e: BlurEvent) => {
-			setIsFocused(false);
-			onBlur?.(e);
-		},
-		[onBlur],
-	);
 
 	const color = useThemeColor("text");
 	const iconColor = useThemeColor("medium");
@@ -60,12 +36,10 @@ export const FieldClear: React.FC<FieldClearProps> = ({
 				placeholderTextColor={borderColor}
 				className={cn("py-3 flex-1 border-b border-solid pr-8", className)}
 				value={value}
-				onFocus={onFocusFn}
-				onBlur={onBlurFn}
 				style={[{ color, borderColor }, style]}
 				{...props}
 			/>
-			{clear && isFocused && value && value.length > 0 && (
+			{clear && value && value.length > 0 && (
 				<TouchableOpacity
 					onPress={() => onChange?.("")}
 					className={cn("absolute right-4 px-2")}

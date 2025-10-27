@@ -1,50 +1,58 @@
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { ImpactFeedbackStyle, impactAsync } from "expo-haptics";
-import { type Href, useRouter } from "expo-router";
+import {
+	type Href,
+	type Router as ExpoRouterRouter,
+	useRouter,
+} from "expo-router";
 import { TouchableOpacity, type TouchableOpacityProps } from "react-native";
 import { cn } from "../utils";
 
-export interface LinkProps extends TouchableOpacityProps {
-	href?: Href;
+type RouterMethodName = keyof ExpoRouterRouter;
+
+type RouterArgs<K extends RouterMethodName> = Parameters<ExpoRouterRouter[K]>;
+
+export interface LinkBaseProps extends TouchableOpacityProps {
 	button?: boolean;
-	routerType?: "push" | "replace" | "navigate";
 	haptics?: boolean;
 	typeHaptics?: ImpactFeedbackStyle;
 }
 
-export const Link: React.FC<LinkProps> = ({
+export type LinkProps<K extends RouterMethodName = "push"> = LinkBaseProps & {
+	href?: Href;
+	routerType?: K;
+	routerArgs?: RouterArgs<K>;
+};
+
+export function Link<K extends RouterMethodName = "push">({
 	href,
 	className,
 	style,
-	routerType = "push",
+	routerType = "push" as K,
 	button = false,
 	haptics = true,
 	typeHaptics = ImpactFeedbackStyle.Soft,
+	routerArgs,
 	...props
-}) => {
+}: LinkProps<K>) {
 	const backgroundColor = useThemeColor("toolbarBackground");
 	const router = useRouter();
 
 	return (
 		<TouchableOpacity
 			onPress={() => {
-				if (!haptics || !href) {
-					return;
+				if (haptics) {
+					impactAsync(typeHaptics);
 				}
+				const method = router[routerType];
+				if (typeof method !== "function") return;
+				const args: unknown[] = Array.isArray(routerArgs)
+					? (routerArgs as unknown[])
+					: href !== undefined
+						? [href]
+						: [];
 
-				impactAsync(typeHaptics);
-
-				switch (routerType) {
-					case "push": {
-						return router.push(href);
-					}
-					case "replace": {
-						return router.replace(href);
-					}
-					case "navigate": {
-						return router.navigate(href);
-					}
-				}
+				(method as (...args: unknown[]) => void)(...args);
 			}}
 			className={cn(
 				{ "p-2.5 rounded-xl justify-center items-center": button },
@@ -54,4 +62,4 @@ export const Link: React.FC<LinkProps> = ({
 			{...props}
 		/>
 	);
-};
+}

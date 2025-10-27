@@ -1,9 +1,9 @@
 import { useUser } from "@/entities/user";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { Avatar, Link, Text } from "@/shared/ui";
+import { Avatar, Text } from "@/shared/ui";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { ProfileModal } from "./ProfileModal";
 
 export const ProfileLink: React.FC = () => {
@@ -22,7 +22,7 @@ export const ProfileLink: React.FC = () => {
 	};
 
 	return (
-		<Link
+		<TouchableOpacity
 			className="flex-row pr-2 items-center rounded-2xl"
 			onPress={() => setDrawerVisible(true)}
 			style={{ backgroundColor }}
@@ -42,6 +42,6 @@ export const ProfileLink: React.FC = () => {
 			</View>
 
 			<ProfileModal isVisible={isDrawerVisible} onClose={handleCloseDrawer} />
-		</Link>
+		</TouchableOpacity>
 	);
 };

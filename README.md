@@ -1,50 +1,83 @@
-# Welcome to your Expo app 👋
+# Local Development Setup
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Follow these steps to run the project locally. Existing content below remains unchanged.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1) Clone the repository
 
 ```bash
-npm run reset-project
+git clone https://github.com/War-helsink/bank-applications.git
+cd bank-applications
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Repository: [War-helsink/bank-applications](https://github.com/War-helsink/bank-applications)
 
-## Learn more
+### 2) Install dependencies (package managers)
 
-To learn more about developing your project with Expo, look at the following resources:
+- Recommended: Node.js LTS and npm
+- Install project deps (uses the existing package-lock):
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install
+```
 
-## Join the community
+- Optional alternatives (pick one if you prefer):
+  - pnpm
 
-Join our community of developers creating universal apps.
+    ```bash
+    npm install -g pnpm
+    pnpm install
+    ```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+  - Bun
+
+    ```bash
+    curl -fsSL https://bun.sh/install | bash
+    bun install
+    ```
+
+### 3) Firebase setup and environment variables
+
+This app uses Firebase for Auth, Firestore, and Storage.
+
+1. Create a Firebase project and a Web app in the Firebase Console.
+2. Enable the products you need (Authentication, Firestore, Storage).
+3. Create a `.env` file in the project root. You can start from the template:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Fill the values from your Firebase Web app settings. All variables are public and must be prefixed with `EXPO_PUBLIC_` so they are available at runtime in Expo:
+
+```bash
+EXPO_PUBLIC_API_KEY=your_firebase_api_key              # Firebase Web API key
+EXPO_PUBLIC_AUTH_DOMAIN=your_project.firebaseapp.com   # Firebase Auth domain
+EXPO_PUBLIC_PROJECT_ID=your_project_id                 # Firebase Project ID
+EXPO_PUBLIC_STORAGE_BUCKET=your_project.appspot.com    # Firebase Storage bucket
+EXPO_PUBLIC_MESSAGING_SENDER_ID=xxxxxxxxxxxx           # Firebase Sender ID
+EXPO_PUBLIC_APP_ID=1:xxxxxxxxxxxx:web:xxxxxxxxxxxxxxxx # Firebase App ID
+```
+
+Notes:
+- These keys are consumed in the app via `process.env.EXPO_PUBLIC_*`.
+- After editing `.env`, restart the dev server.
+
+### 4) Run the app
+
+- Expo Go (fastest):
+
+  ```bash
+  npm run start
+  ```
+
+  Scan the QR with the Expo Go app on your device or open iOS/Android simulator from the terminal UI.
+
+- Native builds (prebuild + run):
+
+  ```bash
+  npm run prebuild
+  npm run android   # Requires Android Studio / emulator
+  npm run ios       # Requires Xcode and an iOS simulator
+  ```
+
+---

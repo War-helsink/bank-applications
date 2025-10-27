@@ -18,6 +18,11 @@ export function useLogin() {
 		}) => {
 			try {
 				await login(email, password);
+				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+				Toast.show({
+					type: "success",
+					text1: "Login successful",
+				});
 			} catch (err) {
 				if (err instanceof FirebaseError) {
 					Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);

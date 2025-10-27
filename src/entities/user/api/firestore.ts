@@ -58,13 +58,9 @@ export async function updateUser(
 	return await updateDoc(ref, { ...user, updatedAt: new Date() });
 }
 
-export async function createUser({
-	uid,
-	email,
-	password,
-}: CreateUserPayload): Promise<void> {
-	const ref = doc(firestore, USER_COLLECTION, uid).withConverter(
+export async function createUser(data: CreateUserPayload): Promise<void> {
+	const ref = doc(firestore, USER_COLLECTION, data.uid).withConverter(
 		userConverter(),
 	);
-	return await setDoc(ref, intiUserData(uid, email, password));
+	return await setDoc(ref, intiUserData(data));
 }

@@ -1,13 +1,16 @@
+import { useRouter } from "expo-router";
+import { CardTypeList } from "@/widgets/card";
 import type { CardType } from "@/entities/card";
 import { Container, Text, ThemedSafeAreaView, Toolbar } from "@/shared/ui";
-import { CardTypeList } from "@/widgets/card";
-import { useNavigation } from "@react-navigation/native";
 
 const AddCardScreen: React.FC = () => {
-	const navigation = useNavigation();
+	const router = useRouter();
 
 	const onAddNewCard = (cardType: CardType) => {
-		navigation.navigate<any>("card-creating", { cardType });
+		router.navigate({
+			pathname: "/(app)/card-creating",
+			params: { cardType },
+		});
 	};
 
 	return (

@@ -1,7 +1,7 @@
 import type React from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { SignUpForm } from "@/features/auth";
-import { Container, ThemedSafeAreaView } from "@/shared/ui";
+import { SignUpWidget } from "@/widgets/auth";
+import { ThemedSafeAreaView } from "@/shared/ui";
 
 const SignUpScreen: React.FC = () => {
 	return (
@@ -9,10 +9,9 @@ const SignUpScreen: React.FC = () => {
 			<KeyboardAvoidingView
 				className="h-full w-full"
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				keyboardVerticalOffset={100}
 			>
-				<Container className="w-full h-full justify-center items-center">
-					<SignUpForm />
-				</Container>
+				<SignUpWidget />
 			</KeyboardAvoidingView>
 		</ThemedSafeAreaView>
 	);

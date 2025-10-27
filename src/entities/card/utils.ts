@@ -1,5 +1,5 @@
 import { PaymentNetwork } from "@/shared/config";
-import { getRandomInt, validateLuhn } from "@/shared/helpers";
+import { getRandomInt, validateLuhn } from "@/shared/utils";
 import type { Card, CreateCardProps } from "./types";
 
 export function getPrefixPaymentNetwork(

@@ -1,6 +1,6 @@
 import { type UserType, useUpdateUser, useUser } from "@/entities/user";
 import { useLogout } from "@/features/auth";
-import { hasObjectChanged } from "@/shared/helpers";
+import { hasObjectChanged } from "@/shared/utils";
 import { useLoader } from "@/shared/hooks/useLoader";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { StorageService } from "@/shared/services";
@@ -137,8 +137,8 @@ export const ProfileScreen: React.FC = () => {
 					/>
 
 					<AvatarUploader
-						uid={user.id}
-						name={user.lastName}
+						uid={user?.id ?? "default"}
+						name={user?.lastName ?? ""}
 						avatarUrl={avatarInfo.avatarUrl}
 						onChangeAvatar={(avatarInfo) => {
 							setAvatarInfo(avatarInfo);
@@ -161,7 +161,10 @@ export const ProfileScreen: React.FC = () => {
 			</ScrollView>
 
 			<Toolbar className="rounded-xl">
-				<Pressable className="w-full items-center py-2" onPress={logout}>
+				<Pressable
+					className="w-full items-center py-2"
+					onPress={() => logout()}
+				>
 					<View className="flex-row items-center gap-1">
 						<Ionicons name="exit" size={24} color={color} />
 						<Text style={{ color }}>Log out</Text>
