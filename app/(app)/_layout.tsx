@@ -50,12 +50,6 @@ const AppLayout: React.FC = () => {
 				}}
 			/>
 			<Stack.Screen
-				name="photo"
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<Stack.Screen
 				name="statistics"
 				options={{
 					title: "Statistics",
