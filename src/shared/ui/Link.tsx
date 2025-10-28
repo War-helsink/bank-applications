@@ -30,7 +30,6 @@ export function Link<K extends RouterMethodName = "push">({
 	style,
 	routerType = "push" as K,
 	button = false,
-	haptics = true,
 	typeHaptics = ImpactFeedbackStyle.Soft,
 	routerArgs,
 	...props
@@ -41,9 +40,7 @@ export function Link<K extends RouterMethodName = "push">({
 	return (
 		<TouchableOpacity
 			onPress={() => {
-				if (haptics) {
-					impactAsync(typeHaptics);
-				}
+				impactAsync(typeHaptics);
 				const method = router[routerType];
 				if (typeof method !== "function") return;
 				const args: unknown[] = Array.isArray(routerArgs)

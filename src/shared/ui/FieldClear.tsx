@@ -6,7 +6,6 @@ import { cn } from "../utils";
 
 export interface FieldClearProps extends Omit<TextInputProps, "onChange"> {
 	onChange?: (value: string) => void;
-	clear?: boolean;
 	containerProps?: ViewProps;
 }
 
@@ -15,7 +14,6 @@ export const FieldClear: React.FC<FieldClearProps> = ({
 	style,
 	value,
 	onChange,
-	clear = true,
 	containerProps,
 	...props
 }) => {
@@ -39,7 +37,7 @@ export const FieldClear: React.FC<FieldClearProps> = ({
 				style={[{ color, borderColor }, style]}
 				{...props}
 			/>
-			{clear && value && value.length > 0 && (
+			{value && value.length > 0 && (
 				<TouchableOpacity
 					onPress={() => onChange?.("")}
 					className={cn("absolute right-4 px-2")}
