@@ -1,32 +1,32 @@
 import { useCachedAvatar } from "@/shared/hooks/useCached";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import type { StyleProp, ViewStyle } from "react-native";
+import type { ViewProps } from "react-native";
 import { Image, View } from "react-native";
 import { Text } from "./Text";
 import { cn } from "../utils";
+import { Loader } from "./Loader";
 
-export interface AvatarProps {
-	className?: string;
-	style?: StyleProp<ViewStyle>;
+export interface AvatarProps extends Omit<ViewProps, "children"> {
+	uid: string;
 	name?: string;
 	avatarUrl?: string | null;
-	uid: string;
 	size?: "small" | "large";
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
-	name,
 	uid,
+	name,
 	avatarUrl,
 	size = "small",
 	style,
 	className,
+	...props
 }) => {
 	const backgroundColor = useThemeColor("mediumTint");
 	const color = useThemeColor("white");
 	const isSmall = size === "small";
 
-	const uri = useCachedAvatar(uid, avatarUrl);
+	const [uri, isLoading] = useCachedAvatar(uid, avatarUrl);
 
 	return (
 		<View
@@ -35,8 +35,11 @@ export const Avatar: React.FC<AvatarProps> = ({
 				className,
 			)}
 			style={[{ backgroundColor }, style]}
+			{...props}
 		>
-			{uri ? (
+			{isLoading ? (
+				<Loader size="small" />
+			) : uri ? (
 				<Image source={{ uri }} className="rounded-2xl w-full h-full" />
 			) : (
 				<Text

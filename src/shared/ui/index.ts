@@ -2,6 +2,7 @@ export * from "./Avatar";
 export * from "./AvatarUploader";
 export * from "./Button";
 export * from "./ButtonOpacity";
+export * from "./Camera";
 export * from "./Carousel";
 export * from "./Container";
 export * from "./Field";

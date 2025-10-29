@@ -17,7 +17,7 @@ const PhotoScreen: React.FC = () => {
 	const primaryColor = useThemeColor("primary");
 	const mutedColor = useThemeColor("medium");
 
-	const { mutate: updateAvatar, isPending } = useUpdateAvatar();
+	const { mutateAsync: updateAvatar, isPending } = useUpdateAvatar();
 
 	const pickImageFromGallery = useSelectFile(async (file) => {
 		await updateAvatar({
@@ -101,6 +101,13 @@ const PhotoScreen: React.FC = () => {
 				</ScrollView>
 
 				<View className="gap-4 w-full items-center pt-4">
+					<Button
+						className="w-2/3 rounded-full"
+						onPress={() => router.navigate("/(authenticated)/camera")}
+						isLoading={isPending}
+					>
+						Open Camera
+					</Button>
 					<Button
 						className="w-2/3 rounded-full"
 						onPress={pickImageFromGallery}

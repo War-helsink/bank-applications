@@ -22,7 +22,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 	const selectAvatarColor = useThemeColor("primary");
 	const color = useThemeColor("white");
 
-	const uri = useCachedAvatar(uid, avatarUrl);
+	const [uri] = useCachedAvatar(uid, avatarUrl);
 
 	const pickImageFromGallery = useSelectFile((file) => {
 		onChangeAvatar?.({

@@ -15,6 +15,7 @@ const AuthenticatedLayout: React.FC = () => {
 			<Stack screenOptions={{ headerShown: false }}>
 				<Stack.Screen name="(app)" />
 				<Stack.Screen name="(tabs)" />
+				<Stack.Screen name="camera" />
 				<Stack.Screen
 					name="photo"
 					options={{

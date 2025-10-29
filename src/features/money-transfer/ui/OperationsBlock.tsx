@@ -20,7 +20,7 @@ export const OperationsBlock: React.FC = () => {
 	return (
 		<View className="flex-row my-2">
 			<Toolbar className="grow items-start gap-2 py-4 rounded-2xl mr-1">
-				<Link button style={{ backgroundColor }}>
+				<Link button style={{ backgroundColor }} href="/(authenticated)/(tabs)">
 					<Ionicons name="wallet" size={18} color={color} />
 				</Link>
 
@@ -32,7 +32,7 @@ export const OperationsBlock: React.FC = () => {
 			</Toolbar>
 
 			<Toolbar className="grow items-start gap-2 py-4 rounded-2xl ml-1">
-				<Link button style={{ backgroundColor }}>
+				<Link button style={{ backgroundColor }} href="/(authenticated)/(tabs)">
 					<Ionicons name="cart" size={18} color={color} />
 				</Link>
 				<Text className="text-xs">CONSUMER LOAN</Text>
