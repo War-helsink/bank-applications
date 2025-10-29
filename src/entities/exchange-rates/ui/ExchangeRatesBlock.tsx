@@ -35,7 +35,7 @@ export const ExchangeRatesBlock: React.FC<ExchangeRatesBlockProps> = ({
 				{route && (
 					<Link
 						className="flex-row items-center gap-1"
-						href="/(app)/exchange-rates"
+						href="/(authenticated)/(app)/exchange-rates"
 					>
 						<Text className="text-xs" style={{ color: dangerColor }}>
 							SEE MORE

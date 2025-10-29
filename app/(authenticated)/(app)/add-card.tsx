@@ -8,7 +8,7 @@ const AddCardScreen: React.FC = () => {
 
 	const onAddNewCard = (cardType: CardType) => {
 		router.navigate({
-			pathname: "/(app)/card-creating",
+			pathname: "/(authenticated)/(app)/card-creating",
 			params: { cardType },
 		});
 	};

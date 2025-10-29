@@ -12,10 +12,10 @@ export const Header: React.FC = () => {
 			<ProfileLink />
 
 			<View className="flex flex-row gap-2">
-				<Link href="/messages" button>
+				<Link href="/(authenticated)/(app)/messages" button>
 					<Ionicons name="notifications" size={18} color={color} />
 				</Link>
-				<Link href="/statistics" button>
+				<Link href="/(authenticated)/(app)/statistics" button>
 					<Ionicons name="bar-chart" size={18} color={color} />
 				</Link>
 			</View>

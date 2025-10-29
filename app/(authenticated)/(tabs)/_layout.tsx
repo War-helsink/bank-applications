@@ -1,15 +1,9 @@
-import { useSession } from "@/entities/session";
 import { TabBarIcon } from "@/features/navigation";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { Redirect, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 
 const TabLayout: React.FC = () => {
 	const tabBarActiveTintColor = useThemeColor("primary");
-	const { session } = useSession();
-
-	if (!session) {
-		return <Redirect href="/(unauthenticated)/welcome" />;
-	}
 
 	return (
 		<Tabs

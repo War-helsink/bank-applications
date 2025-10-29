@@ -1,14 +1,7 @@
-import { useSession } from "@/entities/session";
 import { ButtonBack } from "@/features/navigation";
-import { Redirect, Stack } from "expo-router";
+import { Stack } from "expo-router";
 
 const AppLayout: React.FC = () => {
-	const { session } = useSession();
-
-	if (!session) {
-		return <Redirect href="/(unauthenticated)/welcome" />;
-	}
-
 	return (
 		<Stack
 			screenOptions={{ headerShown: true, headerLeft: () => <ButtonBack /> }}

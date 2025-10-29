@@ -31,7 +31,10 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 				<Text className="text-xs">{title}</Text>
 
 				{linkTransfer && (
-					<Link className="flex-row items-center gap-1" href="/(app)/transfer">
+					<Link
+						className="flex-row items-center gap-1"
+						href="/(authenticated)/(app)/transfer"
+					>
 						<Text className="text-xs" style={{ color }}>
 							SEE MORE
 						</Text>
@@ -71,7 +74,7 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 						<Link
 							className="w-14 h-14 rounded-2xl flex justify-center items-center"
 							style={{ backgroundColor }}
-							href="/(app)/friends"
+							href="/(authenticated)/(app)/friends"
 						>
 							<Ionicons name="add" size={18} color={addFriendColor} />
 						</Link>

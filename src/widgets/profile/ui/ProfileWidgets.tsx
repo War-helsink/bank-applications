@@ -10,11 +10,14 @@ import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import { useCallback, useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import Toast from "react-native-toast-message";
-import { ProfileChangeHeader } from "./ProfileChangeHeader";
-import { ProfileContactForm } from "./ProfileContactForm";
-import { ProfileNameForm } from "./ProfileNameForm";
+import {
+	ProfileChangeHeader,
+	ProfileContactForm,
+	ProfileNameForm,
+} from "@/features/profile";
+import type { AvatarInfo } from "@/shared/types";
 
-export const ProfileScreen: React.FC = () => {
+export const ProfileWidgets: React.FC = () => {
 	const { user } = useUser();
 	const { mutate: updateUser } = useUpdateUser();
 	const { mutate: logout } = useLogout();
@@ -22,10 +25,7 @@ export const ProfileScreen: React.FC = () => {
 	const [changes, setChanges] = useState(false);
 	const { showLoader, hideLoader } = useLoader();
 
-	const [avatarInfo, setAvatarInfo] = useState<{
-		avatarUrl: string | null;
-		name: string | null;
-	}>({
+	const [avatarInfo, setAvatarInfo] = useState<AvatarInfo>({
 		avatarUrl: user?.avatarUrl ?? null,
 		name: null,
 	});
@@ -128,7 +128,7 @@ export const ProfileScreen: React.FC = () => {
 
 	return (
 		<View className="h-full flex-col justify-between gap-4">
-			<ScrollView>
+			<ScrollView showsVerticalScrollIndicator={false}>
 				<View className="pt-4 flex gap-4">
 					<ProfileChangeHeader
 						changes={changes}

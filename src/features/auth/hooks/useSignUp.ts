@@ -18,7 +18,7 @@ export function useSignUp() {
 				const { user } = await signUp(data.email, data.password);
 				await createUser({ uid: user.uid, ...data });
 
-				router.navigate("/(app)/photo");
+				router.navigate("/(authenticated)/photo");
 
 				Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 				Toast.show({

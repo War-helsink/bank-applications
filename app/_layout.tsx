@@ -1,4 +1,3 @@
-import { CardsProvider } from "@/providers/card";
 import { LoaderProvider } from "@/providers/loader";
 import { QueryProvider } from "@/providers/query";
 import { SessionProvider } from "@/providers/session";
@@ -37,19 +36,19 @@ const RootLayout: React.FC = () => {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<QueryProvider>
 				<SessionProvider>
-					<CardsProvider>
-						<LoaderProvider>
-							<Stack>
-								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-								<Stack.Screen name="(app)" options={{ headerShown: false }} />
-								<Stack.Screen
-									name="(unauthenticated)"
-									options={{ headerShown: false }}
-								/>
-								<Stack.Screen name="+not-found" />
-							</Stack>
-						</LoaderProvider>
-					</CardsProvider>
+					<LoaderProvider>
+						<Stack>
+							<Stack.Screen
+								name="(authenticated)"
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="(unauthenticated)"
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen name="+not-found" />
+						</Stack>
+					</LoaderProvider>
 				</SessionProvider>
 			</QueryProvider>
 			<StatusBar style="auto" />

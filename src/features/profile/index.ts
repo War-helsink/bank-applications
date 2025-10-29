@@ -1,2 +1,4 @@
 export { ProfileLink } from "./ui/ProfileLink";
-export { ProfileModal } from "./ui/ProfileModal";
+export { ProfileChangeHeader } from "./ui/ProfileChangeHeader";
+export { ProfileContactForm } from "./ui/ProfileContactForm";
+export { ProfileNameForm } from "./ui/ProfileNameForm";

@@ -1,22 +1,15 @@
 import { useCachedAvatar } from "@/shared/hooks/useCached";
-import {
-	launchImageLibraryAsync,
-	requestMediaLibraryPermissionsAsync,
-} from "expo-image-picker";
 import { Image, TouchableOpacity, View } from "react-native";
-import Toast from "react-native-toast-message";
-
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Text } from "./Text";
+import { useSelectFile } from "../hooks/useSelectFile";
+import type { AvatarInfo } from "../types";
 
 export interface AvatarUploaderProps {
 	name?: string;
 	uid: string;
 	avatarUrl?: string | null;
-	onChangeAvatar?: (avatarInfo: {
-		avatarUrl: string | null;
-		name: string | null;
-	}) => void;
+	onChangeAvatar?: (avatarInfo: AvatarInfo) => void;
 }
 
 export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
@@ -31,31 +24,12 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 
 	const uri = useCachedAvatar(uid, avatarUrl);
 
-	const pickImage = async () => {
-		const permissionResult = await requestMediaLibraryPermissionsAsync();
-
-		if (!permissionResult.granted) {
-			Toast.show({
-				type: "info",
-				text1: "Access to the gallery is required to select an avatar!",
-			});
-			return;
-		}
-
-		const result = await launchImageLibraryAsync({
-			mediaTypes: "images",
-			allowsEditing: true,
-			aspect: [1, 1],
-			quality: 1,
+	const pickImageFromGallery = useSelectFile((file) => {
+		onChangeAvatar?.({
+			avatarUrl: file.uri,
+			name: file.fileName as string,
 		});
-
-		if (!result.canceled) {
-			onChangeAvatar?.({
-				avatarUrl: result.assets[0].uri,
-				name: result.assets[0].fileName as string,
-			});
-		}
-	};
+	});
 
 	return (
 		<View className="w-full justify-center items-center gap-4">
@@ -72,7 +46,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 				</View>
 			)}
 
-			<TouchableOpacity onPress={pickImage}>
+			<TouchableOpacity onPress={pickImageFromGallery}>
 				<Text className="text-lg" style={{ color: selectAvatarColor }}>
 					Select a new avatar
 				</Text>

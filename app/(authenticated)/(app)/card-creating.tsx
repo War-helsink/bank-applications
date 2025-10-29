@@ -49,7 +49,7 @@ const CardCreationScreen: React.FC = () => {
 		});
 
 		hideLoader();
-		router.dismissTo("/(tabs)");
+		router.dismissTo("/(authenticated)/(tabs)");
 	};
 
 	return (

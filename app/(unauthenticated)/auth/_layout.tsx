@@ -6,7 +6,7 @@ const AuthLayout: React.FC = () => {
 	const { session } = useSession();
 
 	if (session) {
-		return <Redirect href="/(tabs)" />;
+		return <Redirect href="/(authenticated)/(tabs)" />;
 	}
 
 	return (

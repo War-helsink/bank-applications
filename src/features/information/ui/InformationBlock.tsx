@@ -34,7 +34,7 @@ export const InformationBlock: React.FC = () => {
 				</Link>
 				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
-					href="/(tabs)"
+					href="/(authenticated)/(tabs)"
 					style={{ backgroundColor }}
 				>
 					<Ionicons name="help-circle" size={30} color={colorQuestions} />
@@ -44,7 +44,7 @@ export const InformationBlock: React.FC = () => {
 				</Link>
 				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
-					href="/(tabs)"
+					href="/(authenticated)/(tabs)"
 					style={{ backgroundColor }}
 				>
 					<Ionicons name="documents" size={30} color={colorStatements} />
@@ -54,7 +54,7 @@ export const InformationBlock: React.FC = () => {
 				</Link>
 				<Link
 					className="px-1 py-2 mb-4 rounded-2xl w-[48%] items-center justify-center"
-					href="/(tabs)"
+					href="/(authenticated)/(tabs)"
 					style={{ backgroundColor }}
 				>
 					<Ionicons name="document-text" size={30} color={colorTariffs} />

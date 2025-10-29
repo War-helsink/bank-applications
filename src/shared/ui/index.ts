@@ -4,7 +4,6 @@ export * from "./Button";
 export * from "./ButtonOpacity";
 export * from "./Carousel";
 export * from "./Container";
-export * from "./CustomModalDrawer";
 export * from "./Field";
 export * from "./FieldClear";
 export * from "./FieldCode";
