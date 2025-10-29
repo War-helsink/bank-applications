@@ -14,9 +14,15 @@ const BACKGROUND_COLOR = "#00000080";
 
 export interface CameraProps {
 	setUri(uri: string): void;
+	leftButtons?: React.ReactNode;
+	rightButtons?: React.ReactNode;
 }
 
-export const Camera: React.FC<CameraProps> = ({ setUri }) => {
+export const Camera: React.FC<CameraProps> = ({
+	setUri,
+	leftButtons,
+	rightButtons,
+}) => {
 	const router = useRouter();
 	const cameraRef = React.useRef<CameraView>(null);
 	const insets = useSafeAreaInsets();
@@ -76,7 +82,7 @@ export const Camera: React.FC<CameraProps> = ({ setUri }) => {
 			</View>
 			<CameraView ref={cameraRef} style={[{ flex: 1 }]} facing={facing} />
 			<View
-				className="absolute bottom-0 left-0 right-0 flex-row justify-center items-center pt-4 z-10"
+				className="absolute bottom-0 left-0 right-0 flex-row items-center pt-4 z-10"
 				style={{
 					paddingLeft: insets.left + OFFSET,
 					paddingRight: insets.right + OFFSET,
@@ -84,25 +90,27 @@ export const Camera: React.FC<CameraProps> = ({ setUri }) => {
 					backgroundColor: BACKGROUND_COLOR,
 				}}
 			>
-				<TouchableOpacity
-					className="absolute"
-					style={{ left: insets.left + OFFSET }}
-					activeOpacity={0.8}
-					onPress={toggleCameraFacing}
-				>
-					<Ionicons name="repeat" size={28} color={buttonColor} />
-				</TouchableOpacity>
-				<View
-					className="p-[2px] rounded-full border"
-					style={[{ borderColor: buttonColor }]}
-				>
-					<TouchableOpacity
-						className="w-16 h-16 rounded-full bg-white"
-						activeOpacity={0.8}
-						style={{ backgroundColor: buttonColor }}
-						onPress={takePicture}
-					/>
+				<View className="flex-1 items-start justify-center">
+					<TouchableOpacity activeOpacity={0.8} onPress={toggleCameraFacing}>
+						<Ionicons name="repeat" size={28} color={buttonColor} />
+					</TouchableOpacity>
+					{leftButtons}
 				</View>
+				<View className="items-center justify-center">
+					<View
+						className="p-[2px] rounded-full border"
+						style={[{ borderColor: buttonColor }]}
+					>
+						<TouchableOpacity
+							className="w-16 h-16 rounded-full bg-white"
+							activeOpacity={0.8}
+							style={{ backgroundColor: buttonColor }}
+							onPress={takePicture}
+						/>
+					</View>
+				</View>
+
+				<View className="flex-1 items-end justify-center">{rightButtons}</View>
 			</View>
 		</View>
 	);

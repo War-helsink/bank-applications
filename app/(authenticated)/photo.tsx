@@ -11,6 +11,7 @@ import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { useSelectFile } from "@/shared/hooks/useSelectFile";
 import { useUpdateAvatar } from "@/entities/user";
 import { useRouter } from "expo-router";
+import { CameraService } from "@/shared/services";
 
 const PhotoScreen: React.FC = () => {
 	const router = useRouter();
@@ -19,12 +20,25 @@ const PhotoScreen: React.FC = () => {
 
 	const { mutateAsync: updateAvatar, isPending } = useUpdateAvatar();
 
+	const pickImageFromCamera = async () => {
+		const uri = await CameraService.openCamera(router);
+
+		if (uri) {
+			const fileName = uri.split("/").pop() ?? null;
+			await updateAvatar({
+				avatarUrl: uri,
+				name: fileName,
+			});
+			router.dismissTo("/(authenticated)/(tabs)");
+		}
+	};
+
 	const pickImageFromGallery = useSelectFile(async (file) => {
 		await updateAvatar({
 			avatarUrl: file.uri,
 			name: file.fileName ?? null,
 		});
-		router.replace("/(authenticated)/(tabs)");
+		router.dismissTo("/(authenticated)/(tabs)");
 	});
 
 	return (
@@ -103,7 +117,7 @@ const PhotoScreen: React.FC = () => {
 				<View className="gap-4 w-full items-center pt-4">
 					<Button
 						className="w-2/3 rounded-full"
-						onPress={() => router.navigate("/(authenticated)/camera")}
+						onPress={pickImageFromCamera}
 						isLoading={isPending}
 					>
 						Open Camera
@@ -116,8 +130,8 @@ const PhotoScreen: React.FC = () => {
 						Choose from Gallery
 					</Button>
 					<Link
-						routerType="dismissAll"
-						href="/(authenticated)/(app)/add-card"
+						routerType="dismissTo"
+						href="/(authenticated)/(tabs)"
 						disabled={isPending}
 					>
 						<Text
