@@ -30,10 +30,11 @@ export const SelectFriends: React.FC<YourFriendsProps> = ({
 								>
 									<View className="flex-1 flex-row gap-4">
 										<Avatar
+											className="rounded-2xl"
 											uid={user.id}
 											name={user.lastName}
 											avatarUrl={user.avatarUrl}
-											size="large"
+											size={48}
 										/>
 										<View>
 											<Text className="text-sm">{user.firstName}</Text>

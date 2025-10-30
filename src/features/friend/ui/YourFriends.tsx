@@ -50,10 +50,11 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 							name ? (
 								<View key={friendsUserData.uid} className="flex items-center">
 									<Avatar
+										className="rounded-2xl"
 										uid={friendsUserData.uid}
 										name={friendsUserData.lastName}
 										avatarUrl={friendsUserData.avatarUrl}
-										size="large"
+										size={48}
 									/>
 
 									<Text className="mt-2">{friendsUserData.lastName}</Text>
@@ -61,11 +62,12 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 								</View>
 							) : (
 								<Avatar
+									className="rounded-2xl"
 									key={friendsUserData.uid}
 									uid={friendsUserData.uid}
 									name={friendsUserData.lastName}
 									avatarUrl={friendsUserData.avatarUrl}
-									size="large"
+									size={48}
 								/>
 							),
 						)}

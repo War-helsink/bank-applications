@@ -23,9 +23,9 @@ export const ProfileLink: React.FC = () => {
 				uid={user.id}
 				name={user.lastName}
 				avatarUrl={user.avatarUrl}
-				className="border-2 border-solid"
+				className="border border-solid rounded-2xl"
 				style={{ borderColor: color }}
-				size="large"
+				size={48}
 			/>
 
 			<View className="flex-row items-center ml-2">

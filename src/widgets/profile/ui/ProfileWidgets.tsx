@@ -137,6 +137,7 @@ export const ProfileWidgets: React.FC = () => {
 					/>
 
 					<AvatarUploader
+						className="rounded-full"
 						uid={user?.id ?? "default"}
 						name={user?.lastName ?? ""}
 						avatarUrl={avatarInfo.avatarUrl}
@@ -144,6 +145,7 @@ export const ProfileWidgets: React.FC = () => {
 							setAvatarInfo(avatarInfo);
 							setChanges(true);
 						}}
+						size={128}
 					/>
 
 					<ProfileNameForm

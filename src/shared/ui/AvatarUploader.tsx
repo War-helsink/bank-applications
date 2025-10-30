@@ -1,28 +1,21 @@
-import { useCachedAvatar } from "@/shared/hooks/useCached";
-import { Image, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Text } from "./Text";
 import { useSelectFile } from "../hooks/useSelectFile";
 import type { AvatarInfo } from "../types";
+import { Avatar, type AvatarProps } from "./Avatar";
 
-export interface AvatarUploaderProps {
-	name?: string;
-	uid: string;
-	avatarUrl?: string | null;
+export interface AvatarUploaderProps extends AvatarProps {
 	onChangeAvatar?: (avatarInfo: AvatarInfo) => void;
+	uploadLabel?: string;
 }
 
 export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
-	uid,
-	name,
-	avatarUrl = null,
 	onChangeAvatar,
+	uploadLabel = "Select a new avatar",
+	...props
 }) => {
-	const backgroundColor = useThemeColor("mediumTint");
 	const selectAvatarColor = useThemeColor("primary");
-	const color = useThemeColor("white");
-
-	const [uri] = useCachedAvatar(uid, avatarUrl);
 
 	const pickImageFromGallery = useSelectFile((file) => {
 		onChangeAvatar?.({
@@ -33,22 +26,11 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 
 	return (
 		<View className="w-full justify-center items-center gap-4">
-			{uri ? (
-				<Image source={{ uri }} className="rounded-full h-32 w-32" />
-			) : (
-				<View
-					className="rounded-full items-center justify-center h-32 w-32"
-					style={{ backgroundColor }}
-				>
-					<Text className="text-[64px] font-medium" style={{ color }}>
-						{name?.slice(0, 1)}
-					</Text>
-				</View>
-			)}
+			<Avatar {...props} />
 
 			<TouchableOpacity onPress={pickImageFromGallery}>
 				<Text className="text-lg" style={{ color: selectAvatarColor }}>
-					Select a new avatar
+					{uploadLabel}
 				</Text>
 			</TouchableOpacity>
 		</View>
