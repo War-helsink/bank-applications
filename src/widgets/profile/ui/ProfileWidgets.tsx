@@ -1,9 +1,8 @@
-import { type UserType, useUpdateUser, useUser } from "@/entities/user";
+import { useUpdateUser, useUser } from "@/entities/user";
 import { useLogout } from "@/features/auth";
 import { hasObjectChanged } from "@/shared/utils";
 import { useLoader } from "@/shared/hooks/useLoader";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { StorageService } from "@/shared/services";
 import { AvatarUploader, Text, Toolbar } from "@/shared/ui";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
@@ -15,7 +14,6 @@ import {
 	ProfileContactForm,
 	ProfileNameForm,
 } from "@/features/profile";
-import type { AvatarInfo } from "@/shared/types";
 
 export const ProfileWidgets: React.FC = () => {
 	const { user } = useUser();
@@ -24,11 +22,6 @@ export const ProfileWidgets: React.FC = () => {
 	const color = useThemeColor("danger");
 	const [changes, setChanges] = useState(false);
 	const { showLoader, hideLoader } = useLoader();
-
-	const [avatarInfo, setAvatarInfo] = useState<AvatarInfo>({
-		avatarUrl: user?.avatarUrl ?? null,
-		name: null,
-	});
 
 	const [data, setData] = useState({
 		firstName: user?.firstName ?? "",
@@ -72,10 +65,6 @@ export const ProfileWidgets: React.FC = () => {
 			phone: user?.phone ?? "",
 			email: user?.email ?? "",
 		});
-		setAvatarInfo({
-			avatarUrl: user?.avatarUrl ?? null,
-			name: null,
-		});
 		setChanges(false);
 	}, [user]);
 
@@ -85,27 +74,9 @@ export const ProfileWidgets: React.FC = () => {
 		}
 
 		if (changes) {
-			let newUserData: Partial<UserType> = { ...data };
-
 			showLoader();
 
-			if (avatarInfo.avatarUrl !== user.avatarUrl) {
-				const avatarStorageService = new StorageService(`avatar/${user.id}`);
-
-				if (user.avatarUrl && user.avatarUrl.length > 0) {
-					await avatarStorageService
-						.deleteFile(user.avatarUrl)
-						.catch(() => null);
-				}
-
-				const newAvatarUrl = await avatarStorageService.uploadImageAsync(
-					avatarInfo.avatarUrl as string,
-					avatarInfo.name as string,
-				);
-				newUserData = { avatarUrl: newAvatarUrl, ...newUserData };
-			}
-
-			await updateUser(newUserData);
+			await updateUser(data);
 
 			hideLoader();
 
@@ -135,19 +106,16 @@ export const ProfileWidgets: React.FC = () => {
 						onCancel={cancel}
 						onSave={save}
 					/>
-
-					<AvatarUploader
-						className="rounded-full"
-						uid={user?.id ?? "default"}
-						name={user?.lastName ?? ""}
-						avatarUrl={avatarInfo.avatarUrl}
-						onChangeAvatar={(avatarInfo) => {
-							setAvatarInfo(avatarInfo);
-							setChanges(true);
-						}}
-						size={128}
-					/>
-
+					<View className="w-full items-center justify-center">
+						<AvatarUploader
+							className="rounded-full"
+							uid={user?.id ?? "default"}
+							name={user?.lastName ?? ""}
+							avatarUrl={user?.avatarUrl}
+							size={100}
+							sizeIcon={18}
+						/>
+					</View>
 					<ProfileNameForm
 						firstName={data.firstName}
 						secondName={data.secondName}

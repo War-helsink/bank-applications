@@ -1,4 +1,5 @@
-import { FieldClear, Toolbar } from "@/shared/ui";
+import { View } from "react-native";
+import { FieldClear, Toolbar, Text } from "@/shared/ui";
 
 export interface IProfileContactData {
 	phone: string;
@@ -14,18 +15,24 @@ export const ProfileContactForm: React.FC<ProfileContactFormProps> = ({
 	setDataParam,
 }) => {
 	return (
-		<Toolbar className="rounded-xl px-0 py-0">
-			<FieldClear
-				placeholder="Email"
-				value={email}
-				onChange={(email) => setDataParam?.(email, "email")}
-			/>
-			<FieldClear
-				className="border-0"
-				placeholder="Phone"
-				value={phone}
-				onChange={(phone) => setDataParam?.(phone, "phone")}
-			/>
-		</Toolbar>
+		<View className="gap-4">
+			<Toolbar className="rounded-xl px-0 py-0">
+				<FieldClear
+					placeholder="Email"
+					value={email}
+					onChange={(email) => setDataParam?.(email, "email")}
+				/>
+				<FieldClear
+					className="border-0"
+					placeholder="Phone"
+					value={phone}
+					onChange={(phone) => setDataParam?.(phone, "phone")}
+				/>
+			</Toolbar>
+
+			<Text className="text-sm text-center">
+				Email and phone are used to contact you.
+			</Text>
+		</View>
 	);
 };

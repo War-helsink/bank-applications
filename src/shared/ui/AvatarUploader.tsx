@@ -1,37 +1,35 @@
+import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, View } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { Text } from "./Text";
-import { useSelectFile } from "../hooks/useSelectFile";
-import type { AvatarInfo } from "../types";
 import { Avatar, type AvatarProps } from "./Avatar";
 
-export interface AvatarUploaderProps extends AvatarProps {
-	onChangeAvatar?: (avatarInfo: AvatarInfo) => void;
-	uploadLabel?: string;
+interface AvatarUploaderProps extends AvatarProps {
+	sizeIcon: number;
 }
 
 export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
-	onChangeAvatar,
-	uploadLabel = "Select a new avatar",
+	size,
+	sizeIcon,
 	...props
 }) => {
-	const selectAvatarColor = useThemeColor("primary");
-
-	const pickImageFromGallery = useSelectFile((file) => {
-		onChangeAvatar?.({
-			avatarUrl: file.uri,
-			name: file.fileName as string,
-		});
-	});
+	const route = useRouter();
+	const backgroundColor = useThemeColor("primary");
+	const selectAvatarColor = useThemeColor("text");
 
 	return (
-		<View className="w-full justify-center items-center gap-4">
-			<Avatar {...props} />
+		<View
+			className="relative justify-center items-center gap-2"
+			style={{ width: size, height: size }}
+		>
+			<Avatar size={size} {...props} />
 
-			<TouchableOpacity onPress={pickImageFromGallery}>
-				<Text className="text-lg" style={{ color: selectAvatarColor }}>
-					{uploadLabel}
-				</Text>
+			<TouchableOpacity
+				className="absolute bottom-0 right-0 p-1 rounded-full items-center justify-center"
+				onPress={() => route.navigate("/(authenticated)/photo")}
+				style={{ backgroundColor }}
+			>
+				<Ionicons name="camera" size={sizeIcon} color={selectAvatarColor} />
 			</TouchableOpacity>
 		</View>
 	);

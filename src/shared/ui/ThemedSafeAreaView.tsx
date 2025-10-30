@@ -14,7 +14,7 @@ export const ThemedSafeAreaView: React.FC<ThemedSafeAreaViewProps> = ({
 	style,
 	lightColor,
 	darkColor,
-	...otherProps
+	...props
 }) => {
 	const backgroundColor = useThemeColor("background", {
 		light: lightColor,
@@ -25,7 +25,7 @@ export const ThemedSafeAreaView: React.FC<ThemedSafeAreaViewProps> = ({
 		<SafeAreaView
 			className={className}
 			style={[{ backgroundColor }, style]}
-			{...otherProps}
+			{...props}
 		/>
 	);
 };
