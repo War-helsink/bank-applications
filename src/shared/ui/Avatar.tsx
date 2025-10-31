@@ -1,48 +1,62 @@
 import { useCachedAvatar } from "@/shared/hooks/useCached";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import type { StyleProp, ViewStyle } from "react-native";
+import type { ViewProps } from "react-native";
 import { Image, View } from "react-native";
 import { Text } from "./Text";
 import { cn } from "../utils";
+import { Loader } from "./Loader";
 
-export interface AvatarProps {
-	className?: string;
-	style?: StyleProp<ViewStyle>;
+const calculateFontSize = (avatarSize: number): number => {
+	return Math.round(avatarSize * 0.42);
+};
+
+export interface AvatarProps extends Omit<ViewProps, "children"> {
+	uid: string;
 	name?: string;
 	avatarUrl?: string | null;
-	uid: string;
-	size?: "small" | "large";
+	size?: number;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
-	name,
 	uid,
+	name,
 	avatarUrl,
-	size = "small",
+	size = 36,
 	style,
 	className,
+	...props
 }) => {
 	const backgroundColor = useThemeColor("mediumTint");
 	const color = useThemeColor("white");
-	const isSmall = size === "small";
 
-	const uri = useCachedAvatar(uid, avatarUrl);
+	const fontSize = calculateFontSize(size);
+	const [uri, isLoading] = useCachedAvatar(uid, avatarUrl);
 
 	return (
 		<View
-			className={cn(
-				`rounded-2xl items-center justify-center ${isSmall ? "w-9 h-9" : "w-14 h-14"}`,
-				className,
-			)}
-			style={[{ backgroundColor }, style]}
+			className={cn("items-center justify-center overflow-hidden", className)}
+			style={[
+				{
+					width: size,
+					height: size,
+					backgroundColor,
+				},
+				style,
+			]}
+			{...props}
 		>
-			{uri ? (
-				<Image source={{ uri }} className="rounded-2xl w-full h-full" />
+			{isLoading ? (
+				<Loader size="small" />
+			) : uri ? (
+				<Image
+					source={{ uri }}
+					style={{
+						width: size,
+						height: size,
+					}}
+				/>
 			) : (
-				<Text
-					className={`${isSmall ? "text-lg" : "text-xl"} font-medium`}
-					style={{ color }}
-				>
+				<Text className="font-medium" style={{ color, fontSize }}>
 					{name?.slice(0, 1)}
 				</Text>
 			)}

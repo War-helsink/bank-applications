@@ -2,9 +2,7 @@ import { View } from "react-native";
 import type { ViewProps } from "react-native";
 import { cn } from "../utils";
 
-export type ContainerProps = ViewProps;
-
-export const Container: React.FC<ContainerProps> = ({
+export const Container: React.FC<ViewProps> = ({
 	className,
 	children,
 	style,

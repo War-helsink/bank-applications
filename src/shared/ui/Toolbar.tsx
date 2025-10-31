@@ -4,9 +4,7 @@ import { View } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { cn } from "../utils";
 
-export type ToolbarProps = ViewProps;
-
-export const Toolbar: React.FC<ToolbarProps> = ({
+export const Toolbar: React.FC<ViewProps> = ({
 	className,
 	style,
 	children,

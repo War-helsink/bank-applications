@@ -1,5 +1,5 @@
 import type { StyleProp, ViewStyle } from "react-native";
-import { TouchableHighlight } from "react-native";
+import { ActivityIndicator, TouchableHighlight } from "react-native";
 
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import type { TypeColors } from "@/shared/types";
@@ -12,6 +12,7 @@ export interface ButtonProps extends React.PropsWithChildren {
 	color?: TypeColors;
 	style?: StyleProp<ViewStyle>;
 	disabled?: boolean;
+	isLoading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
 	style,
 	color: colorName = "primary",
 	disabled,
+	isLoading,
 }) => {
 	const backgroundColor = useThemeColor(colorName);
 	const underlayColor = useThemeColor(colorName);
@@ -29,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
 	return (
 		<TouchableHighlight
 			onPress={onPress}
-			disabled={disabled}
+			disabled={disabled || isLoading}
 			className={cn(
 				"rounded-xl w-full py-3",
 				disabled && "opacity-75",
@@ -38,9 +40,13 @@ export const Button: React.FC<ButtonProps> = ({
 			style={[{ backgroundColor }, style]}
 			underlayColor={underlayColor}
 		>
-			<Text className="text-center" style={{ color: color }}>
-				{children}
-			</Text>
+			{isLoading ? (
+				<ActivityIndicator size="small" color={color} />
+			) : (
+				<Text className="text-center" style={{ color: color }}>
+					{children}
+				</Text>
+			)}
 		</TouchableHighlight>
 	);
 };

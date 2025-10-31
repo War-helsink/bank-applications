@@ -7,9 +7,14 @@ import { useThemeColor } from "@/shared/hooks/useThemeColor";
 
 export interface ThemedBottomSheetProps extends BottomSheetProps {
 	ref?: React.RefObject<BottomSheet>;
+	bottomSheetViewProps?: Omit<
+		React.ComponentProps<typeof BottomSheetView>,
+		"children"
+	>;
 }
 
 export const ThemedBottomSheet: React.FC<ThemedBottomSheetProps> = ({
+	bottomSheetViewProps,
 	...props
 }) => {
 	const backgroundColor = useThemeColor("toolbarBackground");
@@ -21,7 +26,9 @@ export const ThemedBottomSheet: React.FC<ThemedBottomSheetProps> = ({
 			backgroundStyle={{ backgroundColor }}
 			handleIndicatorStyle={{ backgroundColor: indicatorColor }}
 		>
-			<BottomSheetView className="flex-1">{props.children}</BottomSheetView>
+			<BottomSheetView className="flex-1" {...bottomSheetViewProps}>
+				{props.children}
+			</BottomSheetView>
 		</BottomSheet>
 	);
 };

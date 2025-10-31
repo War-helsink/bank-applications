@@ -1,14 +1,10 @@
 import type { UserType } from "./types";
 
-export function intiUserData(
-	uid: string,
-	email: string,
-	password: string,
-): UserType {
+export function intiUserData(data: Partial<UserType>): UserType {
 	return {
-		id: uid,
-		email: email,
-		password: password,
+		id: "",
+		email: "",
+		password: "",
 
 		firstName: "",
 		secondName: "",
@@ -21,5 +17,6 @@ export function intiUserData(
 		birthday: null,
 		updatedAt: null,
 		createdAt: new Date(),
+		...data,
 	};
 }

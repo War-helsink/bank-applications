@@ -2,14 +2,10 @@ import { useUser } from "@/entities/user";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Avatar, Link, Text } from "@/shared/ui";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
 import { View } from "react-native";
-import { ProfileModal } from "./ProfileModal";
 
 export const ProfileLink: React.FC = () => {
 	const color = useThemeColor("danger");
-	const backgroundColor = useThemeColor("toolbarBackground");
-	const [isDrawerVisible, setDrawerVisible] = useState(false);
 
 	const { user } = useUser();
 
@@ -17,31 +13,25 @@ export const ProfileLink: React.FC = () => {
 		return null;
 	}
 
-	const handleCloseDrawer = () => {
-		setDrawerVisible(false);
-	};
-
 	return (
 		<Link
-			className="flex-row pr-2 items-center rounded-2xl"
-			onPress={() => setDrawerVisible(true)}
-			style={{ backgroundColor }}
+			className="flex-row p-0 pr-2 items-center rounded-2xl"
+			href="/(authenticated)/profile"
+			button
 		>
 			<Avatar
 				uid={user.id}
 				name={user.lastName}
 				avatarUrl={user.avatarUrl}
-				className="border-2 border-solid"
+				className="border border-solid rounded-2xl"
 				style={{ borderColor: color }}
-				size="large"
+				size={48}
 			/>
 
 			<View className="flex-row items-center ml-2">
 				<Text className="text-base">{user.lastName}</Text>
 				<Ionicons name="chevron-forward" size={16} color={color} />
 			</View>
-
-			<ProfileModal isVisible={isDrawerVisible} onClose={handleCloseDrawer} />
 		</Link>
 	);
 };

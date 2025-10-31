@@ -27,7 +27,7 @@ export const CardItem: React.FC<CardItemProps> = ({ width, height, card }) => {
 			className="rounded-xl p-5 justify-center items-center overflow-hidden"
 			style={[{ width: width, height: height }, GLOBAL_STYLES.shadow]}
 		>
-			<Fragment key={card.id}>
+			<Fragment>
 				<LinearGradient
 					colors={CardTypeGradients[card.cardType].colors}
 					start={CardTypeGradients[card.cardType].start}
