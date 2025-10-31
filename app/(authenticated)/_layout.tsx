@@ -17,6 +17,14 @@ const AuthenticatedLayout: React.FC = () => {
 				<Stack.Screen name="(tabs)" />
 				<Stack.Screen name="camera" />
 				<Stack.Screen
+					name="crop"
+					options={{
+						title: "Crop",
+						headerShown: true,
+						headerLeft: () => <ButtonBack />,
+					}}
+				/>
+				<Stack.Screen
 					name="photo"
 					options={{
 						title: "Photo",

@@ -1,19 +1,20 @@
-import { useUpdateUser, useUser } from "@/entities/user";
-import { useLogout } from "@/features/auth";
-import { hasObjectChanged } from "@/shared/utils";
-import { useLoader } from "@/shared/hooks/useLoader";
-import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { AvatarUploader, Text, Toolbar } from "@/shared/ui";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import { useCallback, useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
 import Toast from "react-native-toast-message";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Pressable, ScrollView, View } from "react-native";
+import { NotificationFeedbackType, notificationAsync } from "expo-haptics";
 import {
 	ProfileChangeHeader,
 	ProfileContactForm,
 	ProfileNameForm,
 } from "@/features/profile";
+import { useLogout } from "@/features/auth";
+import { AvatarUploader } from "@/features/avatar";
+import { useUpdateUser, useUser } from "@/entities/user";
+import { hasObjectChanged } from "@/shared/utils";
+import { useLoader } from "@/shared/hooks/useLoader";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
+import { Text, Toolbar } from "@/shared/ui";
 
 export const ProfileWidgets: React.FC = () => {
 	const { user } = useUser();

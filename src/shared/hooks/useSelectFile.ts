@@ -20,8 +20,6 @@ export function useSelectFile(callback: (file: ImagePickerAsset) => void) {
 
 		const result = await launchImageLibraryAsync({
 			mediaTypes: "images",
-			allowsEditing: true,
-			aspect: [1, 1],
 			quality: 1,
 		});
 

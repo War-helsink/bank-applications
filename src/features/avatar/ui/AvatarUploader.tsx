@@ -1,8 +1,8 @@
-import { useRouter } from "expo-router";
+import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity, View } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { Avatar, type AvatarProps } from "./Avatar";
+import { Avatar, type AvatarProps } from "@/shared/ui";
+import { ButtonSelectImage } from "@/features/photo";
 
 interface AvatarUploaderProps extends AvatarProps {
 	sizeIcon: number;
@@ -13,8 +13,6 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 	sizeIcon,
 	...props
 }) => {
-	const route = useRouter();
-	const backgroundColor = useThemeColor("primary");
 	const selectAvatarColor = useThemeColor("text");
 
 	return (
@@ -23,14 +21,9 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 			style={{ width: size, height: size }}
 		>
 			<Avatar size={size} {...props} />
-
-			<TouchableOpacity
-				className="absolute bottom-0 right-0 p-1 rounded-full items-center justify-center"
-				onPress={() => route.navigate("/(authenticated)/photo")}
-				style={{ backgroundColor }}
-			>
+			<ButtonSelectImage className="absolute bottom-0 right-0 w-auto p-1 rounded-full items-center justify-center">
 				<Ionicons name="camera" size={sizeIcon} color={selectAvatarColor} />
-			</TouchableOpacity>
+			</ButtonSelectImage>
 		</View>
 	);
 };

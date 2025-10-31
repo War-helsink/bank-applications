@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, View } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
@@ -14,22 +13,22 @@ const BACKGROUND_COLOR = "#00000080";
 
 export interface CameraProps {
 	setUri(uri: string): void;
-	leftButtons?: React.ReactNode;
-	rightButtons?: React.ReactNode;
+	topButtons?: React.ReactNode;
+	leftBottomButtons?: React.ReactNode;
+	rightBottomButtons?: React.ReactNode;
 }
 
 export const Camera: React.FC<CameraProps> = ({
 	setUri,
-	leftButtons,
-	rightButtons,
+	topButtons,
+	leftBottomButtons,
+	rightBottomButtons,
 }) => {
-	const router = useRouter();
+	const buttonColor = useThemeColor("primary");
 	const cameraRef = React.useRef<CameraView>(null);
 	const insets = useSafeAreaInsets();
 	const [permission, requestPermission] = useCameraPermissions();
 	const [facing, setFacing] = React.useState<"back" | "front">("back");
-
-	const buttonColor = useThemeColor("primary");
 
 	if (!permission) {
 		return (
@@ -76,9 +75,7 @@ export const Camera: React.FC<CameraProps> = ({
 					backgroundColor: BACKGROUND_COLOR,
 				}}
 			>
-				<TouchableOpacity onPress={() => router.back()}>
-					<Ionicons name="close" size={28} color={buttonColor} />
-				</TouchableOpacity>
+				{topButtons}
 			</View>
 			<CameraView ref={cameraRef} style={[{ flex: 1 }]} facing={facing} />
 			<View
@@ -94,7 +91,7 @@ export const Camera: React.FC<CameraProps> = ({
 					<TouchableOpacity activeOpacity={0.8} onPress={toggleCameraFacing}>
 						<Ionicons name="repeat" size={28} color={buttonColor} />
 					</TouchableOpacity>
-					{leftButtons}
+					{leftBottomButtons}
 				</View>
 				<View className="items-center justify-center">
 					<View
@@ -110,7 +107,9 @@ export const Camera: React.FC<CameraProps> = ({
 					</View>
 				</View>
 
-				<View className="flex-1 items-end justify-center">{rightButtons}</View>
+				<View className="flex-1 items-end justify-center">
+					{rightBottomButtons}
+				</View>
 			</View>
 		</View>
 	);

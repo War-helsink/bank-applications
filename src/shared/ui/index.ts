@@ -1,5 +1,5 @@
 export * from "./Avatar";
-export * from "./AvatarUploader";
+export * from "./BottomModal";
 export * from "./Button";
 export * from "./ButtonOpacity";
 export * from "./Camera";

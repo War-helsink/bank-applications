@@ -9,7 +9,6 @@ import {
 } from "@/shared/ui";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { useSelectFile } from "@/shared/hooks/useSelectFile";
-import { useUpdateAvatar } from "@/entities/user";
 import { useRouter } from "expo-router";
 import { CameraService } from "@/shared/services";
 
@@ -18,27 +17,22 @@ const PhotoScreen: React.FC = () => {
 	const primaryColor = useThemeColor("primary");
 	const mutedColor = useThemeColor("medium");
 
-	const { mutateAsync: updateAvatar, isPending } = useUpdateAvatar();
-
 	const pickImageFromCamera = async () => {
 		const uri = await CameraService.openCamera(router);
 
 		if (uri) {
-			const fileName = uri.split("/").pop() ?? null;
-			await updateAvatar({
-				avatarUrl: uri,
-				name: fileName,
+			router.navigate({
+				pathname: "/(authenticated)/crop",
+				params: { uri },
 			});
-			router.dismissTo("/(authenticated)/(tabs)");
 		}
 	};
 
 	const pickImageFromGallery = useSelectFile(async (file) => {
-		await updateAvatar({
-			avatarUrl: file.uri,
-			name: file.fileName ?? null,
+		router.navigate({
+			pathname: "/(authenticated)/crop",
+			params: { uri: file.uri },
 		});
-		router.dismissTo("/(authenticated)/(tabs)");
 	});
 
 	return (
@@ -115,25 +109,13 @@ const PhotoScreen: React.FC = () => {
 				</ScrollView>
 
 				<View className="gap-4 w-full items-center pt-4">
-					<Button
-						className="w-2/3 rounded-full"
-						onPress={pickImageFromCamera}
-						isLoading={isPending}
-					>
+					<Button className="w-2/3 rounded-full" onPress={pickImageFromCamera}>
 						Open Camera
 					</Button>
-					<Button
-						className="w-2/3 rounded-full"
-						onPress={pickImageFromGallery}
-						isLoading={isPending}
-					>
+					<Button className="w-2/3 rounded-full" onPress={pickImageFromGallery}>
 						Choose from Gallery
 					</Button>
-					<Link
-						routerType="dismissTo"
-						href="/(authenticated)/(tabs)"
-						disabled={isPending}
-					>
+					<Link routerType="dismissTo" href="/(authenticated)/(tabs)">
 						<Text
 							className="text-base font-medium mt-2"
 							style={{ color: mutedColor }}
