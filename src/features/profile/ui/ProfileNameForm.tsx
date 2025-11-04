@@ -1,40 +1,52 @@
 import { View } from "react-native";
+import type { FormikProps } from "formik";
+import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { FieldClear, Toolbar, Text } from "@/shared/ui";
+import type { ProfileFormValues } from "../lib/schema";
 
-export interface IProfileNameData {
-	firstName: string;
-	secondName: string;
-	lastName: string;
+export interface ProfileNameFormProps {
+	formik: FormikProps<ProfileFormValues>;
 }
 
-export interface ProfileNameFormProps extends IProfileNameData {
-	setDataParam?: (value: string, key: keyof IProfileNameData) => void;
-}
+export const ProfileNameForm: React.FC<ProfileNameFormProps> = ({ formik }) => {
+	const errorColor = useThemeColor("danger");
 
-export const ProfileNameForm: React.FC<ProfileNameFormProps> = ({
-	firstName,
-	secondName,
-	lastName,
-	setDataParam,
-}) => {
 	return (
 		<View className="gap-4 mb-8">
 			<Toolbar className="rounded-xl px-0 py-0">
 				<FieldClear
-					value={firstName}
-					onChange={(firstName) => setDataParam?.(firstName, "firstName")}
+					value={formik.values.firstName}
+					onChange={(value) => formik.setFieldValue("firstName", value)}
+					onBlur={() => formik.setFieldTouched("firstName")}
 					placeholder="First name"
+					style={
+						formik.touched.firstName && formik.errors.firstName
+							? { borderColor: errorColor }
+							: undefined
+					}
 				/>
 				<FieldClear
-					value={secondName}
-					onChange={(secondName) => setDataParam?.(secondName, "secondName")}
+					value={formik.values.secondName}
+					onChange={(value) => formik.setFieldValue("secondName", value)}
+					onBlur={() => formik.setFieldTouched("secondName")}
 					placeholder="Second name"
+					style={
+						formik.touched.secondName && formik.errors.secondName
+							? { borderColor: errorColor }
+							: undefined
+					}
 				/>
 				<FieldClear
 					className="border-0"
-					value={lastName}
-					onChange={(lastName) => setDataParam?.(lastName, "lastName")}
+					value={formik.values.lastName}
+					onChange={(value) => formik.setFieldValue("lastName", value)}
+					onBlur={() => formik.setFieldTouched("lastName")}
 					placeholder="Last name"
+					style={
+						formik.touched.lastName && formik.errors.lastName
+							? { borderBottomWidth: 1, borderColor: errorColor }
+							: undefined
+					}
 				/>
 			</Toolbar>
 

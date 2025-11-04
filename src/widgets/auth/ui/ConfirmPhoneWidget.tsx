@@ -2,7 +2,13 @@ import { useState } from "react";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
 import { View, Image } from "react-native";
-import { FieldCode, Text, Button, TextButton, Container } from "@/shared/ui";
+import {
+	FieldCode,
+	Text,
+	ButtonWithLoading,
+	TextButton,
+	Container,
+} from "@/shared/ui";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 
 interface ConfirmPhoneWidgetProps {
@@ -71,13 +77,13 @@ export const ConfirmPhoneWidget: React.FC<ConfirmPhoneWidgetProps> = ({
 			</View>
 
 			<View className="p-6 justify-center items-center">
-				<Button
+				<ButtonWithLoading
 					isLoading={isResendLoading}
 					className="w-64 rounded-full py-4"
 					onPress={onVerify}
 				>
 					Verify
-				</Button>
+				</ButtonWithLoading>
 			</View>
 		</Container>
 	);

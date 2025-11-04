@@ -1,7 +1,12 @@
 import type React from "react";
 import { Formik } from "formik";
 import { View } from "react-native";
-import { Button, Text, FieldClear, FieldPassword } from "@/shared/ui";
+import {
+	ButtonWithLoading,
+	Text,
+	FieldClear,
+	FieldPassword,
+} from "@/shared/ui";
 import { useLogin } from "../hooks/useLogin";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import {
@@ -48,6 +53,7 @@ export const LoginForm: React.FC = () => {
 							className="p-0 pr-8 border-0"
 							placeholder="Enter email"
 							onChange={(value) => formik.setFieldValue("email", value)}
+							onBlur={() => formik.setFieldTouched("email")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -71,6 +77,7 @@ export const LoginForm: React.FC = () => {
 							value={formik.values.password}
 							placeholder="Enter password"
 							onChange={(value) => formik.setFieldValue("password", value)}
+							onBlur={() => formik.setFieldTouched("password")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -89,13 +96,13 @@ export const LoginForm: React.FC = () => {
 						)}
 					</View>
 
-					<Button
+					<ButtonWithLoading
 						isLoading={isLoginPending}
 						onPress={() => formik.handleSubmit()}
 						className="rounded-full p-4"
 					>
 						Log in
-					</Button>
+					</ButtonWithLoading>
 				</View>
 			)}
 		</Formik>

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { Button, ThemedSafeAreaView } from "@/shared/ui";
+import { ButtonWithLoading, ThemedSafeAreaView } from "@/shared/ui";
 import { ImageCrop, type ImageCropRef } from "@/features/crop";
 import { ButtonSelectImage } from "@/features/photo";
 import { useUpdateAvatar } from "@/entities/user";
@@ -35,13 +35,13 @@ const CropScreen: React.FC = () => {
 		<ThemedSafeAreaView className="flex-1 justify-between">
 			<ImageCrop ref={imageCropRef} uri={uri} />
 			<View className="gap-4 px-9">
-				<Button
-					className="rounded-full h-12"
+				<ButtonWithLoading
+					className="rounded-full h-12  justify-center items-center"
 					isLoading={isPending}
 					onPress={cropPhotoAndUpdate}
 				>
 					Save
-				</Button>
+				</ButtonWithLoading>
 
 				<ButtonSelectImage className="rounded-full" disabled={isPending}>
 					Retake

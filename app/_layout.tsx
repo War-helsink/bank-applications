@@ -1,4 +1,3 @@
-import { LoaderProvider } from "@/providers/loader";
 import { QueryProvider } from "@/providers/query";
 import { SessionProvider } from "@/providers/session";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
@@ -36,19 +35,17 @@ const RootLayout: React.FC = () => {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<QueryProvider>
 				<SessionProvider>
-					<LoaderProvider>
-						<Stack>
-							<Stack.Screen
-								name="(authenticated)"
-								options={{ headerShown: false }}
-							/>
-							<Stack.Screen
-								name="(unauthenticated)"
-								options={{ headerShown: false }}
-							/>
-							<Stack.Screen name="+not-found" />
-						</Stack>
-					</LoaderProvider>
+					<Stack>
+						<Stack.Screen
+							name="(authenticated)"
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name="(unauthenticated)"
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen name="+not-found" />
+					</Stack>
 				</SessionProvider>
 			</QueryProvider>
 			<StatusBar style="auto" />

@@ -1,39 +1,29 @@
-import type { StyleProp, ViewStyle } from "react-native";
+import type { TouchableOpacityProps } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import type { TypeColors } from "@/shared/types";
-import { Text } from "./Text";
 import { cn } from "../utils";
+import { withButtonLoading } from "../hoc";
 
-export interface ButtonOpacityProps extends React.PropsWithChildren {
-	className?: string;
-	onPress?: () => void;
+export interface ButtonOpacityProps extends TouchableOpacityProps {
 	color?: TypeColors;
-	style?: StyleProp<ViewStyle>;
-	disabled?: boolean;
 }
 
 export const ButtonOpacity: React.FC<ButtonOpacityProps> = ({
-	className,
-	children,
-	onPress,
-	style,
 	color: colorName = "primary",
-	disabled,
+	className,
+	style,
+	...props
 }) => {
 	const backgroundColor = useThemeColor(colorName);
-	const color = useThemeColor(`${colorName}Contrast`);
 
 	return (
 		<TouchableOpacity
-			onPress={onPress}
-			disabled={disabled}
 			className={cn("rounded-xl w-full py-3", className)}
 			style={[{ backgroundColor }, style]}
-		>
-			<Text className="text-center" style={{ color: color }}>
-				{children}
-			</Text>
-		</TouchableOpacity>
+			{...props}
+		/>
 	);
 };
+
+export const ButtonOpacityWithLoading = withButtonLoading(ButtonOpacity);
