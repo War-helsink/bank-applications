@@ -1,4 +1,4 @@
-import type { IMoreItem } from "../model";
+import type { IMoreItem } from "../types";
 
 export const menu: IMoreItem[] = [
 	{

@@ -26,8 +26,6 @@ export const ProfileWidgets: React.FC = () => {
 		},
 	});
 
-	console.log(formik.errors, formik.touched);
-
 	return (
 		<View className="h-full flex-col justify-between gap-4">
 			<ScrollView showsVerticalScrollIndicator={false}>

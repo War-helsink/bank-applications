@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useMemo } from "react";
-import { profileFormSchema, type ProfileFormValues } from "../lib/schema";
+import { ProfileFormSchema, type ProfileFormValues } from "../lib/schema";
 import type { UserType } from "@/entities/user";
 import { hasObjectChanged } from "@/shared/utils";
 
@@ -24,23 +24,17 @@ export const useProfileForm = ({ user, onSubmit }: UseProfileFormProps) => {
 	const formik = useFormik<ProfileFormValues>({
 		initialValues,
 		validate: (values) => {
-			try {
-				profileFormSchema.parse(values);
-				return {};
-			} catch (error) {
-				const errors: Record<string, string> = {};
-				if (error && typeof error === "object" && "errors" in error) {
-					const zodError = error as {
-						errors: Array<{ path?: string[]; message: string }>;
-					};
-					zodError.errors?.forEach((err) => {
-						if (err.path?.[0]) {
-							errors[err.path[0]] = err.message;
-						}
-					});
+			const result = ProfileFormSchema.safeParse(values);
+			if (result.success) return {};
+			const errors: Record<string, string> = {};
+
+			result.error.errors.forEach((error) => {
+				if (error.path?.length > 0) {
+					errors[error.path[0] as string] = error.message;
 				}
-				return errors;
-			}
+			});
+
+			return errors;
 		},
 		onSubmit,
 		enableReinitialize: true,

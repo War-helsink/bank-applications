@@ -1,16 +1,23 @@
 import type { UserType } from "@/entities/user";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import {
+	ActivityIndicator,
+	ScrollView,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Avatar, Text, Toolbar } from "@/shared/ui";
 
 export interface YourFriendsProps {
+	getDisabled: (id: string) => boolean;
 	users: UserType[];
 	selectUser?: (user: UserType) => void;
 }
 
 export const SelectFriends: React.FC<YourFriendsProps> = ({
+	getDisabled,
 	users,
 	selectUser,
 }) => {
@@ -42,11 +49,16 @@ export const SelectFriends: React.FC<YourFriendsProps> = ({
 										</View>
 									</View>
 									<TouchableOpacity
+										disabled={getDisabled(user.id)}
 										onPress={() => selectUser?.(user)}
 										className="w-10 h-10 rounded-xl flex justify-center items-center"
 										style={{ backgroundColor }}
 									>
-										<Ionicons name="add" size={18} color={addFriendColor} />
+										{getDisabled(user.id) ? (
+											<ActivityIndicator size="small" color={addFriendColor} />
+										) : (
+											<Ionicons name="add" size={18} color={addFriendColor} />
+										)}
 									</TouchableOpacity>
 								</View>
 							))}

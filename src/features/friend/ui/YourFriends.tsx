@@ -1,5 +1,5 @@
 import { useUser } from "@/entities/user";
-import { useGetFriends } from "@/entities/friends";
+import { useFriends } from "@/entities/friends";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Avatar, Link, Text, Toolbar } from "@/shared/ui";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -23,7 +23,7 @@ export const YourFriends: React.FC<YourFriendsProps> = ({
 	const addFriendColor = useThemeColor("text");
 	const backgroundColor = useThemeColor("mainSurfaceSecondary");
 
-	const { friends } = useGetFriends(user?.id);
+	const { friends } = useFriends(user?.id);
 
 	return (
 		<Toolbar className="py-4 rounded-2xl my-2 flex gap-4">

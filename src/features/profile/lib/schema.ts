@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const profileFormSchema = z.object({
+export const ProfileFormSchema = z.object({
 	firstName: z
 		.string()
 		.min(2, "First name must be at least 2 characters")
@@ -17,4 +17,4 @@ export const profileFormSchema = z.object({
 	email: z.string().email("Invalid email address"),
 });
 
-export type ProfileFormValues = z.infer<typeof profileFormSchema>;
+export type ProfileFormValues = z.infer<typeof ProfileFormSchema>;

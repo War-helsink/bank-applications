@@ -1,39 +1,29 @@
-import { useSession } from "@/entities/session";
-import type { UserType } from "@/entities/user";
+import { useState } from "react";
 import {
 	SearchFriendInput,
 	SelectFriends,
 	YourFriends,
 } from "@/features/friend";
-import {
-	useGetFriends,
-	useRefetchFriends,
-	useSearchFriends,
-} from "@/entities/friends";
+import { useSession } from "@/entities/session";
+import type { UserType } from "@/entities/user";
+import { useAddFriend, useSearchFriends } from "@/entities/friends";
 import { Container, ThemedSafeAreaView } from "@/shared/ui";
-import { useState } from "react";
 
 const FriendsScreen: React.FC = () => {
 	const { session } = useSession();
 	const [searchValue, setSearchValue] = useState<string>();
 	const { searchUsers } = useSearchFriends(session?.uid, searchValue);
-	const refetch = useRefetchFriends(session?.uid);
 
-	const { friends } = useGetFriends(session?.uid);
+	const { addFriend, getDisabled } = useAddFriend();
 
 	const addNewFriend = (user: UserType) => {
-		if (!friends) {
-			return;
-		}
-		friends
-			.addUsers({
-				uid: user.id,
-				firstName: user.firstName,
-				secondName: user.secondName,
-				lastName: user.lastName,
-				avatarUrl: user.avatarUrl,
-			})
-			.then(() => refetch());
+		addFriend({
+			uid: user.id,
+			firstName: user.firstName,
+			secondName: user.secondName,
+			lastName: user.lastName,
+			avatarUrl: user.avatarUrl,
+		});
 	};
 
 	return (
@@ -41,6 +31,7 @@ const FriendsScreen: React.FC = () => {
 			<Container className="w-full h-full flex gap-4">
 				<SearchFriendInput value={searchValue} onChange={setSearchValue} />
 				<SelectFriends
+					getDisabled={getDisabled}
 					users={searchUsers}
 					selectUser={(user) => addNewFriend(user)}
 				/>

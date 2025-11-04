@@ -4,7 +4,7 @@ import { Text } from "@/shared/ui";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ImpactFeedbackStyle, impactAsync } from "expo-haptics";
 import { Pressable, View } from "react-native";
-import type { IMoreItem } from "../model";
+import type { IMoreItem } from "../types";
 
 export interface MenuItemProps {
 	item: IMoreItem;

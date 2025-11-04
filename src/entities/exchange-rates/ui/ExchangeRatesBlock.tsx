@@ -5,7 +5,7 @@ import type React from "react";
 import { View } from "react-native";
 import { CurrenciesIcon } from "../config/exchange-rates";
 
-import type { ExchangeRatesSimplified } from "../model/types";
+import type { ExchangeRatesSimplified } from "../types";
 
 export interface ExchangeRatesBlockProps {
 	title?: string;

@@ -17,7 +17,7 @@ import {
 } from "@/shared/ui";
 import type { SvgProps } from "react-native-svg";
 
-import type { CurrencyType } from "../model/types";
+import type { CurrencyType } from "../types";
 
 export const URL_API =
 	"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
