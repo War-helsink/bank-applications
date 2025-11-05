@@ -3,4 +3,5 @@ export const BASE_QUERY_KEY = {
 	users: "users",
 	cards: "cards",
 	friends: "friends",
+	support: "support",
 } as const;

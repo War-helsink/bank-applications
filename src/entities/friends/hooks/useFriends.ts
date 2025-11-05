@@ -3,7 +3,7 @@ import { BASE_QUERY_KEY } from "@/shared/config";
 import { getFriends } from "../api";
 
 export const useFriends = (uid?: string) => {
-	const { data: friends, refetch } = useQuery({
+	const { data: friends } = useQuery({
 		queryKey: [BASE_QUERY_KEY.friends, uid],
 		queryFn: async () => {
 			try {
@@ -15,5 +15,5 @@ export const useFriends = (uid?: string) => {
 		enabled: !!uid,
 	});
 
-	return { friends, refetch };
+	return { friends };
 };

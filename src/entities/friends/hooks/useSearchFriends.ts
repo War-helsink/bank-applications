@@ -6,7 +6,7 @@ import { useDebounceValue } from "@/shared/hooks/useDebounce";
 export function useSearchFriends(uid?: string, searchValue?: string) {
 	const debouncedSearchValue = useDebounceValue(searchValue, 1000);
 
-	const { data: searchUsers, refetch } = useQuery({
+	const { data: searchUsers } = useQuery({
 		queryKey: [BASE_QUERY_KEY.friends, uid, "search", debouncedSearchValue],
 		queryFn: async () => {
 			if (!debouncedSearchValue) {
@@ -25,8 +25,8 @@ export function useSearchFriends(uid?: string, searchValue?: string) {
 	});
 
 	if (!searchUsers) {
-		return { searchUsers: [], refetch };
+		return { searchUsers: [] };
 	}
 
-	return { searchUsers, refetch };
+	return { searchUsers };
 }
