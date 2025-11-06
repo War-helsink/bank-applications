@@ -9,11 +9,13 @@ import {
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
+import Head from "expo-router/head";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "../global.css";
 import { SplashController } from "@/shared/services";
+import { Platform } from "react-native";
 
 SplashController.start();
 SplashController.register("layout");
@@ -36,6 +38,11 @@ const RootLayout: React.FC = () => {
 			<QueryProvider>
 				<SessionProvider>
 					<NetworkStatusIndicator />
+					{Platform.OS === "web" && (
+						<Head>
+							<title>Bank Applications</title>
+						</Head>
+					)}
 					<Stack>
 						<Stack.Screen
 							name="(authenticated)"
