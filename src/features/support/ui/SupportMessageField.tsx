@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActivityIndicator, Pressable, View } from "react-native";
+import { Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useSendMessage } from "@/entities/support";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
@@ -10,15 +10,16 @@ export const SupportMessageField: React.FC = () => {
 	const color = useThemeColor("primary");
 	const [message, setMessage] = useState("");
 
-	const { mutate: sendMessage, isPending } = useSendMessage();
+	const { mutate: sendMessage } = useSendMessage();
 
 	const onSendMessage = () => {
+		setMessage("");
+
 		if (message.trim().length <= 0) {
 			return;
 		}
 
 		sendMessage(message);
-		setMessage("");
 	};
 
 	return (
@@ -36,13 +37,8 @@ export const SupportMessageField: React.FC = () => {
 			<Pressable
 				className="ml-4 w-8 h-8 items-center justify-center"
 				onPress={onSendMessage}
-				disabled={isPending}
 			>
-				{isPending ? (
-					<ActivityIndicator size="small" color={color} />
-				) : (
-					<Ionicons name="send" size={28} color={color} />
-				)}
+				<Ionicons name="send" size={28} color={color} />
 			</Pressable>
 		</View>
 	);

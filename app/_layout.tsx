@@ -1,4 +1,4 @@
-import { QueryProvider } from "@/providers/query";
+import { QueryProvider, NetworkStatusIndicator } from "@/providers/query";
 import { SessionProvider } from "@/providers/session";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
 import { Toast } from "@/shared/ui";
@@ -35,6 +35,7 @@ const RootLayout: React.FC = () => {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<QueryProvider>
 				<SessionProvider>
+					<NetworkStatusIndicator />
 					<Stack>
 						<Stack.Screen
 							name="(authenticated)"
