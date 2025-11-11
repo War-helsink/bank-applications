@@ -17,7 +17,7 @@ const WelcomeScreen: React.FC = () => {
 				</Text>
 				<Image
 					source={require("@assets/images/screen/welcome-to-smartbank.png")}
-					className="mt-10 w-full flex-1"
+					className="mt-10 w-full max-w-full flex-1"
 					resizeMode="contain"
 				/>
 			</View>
