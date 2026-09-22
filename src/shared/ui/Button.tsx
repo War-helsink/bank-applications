@@ -1,28 +1,25 @@
-import type { StyleProp, ViewStyle } from "react-native";
-import { ActivityIndicator, TouchableHighlight } from "react-native";
-
+import { TouchableHighlight } from "react-native";
+import type { TouchableHighlightProps } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import type { TypeColors } from "@/shared/types";
 import { Text } from "./Text";
 import { cn } from "../utils";
+import { withButtonLoading } from "../hoc";
 
-export interface ButtonProps extends React.PropsWithChildren {
-	className?: string;
-	onPress?: () => void;
+export interface ButtonProps
+	extends Omit<TouchableHighlightProps, "underlayColor"> {
+	asChild?: boolean;
 	color?: TypeColors;
-	style?: StyleProp<ViewStyle>;
-	disabled?: boolean;
-	isLoading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
 	className,
 	children,
-	onPress,
+	asChild,
 	style,
 	color: colorName = "primary",
 	disabled,
-	isLoading,
+	...props
 }) => {
 	const backgroundColor = useThemeColor(colorName);
 	const underlayColor = useThemeColor(colorName);
@@ -30,8 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 	return (
 		<TouchableHighlight
-			onPress={onPress}
-			disabled={disabled || isLoading}
+			disabled={disabled}
 			className={cn(
 				"rounded-xl w-full py-3",
 				disabled && "opacity-75",
@@ -39,9 +35,10 @@ export const Button: React.FC<ButtonProps> = ({
 			)}
 			style={[{ backgroundColor }, style]}
 			underlayColor={underlayColor}
+			{...props}
 		>
-			{isLoading ? (
-				<ActivityIndicator size="small" color={color} />
+			{asChild ? (
+				children
 			) : (
 				<Text className="text-center" style={{ color: color }}>
 					{children}
@@ -50,3 +47,5 @@ export const Button: React.FC<ButtonProps> = ({
 		</TouchableHighlight>
 	);
 };
+
+export const ButtonWithLoading = withButtonLoading(Button);

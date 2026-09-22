@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getExchangeRates } from "../api/api";
 
-import type { ExchangeRatesSimplified } from "../model/types";
+import type { ExchangeRatesSimplified } from "../types";
 
 export function useExchangeRates() {
 	const {

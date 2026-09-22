@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { initializeAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
@@ -17,8 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Auth
-export const auth = initializeAuth(app);
+// Initialize Auth - uses default persistence (indexedDB with fallback to localStorage)
+export const auth = getAuth(app);
 
 // Initialize Firestore
 export const firestore = getFirestore(app);

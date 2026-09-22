@@ -1,4 +1,4 @@
-import type { Support } from "@/entities/support";
+import type { SupportMessageType } from "@/entities/support";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Container, Text } from "@/shared/ui";
@@ -11,7 +11,7 @@ import { cn, formatDateChat } from "@/shared/utils";
 export interface SupportMessagesProps {
 	className?: string;
 	style?: StyleProp<ViewStyle>;
-	messages: Support[];
+	messages: SupportMessageType[];
 }
 
 export const SupportMessages: React.FC<SupportMessagesProps> = ({
@@ -35,7 +35,7 @@ export const SupportMessages: React.FC<SupportMessagesProps> = ({
 						acc[dateKey].push(message);
 						return acc;
 					},
-					{} as Record<string, Support[]>,
+					{} as Record<string, SupportMessageType[]>,
 				),
 			),
 		[messages],
@@ -59,6 +59,7 @@ export const SupportMessages: React.FC<SupportMessagesProps> = ({
 					contentContainerStyle={{ flexDirection: "column-reverse" }}
 					data={groupedMessages}
 					keyExtractor={([key]) => key}
+					showsVerticalScrollIndicator={false}
 					renderItem={({ item: [date, items] }) => {
 						return (
 							<View className="w-full flex gap-2 mt-2">

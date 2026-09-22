@@ -2,7 +2,12 @@ import type React from "react";
 import { Formik } from "formik";
 import { View } from "react-native";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
-import { Button, Text, FieldPassword, FieldClear } from "@/shared/ui";
+import {
+	ButtonWithLoading,
+	Text,
+	FieldPassword,
+	FieldClear,
+} from "@/shared/ui";
 import {
 	SignupSchema,
 	type SignupValues,
@@ -48,6 +53,7 @@ export const SignUpForm: React.FC = () => {
 							className="p-0 pr-8 border-0"
 							placeholder="First name"
 							onChange={(value) => formik.setFieldValue("firstName", value)}
+							onBlur={() => formik.setFieldTouched("firstName")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -71,6 +77,7 @@ export const SignUpForm: React.FC = () => {
 							className="p-0 pr-8 border-0"
 							placeholder="Second name"
 							onChange={(value) => formik.setFieldValue("secondName", value)}
+							onBlur={() => formik.setFieldTouched("secondName")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -94,6 +101,7 @@ export const SignUpForm: React.FC = () => {
 							className="p-0 pr-8 border-0"
 							placeholder="Last name"
 							onChange={(value) => formik.setFieldValue("lastName", value)}
+							onBlur={() => formik.setFieldTouched("lastName")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -117,6 +125,7 @@ export const SignUpForm: React.FC = () => {
 							className="p-0 pr-8 border-0"
 							placeholder="Email"
 							onChange={(value) => formik.setFieldValue("email", value)}
+							onBlur={() => formik.setFieldTouched("email")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -140,6 +149,7 @@ export const SignUpForm: React.FC = () => {
 							value={formik.values.password}
 							placeholder="Enter password"
 							onChange={(value) => formik.setFieldValue("password", value)}
+							onBlur={() => formik.setFieldTouched("password")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -165,6 +175,7 @@ export const SignUpForm: React.FC = () => {
 							onChange={(value) =>
 								formik.setFieldValue("repeatPassword", value)
 							}
+							onBlur={() => formik.setFieldTouched("repeatPassword")}
 							containerProps={{
 								className: "rounded-full px-6 py-4 border border-solid",
 								style: {
@@ -184,13 +195,13 @@ export const SignUpForm: React.FC = () => {
 						)}
 					</View>
 
-					<Button
+					<ButtonWithLoading
 						isLoading={isSignUpPending}
 						onPress={() => formik.handleSubmit()}
 						className="rounded-full p-4"
 					>
 						Continue
-					</Button>
+					</ButtonWithLoading>
 				</View>
 			)}
 		</Formik>

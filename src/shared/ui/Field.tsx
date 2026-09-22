@@ -5,6 +5,7 @@ import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { cn } from "../utils";
 
 export interface FieldProps extends Omit<TextInputProps, "onChange"> {
+	ref?: React.RefObject<TextInput | null>;
 	onChange?: (value: string) => void;
 }
 

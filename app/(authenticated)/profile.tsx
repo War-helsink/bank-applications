@@ -4,7 +4,10 @@ import { Container, ThemedSafeAreaView } from "@/shared/ui";
 
 const ProfileScreen: React.FC = () => {
 	return (
-		<ThemedSafeAreaView className="flex-1 w-full">
+		<ThemedSafeAreaView
+			className="flex-1 w-full"
+			edges={["bottom", "left", "right"]}
+		>
 			<KeyboardAvoidingView
 				className="h-full w-full"
 				behavior={Platform.OS === "ios" ? "padding" : "height"}

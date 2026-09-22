@@ -1,10 +1,12 @@
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ToastMessage, {
 	BaseToast,
 	type ToastConfig,
 } from "react-native-toast-message";
 
 export const Toast: React.FC = () => {
+	const insets = useSafeAreaInsets();
 	const colorSuccess = useThemeColor("success");
 	const colorError = useThemeColor("danger");
 	const colorInfo = useThemeColor("medium");
@@ -37,5 +39,11 @@ export const Toast: React.FC = () => {
 		),
 	};
 
-	return <ToastMessage config={toastConfig} />;
+	return (
+		<ToastMessage
+			config={toastConfig}
+			topOffset={insets.top}
+			bottomOffset={insets.bottom}
+		/>
+	);
 };

@@ -5,7 +5,7 @@ import { ImpactFeedbackStyle, impactAsync } from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useRandomGradient } from "../hooks";
-import type { IServiceItem } from "../model";
+import type { IServiceItem } from "../types";
 import { Percent } from "./Percent";
 
 export interface ServiceItemProps {

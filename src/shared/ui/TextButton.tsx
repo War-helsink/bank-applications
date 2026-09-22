@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import { Text, type TextProps } from "./Text";
 
 interface TextButtonProps extends TextProps {
-	onPress: () => void;
+	onPress?: () => void;
 }
 export const TextButton: React.FC<TextButtonProps> = ({
 	onPress,

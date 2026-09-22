@@ -1,11 +1,11 @@
-import type { Support } from "@/entities/support";
+import type { SupportMessageType } from "@/entities/support";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Text } from "@/shared/ui";
 import { cn, formatDateTime } from "@/shared/utils";
 import { View } from "react-native";
 
 export interface SupportMessageProps {
-	message: Support;
+	message: SupportMessageType;
 }
 
 export const SupportMessage: React.FC<SupportMessageProps> = ({ message }) => {

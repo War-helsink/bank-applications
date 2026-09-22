@@ -1,5 +1,5 @@
 import { URL_API } from "../config/exchange-rates";
-import type { ExchangeRatesApiResponse } from "../model/types";
+import type { ExchangeRatesApiResponse } from "../types";
 
 export const getExchangeRates = async (): Promise<ExchangeRatesApiResponse> => {
 	const response = await fetch(URL_API);

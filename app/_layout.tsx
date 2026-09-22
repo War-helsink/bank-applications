@@ -1,20 +1,16 @@
-import { LoaderProvider } from "@/providers/loader";
-import { QueryProvider } from "@/providers/query";
+import { QueryProvider, NetworkStatusIndicator } from "@/providers/query";
 import { SessionProvider } from "@/providers/session";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
 import { Toast } from "@/shared/ui";
-import {
-	DarkTheme,
-	DefaultTheme,
-	ThemeProvider,
-} from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, DarkTheme, DefaultTheme, ThemeProvider } from "expo-router";
+import Head from "expo-router/head";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "../global.css";
 import { SplashController } from "@/shared/services";
+import { Platform } from "react-native";
 
 SplashController.start();
 SplashController.register("layout");
@@ -36,19 +32,23 @@ const RootLayout: React.FC = () => {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<QueryProvider>
 				<SessionProvider>
-					<LoaderProvider>
-						<Stack>
-							<Stack.Screen
-								name="(authenticated)"
-								options={{ headerShown: false }}
-							/>
-							<Stack.Screen
-								name="(unauthenticated)"
-								options={{ headerShown: false }}
-							/>
-							<Stack.Screen name="+not-found" />
-						</Stack>
-					</LoaderProvider>
+					<NetworkStatusIndicator />
+					{Platform.OS === "web" && (
+						<Head>
+							<title>Bank Applications</title>
+						</Head>
+					)}
+					<Stack>
+						<Stack.Screen
+							name="(authenticated)"
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name="(unauthenticated)"
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen name="+not-found" />
+					</Stack>
 				</SessionProvider>
 			</QueryProvider>
 			<StatusBar style="auto" />

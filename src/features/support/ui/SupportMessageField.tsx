@@ -1,38 +1,31 @@
+import { useState } from "react";
+import { Pressable, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useSendMessage } from "@/entities/support";
 import { useThemeColor } from "@/shared/hooks/useThemeColor";
 import { Field } from "@/shared/ui";
-import { cn } from "@/shared/utils";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
-import type { StyleProp, ViewStyle } from "react-native";
-import { Pressable, View } from "react-native";
 
-export interface SupportMessageFieldProps {
-	className?: string;
-	style?: StyleProp<ViewStyle>;
-	sendMessage: (text: string) => void;
-}
-
-export const SupportMessageField: React.FC<SupportMessageFieldProps> = ({
-	className,
-	style,
-	sendMessage,
-}) => {
+export const SupportMessageField: React.FC = () => {
 	const backgroundColor = useThemeColor("toolbarBackground");
 	const color = useThemeColor("primary");
 	const [message, setMessage] = useState("");
 
-	const onClick = () => {
-		sendMessage(message);
+	const { mutate: sendMessage } = useSendMessage();
+
+	const onSendMessage = () => {
 		setMessage("");
+
+		if (message.trim().length <= 0) {
+			return;
+		}
+
+		sendMessage(message);
 	};
 
 	return (
 		<View
-			className={cn(
-				"flex-row items-center justify-between py-2 px-4",
-				className,
-			)}
-			style={[style, { backgroundColor }]}
+			className="flex-row items-center justify-between py-2 px-4"
+			style={{ backgroundColor }}
 		>
 			<Field
 				className="flex-1"
@@ -42,9 +35,8 @@ export const SupportMessageField: React.FC<SupportMessageFieldProps> = ({
 				placeholder="Enter your message"
 			/>
 			<Pressable
-				className="ml-4"
-				onPress={onClick}
-				disabled={message.length <= 0}
+				className="ml-4 w-8 h-8 items-center justify-center"
+				onPress={onSendMessage}
 			>
 				<Ionicons name="send" size={28} color={color} />
 			</Pressable>

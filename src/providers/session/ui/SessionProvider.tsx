@@ -13,10 +13,14 @@ export const SessionProvider: React.FC<React.PropsWithChildren> = ({
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			if (!user) {
+				queryClient.clear();
+			}
 			queryClient.setQueryData(
 				[BASE_QUERY_KEY.session],
 				mapFirebaseSession(user),
 			);
+
 			setReady(true);
 		});
 		return () => unsubscribe();

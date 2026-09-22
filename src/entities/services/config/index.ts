@@ -1,4 +1,4 @@
-import type { IServiceItem } from "../model";
+import type { IServiceItem } from "../types";
 
 export const services: IServiceItem[] = [
 	{
