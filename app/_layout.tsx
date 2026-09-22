@@ -2,13 +2,8 @@ import { QueryProvider, NetworkStatusIndicator } from "@/providers/query";
 import { SessionProvider } from "@/providers/session";
 import { useColorScheme } from "@/shared/hooks/useColorScheme";
 import { Toast } from "@/shared/ui";
-import {
-	DarkTheme,
-	DefaultTheme,
-	ThemeProvider,
-} from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, DarkTheme, DefaultTheme, ThemeProvider } from "expo-router";
 import Head from "expo-router/head";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";

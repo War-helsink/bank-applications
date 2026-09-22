@@ -12,8 +12,7 @@ import {
 	Text,
 	ThemedSafeAreaView,
 } from "@/shared/ui";
-import { useRoute } from "@react-navigation/native";
-import { useRouter } from "expo-router";
+import { useRouter, useRoute } from "expo-router";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 

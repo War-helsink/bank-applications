@@ -1,5 +1,5 @@
 import type React from "react";
-import { useRoute } from "@react-navigation/native";
+import { useRoute } from "expo-router";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import { ThemedSafeAreaView } from "@/shared/ui";
 import { ConfirmPhoneWidget } from "@/widgets/auth";

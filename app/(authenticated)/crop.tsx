@@ -1,7 +1,6 @@
 import { useRef } from "react";
-import { useRouter } from "expo-router";
+import { useRouter, useRoute } from "expo-router";
 import { View } from "react-native";
-import { useRoute } from "@react-navigation/native";
 import { ButtonWithLoading, ThemedSafeAreaView } from "@/shared/ui";
 import { ImageCrop, type ImageCropRef } from "@/features/crop";
 import { ButtonSelectImage } from "@/features/photo";
