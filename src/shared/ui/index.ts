@@ -1,5 +1,4 @@
 export * from "./Avatar";
-export * from "./BottomModal";
 export * from "./Button";
 export * from "./ButtonOpacity";
 export * from "./Camera";
@@ -16,7 +15,6 @@ export * from "./Loader";
 export * from "./ScrollRefreshControl";
 export * from "./Text";
 export * from "./TextButton";
-export * from "./ThemedBottomSheet";
 export * from "./ThemedSafeAreaView";
 export * from "./Toast";
 export * from "./Toolbar";
